@@ -7,6 +7,8 @@ https://github.com/StevenJDH/Code-Librarian
 
 Changelog: https://github.com/StevenJDH/Code-Librarian/wiki/Changelog
 
+Bugs and Limitations: https://github.com/StevenJDH/Code-Librarian/wiki/Bugs-and-Limitations
+
 ## Features
 * Able to open other people's databases for view or editing.
 * You can choose either to have the list panel placed at the left or right side of the program for comfort.
