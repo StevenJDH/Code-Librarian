@@ -3,7 +3,7 @@ This program stores and organizes your code snippets in any programming language
 
 ![alt text](https://github.com/StevenJDH/Code-Librarian/raw/master/codelibraian3-ss.jpg "Screenshot")
 
-https://github.com/StevenJDH/Code-Librarian
+Releases: https://github.com/StevenJDH/Code-Librarian/releases
 
 Changelog: https://github.com/StevenJDH/Code-Librarian/wiki/Changelog
 
