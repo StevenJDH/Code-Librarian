@@ -1,4 +1,4 @@
-# Code-Librarian
+# Code Librarian
 This program stores and organizes your code snippets in any programming language with its easy to use features. I originally built this because I didn’t like the ones I saw on the internet and decided to make something I felt was better. The program is very useful for people who are starting out in programming and for advanced programmers who need a place to store their snippets for reuse. The program was also designed to work with teams and with third-party code where crediting information will need to be saved.
 
 ![alt text](https://github.com/StevenJDH/Code-Librarian/raw/master/codelibraian3-ss.jpg "Screenshot")
