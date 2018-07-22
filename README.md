@@ -23,6 +23,7 @@ Bugs and Limitations: https://github.com/StevenJDH/Code-Librarian/wiki/Bugs-and-
 
 ## TODO
 * There is one block of messy code left over from when I originally developed version 1.0 in VB 6.0 when I was about 13 years old that didn't get cleaned up when I ported it to VB .Net, so this will be the next step. After, I plan to migrate to a more portable database format.
+* Decouple database code and correct a lot of bad habits I had when I originally created this, including a better database design. Overall, it'll probably be a massive rewrite...
 
 ## Why am I contributing?
 This is just one of many tools and applications I’ve created over the years for myself that I thought I should share with the public. I am new to GitHub so bear with me while I get adjusted. Hopefully, with community support, some of these applications will grow into something better.
