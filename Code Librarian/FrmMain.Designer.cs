@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.MenuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,9 +52,9 @@
             this.ToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.stbInfo = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TimeToolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.DateToolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -70,11 +71,12 @@
             this.ToolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.picList = new System.Windows.Forms.Panel();
-            this.lstCode = new System.Windows.Forms.ListBox();
-            this.FilterLanguage = new System.Windows.Forms.ComboBox();
+            this.lstSnippets = new System.Windows.Forms.ListBox();
+            this.cmbLanguageFilter = new System.Windows.Forms.ComboBox();
             this.cmdEdit = new System.Windows.Forms.Button();
             this.cmdView = new System.Windows.Forms.Button();
-            this.cmdRefresh = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
             this.MenuStrip1.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
@@ -251,9 +253,9 @@
             // StatusStrip1
             // 
             this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stbInfo,
-            this.TimeToolStripStatusLabel1,
-            this.DateToolStripStatusLabel2});
+            this.toolStripInfo,
+            this.toolStripTime,
+            this.toolStripDate});
             this.StatusStrip1.Location = new System.Drawing.Point(0, 505);
             this.StatusStrip1.Name = "StatusStrip1";
             this.StatusStrip1.Size = new System.Drawing.Size(802, 22);
@@ -261,30 +263,30 @@
             this.StatusStrip1.TabIndex = 3;
             this.StatusStrip1.Text = "StatusStrip1";
             // 
-            // stbInfo
+            // toolStripInfo
             // 
-            this.stbInfo.AutoSize = false;
-            this.stbInfo.Name = "stbInfo";
-            this.stbInfo.Size = new System.Drawing.Size(608, 17);
-            this.stbInfo.Text = "Status";
-            this.stbInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.stbInfo.ToolTipText = "Shows current number of records in the database";
+            this.toolStripInfo.AutoSize = false;
+            this.toolStripInfo.Name = "toolStripInfo";
+            this.toolStripInfo.Size = new System.Drawing.Size(608, 17);
+            this.toolStripInfo.Text = "Info";
+            this.toolStripInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripInfo.ToolTipText = "Shows current number of records in the database";
             // 
-            // TimeToolStripStatusLabel1
+            // toolStripTime
             // 
-            this.TimeToolStripStatusLabel1.AutoSize = false;
-            this.TimeToolStripStatusLabel1.Name = "TimeToolStripStatusLabel1";
-            this.TimeToolStripStatusLabel1.Size = new System.Drawing.Size(86, 17);
-            this.TimeToolStripStatusLabel1.Text = "Time";
-            this.TimeToolStripStatusLabel1.ToolTipText = "Current time";
+            this.toolStripTime.AutoSize = false;
+            this.toolStripTime.Name = "toolStripTime";
+            this.toolStripTime.Size = new System.Drawing.Size(86, 17);
+            this.toolStripTime.Text = "Time";
+            this.toolStripTime.ToolTipText = "Current time";
             // 
-            // DateToolStripStatusLabel2
+            // toolStripDate
             // 
-            this.DateToolStripStatusLabel2.AutoSize = false;
-            this.DateToolStripStatusLabel2.Name = "DateToolStripStatusLabel2";
-            this.DateToolStripStatusLabel2.Size = new System.Drawing.Size(86, 17);
-            this.DateToolStripStatusLabel2.Text = "Date";
-            this.DateToolStripStatusLabel2.ToolTipText = "Current date";
+            this.toolStripDate.AutoSize = false;
+            this.toolStripDate.Name = "toolStripDate";
+            this.toolStripDate.Size = new System.Drawing.Size(86, 17);
+            this.toolStripDate.Text = "Date";
+            this.toolStripDate.ToolTipText = "Current date";
             // 
             // ToolStrip1
             // 
@@ -422,35 +424,36 @@
             // 
             // picList
             // 
-            this.picList.Controls.Add(this.lstCode);
-            this.picList.Controls.Add(this.FilterLanguage);
+            this.picList.Controls.Add(this.lstSnippets);
+            this.picList.Controls.Add(this.cmbLanguageFilter);
             this.picList.Controls.Add(this.cmdEdit);
             this.picList.Controls.Add(this.cmdView);
-            this.picList.Controls.Add(this.cmdRefresh);
+            this.picList.Controls.Add(this.btnRefresh);
             this.picList.Dock = System.Windows.Forms.DockStyle.Left;
             this.picList.Location = new System.Drawing.Point(0, 49);
             this.picList.Name = "picList";
             this.picList.Size = new System.Drawing.Size(153, 456);
             this.picList.TabIndex = 7;
             // 
-            // lstCode
+            // lstSnippets
             // 
-            this.lstCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.lstCode.FormattingEnabled = true;
-            this.lstCode.Location = new System.Drawing.Point(8, 104);
-            this.lstCode.Name = "lstCode";
-            this.lstCode.Size = new System.Drawing.Size(136, 342);
-            this.lstCode.Sorted = true;
-            this.lstCode.TabIndex = 2;
+            this.lstSnippets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.lstSnippets.FormattingEnabled = true;
+            this.lstSnippets.Location = new System.Drawing.Point(8, 104);
+            this.lstSnippets.Name = "lstSnippets";
+            this.lstSnippets.Size = new System.Drawing.Size(136, 342);
+            this.lstSnippets.Sorted = true;
+            this.lstSnippets.TabIndex = 2;
             // 
-            // FilterLanguage
+            // cmbLanguageFilter
             // 
-            this.FilterLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FilterLanguage.FormattingEnabled = true;
-            this.FilterLanguage.Location = new System.Drawing.Point(8, 72);
-            this.FilterLanguage.Name = "FilterLanguage";
-            this.FilterLanguage.Size = new System.Drawing.Size(137, 21);
-            this.FilterLanguage.TabIndex = 4;
+            this.cmbLanguageFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguageFilter.FormattingEnabled = true;
+            this.cmbLanguageFilter.Location = new System.Drawing.Point(8, 72);
+            this.cmbLanguageFilter.Name = "cmbLanguageFilter";
+            this.cmbLanguageFilter.Size = new System.Drawing.Size(137, 21);
+            this.cmbLanguageFilter.TabIndex = 4;
+            this.cmbLanguageFilter.SelectedIndexChanged += new System.EventHandler(this.CmbLanguageFilter_SelectedIndexChanged);
             // 
             // cmdEdit
             // 
@@ -470,14 +473,21 @@
             this.cmdView.Text = "View";
             this.cmdView.UseVisualStyleBackColor = true;
             // 
-            // cmdRefresh
+            // btnRefresh
             // 
-            this.cmdRefresh.Location = new System.Drawing.Point(8, 8);
-            this.cmdRefresh.Name = "cmdRefresh";
-            this.cmdRefresh.Size = new System.Drawing.Size(137, 25);
-            this.cmdRefresh.TabIndex = 3;
-            this.cmdRefresh.Text = "Refresh List";
-            this.cmdRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Location = new System.Drawing.Point(8, 8);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(137, 25);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh List";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
+            // 
+            // tmrDateTime
+            // 
+            this.tmrDateTime.Enabled = true;
+            this.tmrDateTime.Interval = 1000;
+            this.tmrDateTime.Tick += new System.EventHandler(this.TmrDateTime_Tick);
             // 
             // FrmMain
             // 
@@ -494,6 +504,7 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Code Librarian";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.MenuStrip1.ResumeLayout(false);
             this.MenuStrip1.PerformLayout();
             this.StatusStrip1.ResumeLayout(false);
@@ -531,9 +542,9 @@
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator2;
         internal System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         internal System.Windows.Forms.StatusStrip StatusStrip1;
-        internal System.Windows.Forms.ToolStripStatusLabel stbInfo;
-        internal System.Windows.Forms.ToolStripStatusLabel TimeToolStripStatusLabel1;
-        internal System.Windows.Forms.ToolStripStatusLabel DateToolStripStatusLabel2;
+        internal System.Windows.Forms.ToolStripStatusLabel toolStripInfo;
+        internal System.Windows.Forms.ToolStripStatusLabel toolStripTime;
+        internal System.Windows.Forms.ToolStripStatusLabel toolStripDate;
         public System.Windows.Forms.ToolStrip ToolStrip1;
         internal System.Windows.Forms.ToolStripButton ToolStripButton1;
         internal System.Windows.Forms.ToolStripButton ToolStripButton2;
@@ -550,11 +561,12 @@
         internal System.Windows.Forms.ToolStripButton ToolStripButton8;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator7;
         internal System.Windows.Forms.Panel picList;
-        internal System.Windows.Forms.ListBox lstCode;
-        internal System.Windows.Forms.ComboBox FilterLanguage;
+        internal System.Windows.Forms.ListBox lstSnippets;
+        internal System.Windows.Forms.ComboBox cmbLanguageFilter;
         internal System.Windows.Forms.Button cmdEdit;
         internal System.Windows.Forms.Button cmdView;
-        internal System.Windows.Forms.Button cmdRefresh;
+        internal System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Timer tmrDateTime;
     }
 }
 
