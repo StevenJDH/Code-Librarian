@@ -15,6 +15,7 @@ namespace Code_Librarian
     public partial class FrmMain : Form
     {
         private readonly IUnitOfWork _unitOfWork;
+        private const int WS_EX_COMPOSITED = 0x02000000;
 
         public FrmMain()
         {
@@ -32,14 +33,11 @@ namespace Code_Librarian
 
             cmbLanguageFilter.Items.Add("All Languages");
 
-            var languages = _unitOfWork.Languages.GetAll()
+            _unitOfWork.Languages.GetAll()
                 .OrderBy(l => l.Name)
                 .Select(l => l.Name)
-                .ToList();
-            foreach (var language in languages)
-            {
-                cmbLanguageFilter.Items.Add(language);
-            }
+                .ToList()
+                .ForEach(l => cmbLanguageFilter.Items.Add(l));
 
             // Triggers the CmbLanguageFilter_SelectedIndexChanged event to load the list.
             cmbLanguageFilter.SelectedIndex = 0;
@@ -92,7 +90,7 @@ namespace Code_Librarian
                 return;
             }
 
-            ShowChildWindow(new FrmView());
+            ShowChildWindow(new FrmView(_unitOfWork, lstSnippets.Text));
         }
 
         private void ShowChildWindow(Form mdiChild)
@@ -111,10 +109,15 @@ namespace Code_Librarian
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                cp.ExStyle |= WS_EX_COMPOSITED;
 
                 return cp;
             }
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _unitOfWork?.Dispose();
         }
     }
 }

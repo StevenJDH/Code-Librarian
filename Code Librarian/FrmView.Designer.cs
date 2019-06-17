@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnClose = new System.Windows.Forms.Button();
-            this.cmdCopy = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.rtfCode = new System.Windows.Forms.TextBox();
             this.txtAuthor = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -41,9 +41,9 @@
             this.txtLanguage = new System.Windows.Forms.TextBox();
             this.txtPurpose = new System.Windows.Forms.TextBox();
             this.txtVersion = new System.Windows.Forms.TextBox();
-            this.txtOrigDate = new System.Windows.Forms.TextBox();
+            this.txtDateCreated = new System.Windows.Forms.TextBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
-            this.txtUpdateDate = new System.Windows.Forms.TextBox();
+            this.txtDateUpdated = new System.Windows.Forms.TextBox();
             this.lblCode = new System.Windows.Forms.Label();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.lblPurpose = new System.Windows.Forms.Label();
@@ -64,16 +64,18 @@
             this.btnClose.Text = "Close";
             this.ToolTip1.SetToolTip(this.btnClose, "Close window");
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // cmdCopy
+            // btnCopy
             // 
-            this.cmdCopy.Location = new System.Drawing.Point(376, 8);
-            this.cmdCopy.Name = "cmdCopy";
-            this.cmdCopy.Size = new System.Drawing.Size(129, 33);
-            this.cmdCopy.TabIndex = 46;
-            this.cmdCopy.Text = "Copy Code to Clipboard";
-            this.ToolTip1.SetToolTip(this.cmdCopy, "Copies the Code Snippet area to the clipboard to be pasted in your projects");
-            this.cmdCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Location = new System.Drawing.Point(376, 8);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(129, 33);
+            this.btnCopy.TabIndex = 46;
+            this.btnCopy.Text = "Copy Code to Clipboard";
+            this.ToolTip1.SetToolTip(this.btnCopy, "Copies the Code Snippet area to the clipboard to be pasted in your projects");
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.BtnCopy_Click);
             // 
             // rtfCode
             // 
@@ -222,22 +224,22 @@
             this.txtVersion.TabStop = false;
             this.txtVersion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtOrigDate
+            // txtDateCreated
             // 
-            this.txtOrigDate.AcceptsReturn = true;
-            this.txtOrigDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.txtOrigDate.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtOrigDate.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrigDate.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtOrigDate.Location = new System.Drawing.Point(280, 64);
-            this.txtOrigDate.MaxLength = 0;
-            this.txtOrigDate.Name = "txtOrigDate";
-            this.txtOrigDate.ReadOnly = true;
-            this.txtOrigDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtOrigDate.Size = new System.Drawing.Size(81, 20);
-            this.txtOrigDate.TabIndex = 49;
-            this.txtOrigDate.TabStop = false;
-            this.txtOrigDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDateCreated.AcceptsReturn = true;
+            this.txtDateCreated.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.txtDateCreated.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDateCreated.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDateCreated.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDateCreated.Location = new System.Drawing.Point(280, 64);
+            this.txtDateCreated.MaxLength = 0;
+            this.txtDateCreated.Name = "txtDateCreated";
+            this.txtDateCreated.ReadOnly = true;
+            this.txtDateCreated.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtDateCreated.Size = new System.Drawing.Size(81, 20);
+            this.txtDateCreated.TabIndex = 49;
+            this.txtDateCreated.TabStop = false;
+            this.txtDateCreated.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtTitle
             // 
@@ -256,22 +258,22 @@
             this.txtTitle.TabStop = false;
             this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtUpdateDate
+            // txtDateUpdated
             // 
-            this.txtUpdateDate.AcceptsReturn = true;
-            this.txtUpdateDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.txtUpdateDate.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtUpdateDate.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateDate.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtUpdateDate.Location = new System.Drawing.Point(368, 64);
-            this.txtUpdateDate.MaxLength = 0;
-            this.txtUpdateDate.Name = "txtUpdateDate";
-            this.txtUpdateDate.ReadOnly = true;
-            this.txtUpdateDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtUpdateDate.Size = new System.Drawing.Size(81, 20);
-            this.txtUpdateDate.TabIndex = 47;
-            this.txtUpdateDate.TabStop = false;
-            this.txtUpdateDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDateUpdated.AcceptsReturn = true;
+            this.txtDateUpdated.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.txtDateUpdated.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDateUpdated.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDateUpdated.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDateUpdated.Location = new System.Drawing.Point(368, 64);
+            this.txtDateUpdated.MaxLength = 0;
+            this.txtDateUpdated.Name = "txtDateUpdated";
+            this.txtDateUpdated.ReadOnly = true;
+            this.txtDateUpdated.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtDateUpdated.Size = new System.Drawing.Size(81, 20);
+            this.txtDateUpdated.TabIndex = 47;
+            this.txtDateUpdated.TabStop = false;
+            this.txtDateUpdated.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblCode
             // 
@@ -403,7 +405,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.rtfCode);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.cmdCopy);
+            this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.txtAuthor);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.lblPhone);
@@ -412,9 +414,9 @@
             this.Controls.Add(this.txtLanguage);
             this.Controls.Add(this.txtPurpose);
             this.Controls.Add(this.txtVersion);
-            this.Controls.Add(this.txtOrigDate);
+            this.Controls.Add(this.txtDateCreated);
             this.Controls.Add(this.txtTitle);
-            this.Controls.Add(this.txtUpdateDate);
+            this.Controls.Add(this.txtDateUpdated);
             this.Controls.Add(this.lblCode);
             this.Controls.Add(this.lblKeywords);
             this.Controls.Add(this.lblPurpose);
@@ -430,6 +432,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "View Code Record";
+            this.Load += new System.EventHandler(this.FrmView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,7 +442,7 @@
 
         internal System.Windows.Forms.ToolTip ToolTip1;
         internal System.Windows.Forms.Button btnClose;
-        internal System.Windows.Forms.Button cmdCopy;
+        internal System.Windows.Forms.Button btnCopy;
         internal System.Windows.Forms.TextBox rtfCode;
         public System.Windows.Forms.TextBox txtAuthor;
         public System.Windows.Forms.TextBox txtPhone;
@@ -449,9 +452,9 @@
         public System.Windows.Forms.TextBox txtLanguage;
         public System.Windows.Forms.TextBox txtPurpose;
         public System.Windows.Forms.TextBox txtVersion;
-        public System.Windows.Forms.TextBox txtOrigDate;
+        public System.Windows.Forms.TextBox txtDateCreated;
         public System.Windows.Forms.TextBox txtTitle;
-        public System.Windows.Forms.TextBox txtUpdateDate;
+        public System.Windows.Forms.TextBox txtDateUpdated;
         public System.Windows.Forms.Label lblCode;
         public System.Windows.Forms.Label lblKeywords;
         public System.Windows.Forms.Label lblPurpose;
