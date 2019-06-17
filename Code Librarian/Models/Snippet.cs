@@ -47,7 +47,7 @@ namespace Code_Librarian.Models
         public string Keywords { get; set; }
 
         [Required]
-        [StringLength(32768)]
+        [StringLength(60000)]
         public string CodeSnippet { get; set; }
 
         [InverseProperty("Snippets")]
