@@ -84,5 +84,22 @@ namespace Code_Librarian
         {
             FilterList();
         }
+
+        private void BtnView_Click(object sender, EventArgs e)
+        {
+            if (lstSnippets.Text == "")
+            {
+                return;
+            }
+
+            ShowChildWindow(new FrmView());
+        }
+
+        private void ShowChildWindow(Form mdiChild)
+        {
+            mdiChild.MdiParent = this;
+            mdiChild.Dock = DockStyle.Fill;
+            mdiChild.Show();
+        }
     }
 }

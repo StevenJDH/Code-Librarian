@@ -74,7 +74,7 @@
             this.lstSnippets = new System.Windows.Forms.ListBox();
             this.cmbLanguageFilter = new System.Windows.Forms.ComboBox();
             this.cmdEdit = new System.Windows.Forms.Button();
-            this.cmdView = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
             this.MenuStrip1.SuspendLayout();
@@ -91,7 +91,7 @@
             this.HelpToolStripMenuItem});
             this.MenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip1.Name = "MenuStrip1";
-            this.MenuStrip1.Size = new System.Drawing.Size(802, 24);
+            this.MenuStrip1.Size = new System.Drawing.Size(809, 24);
             this.MenuStrip1.TabIndex = 2;
             this.MenuStrip1.Text = "MenuStrip1";
             // 
@@ -258,7 +258,7 @@
             this.toolStripDate});
             this.StatusStrip1.Location = new System.Drawing.Point(0, 505);
             this.StatusStrip1.Name = "StatusStrip1";
-            this.StatusStrip1.Size = new System.Drawing.Size(802, 22);
+            this.StatusStrip1.Size = new System.Drawing.Size(809, 22);
             this.StatusStrip1.SizingGrip = false;
             this.StatusStrip1.TabIndex = 3;
             this.StatusStrip1.Text = "StatusStrip1";
@@ -307,7 +307,7 @@
             this.ToolStripSeparator7});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 24);
             this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(802, 25);
+            this.ToolStrip1.Size = new System.Drawing.Size(809, 25);
             this.ToolStrip1.TabIndex = 6;
             this.ToolStrip1.Text = "ToolStrip1";
             // 
@@ -427,7 +427,7 @@
             this.picList.Controls.Add(this.lstSnippets);
             this.picList.Controls.Add(this.cmbLanguageFilter);
             this.picList.Controls.Add(this.cmdEdit);
-            this.picList.Controls.Add(this.cmdView);
+            this.picList.Controls.Add(this.btnView);
             this.picList.Controls.Add(this.btnRefresh);
             this.picList.Dock = System.Windows.Forms.DockStyle.Left;
             this.picList.Location = new System.Drawing.Point(0, 49);
@@ -464,14 +464,15 @@
             this.cmdEdit.Text = "Edit";
             this.cmdEdit.UseVisualStyleBackColor = true;
             // 
-            // cmdView
+            // btnView
             // 
-            this.cmdView.Location = new System.Drawing.Point(8, 40);
-            this.cmdView.Name = "cmdView";
-            this.cmdView.Size = new System.Drawing.Size(65, 25);
-            this.cmdView.TabIndex = 0;
-            this.cmdView.Text = "View";
-            this.cmdView.UseVisualStyleBackColor = true;
+            this.btnView.Location = new System.Drawing.Point(8, 40);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(65, 25);
+            this.btnView.TabIndex = 0;
+            this.btnView.Text = "View";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.BtnView_Click);
             // 
             // btnRefresh
             // 
@@ -491,9 +492,10 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 527);
+            this.AcceptButton = this.btnView;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(809, 527);
             this.Controls.Add(this.picList);
             this.Controls.Add(this.ToolStrip1);
             this.Controls.Add(this.StatusStrip1);
@@ -564,7 +566,7 @@
         internal System.Windows.Forms.ListBox lstSnippets;
         internal System.Windows.Forms.ComboBox cmbLanguageFilter;
         internal System.Windows.Forms.Button cmdEdit;
-        internal System.Windows.Forms.Button cmdView;
+        internal System.Windows.Forms.Button btnView;
         internal System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Timer tmrDateTime;
     }
