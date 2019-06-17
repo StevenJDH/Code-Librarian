@@ -101,5 +101,20 @@ namespace Code_Librarian
             mdiChild.Dock = DockStyle.Fill;
             mdiChild.Show();
         }
+
+        /// <summary>
+        /// Fixes MDI child flickering when a form is displayed. This method essentially
+        /// sets DoubledBuffered at the form level rather than at the control level.
+        /// </summary>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+
+                return cp;
+            }
+        }
     }
 }

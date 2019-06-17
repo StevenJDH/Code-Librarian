@@ -57,7 +57,7 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(512, 8);
+            this.btnClose.Location = new System.Drawing.Point(515, 8);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(129, 33);
             this.btnClose.TabIndex = 45;
@@ -159,14 +159,14 @@
             this.txtKeywords.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtKeywords.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKeywords.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtKeywords.Location = new System.Drawing.Point(328, 104);
+            this.txtKeywords.Location = new System.Drawing.Point(332, 104);
             this.txtKeywords.MaxLength = 0;
             this.txtKeywords.Multiline = true;
             this.txtKeywords.Name = "txtKeywords";
             this.txtKeywords.ReadOnly = true;
             this.txtKeywords.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtKeywords.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtKeywords.Size = new System.Drawing.Size(317, 35);
+            this.txtKeywords.Size = new System.Drawing.Size(313, 35);
             this.txtKeywords.TabIndex = 53;
             this.txtKeywords.TabStop = false;
             // 
@@ -295,10 +295,10 @@
             this.lblKeywords.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblKeywords.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKeywords.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblKeywords.Location = new System.Drawing.Point(328, 88);
+            this.lblKeywords.Location = new System.Drawing.Point(332, 88);
             this.lblKeywords.Name = "lblKeywords";
             this.lblKeywords.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblKeywords.Size = new System.Drawing.Size(317, 17);
+            this.lblKeywords.Size = new System.Drawing.Size(313, 17);
             this.lblKeywords.TabIndex = 60;
             this.lblKeywords.Text = "Searchable Keywords";
             this.lblKeywords.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -315,7 +315,7 @@
             this.lblPurpose.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblPurpose.Size = new System.Drawing.Size(317, 17);
             this.lblPurpose.TabIndex = 59;
-            this.lblPurpose.Text = "Purpose/Function Of The Code";
+            this.lblPurpose.Text = "Purpose/Function of the Code";
             this.lblPurpose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblLanguage
@@ -427,8 +427,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmView";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "View Code Record - Size: 671, 504";
+            this.Text = "View Code Record";
             this.ResumeLayout(false);
             this.PerformLayout();
 
