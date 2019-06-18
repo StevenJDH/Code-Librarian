@@ -73,7 +73,7 @@
             this.picList = new System.Windows.Forms.Panel();
             this.lstSnippets = new System.Windows.Forms.ListBox();
             this.cmbLanguageFilter = new System.Windows.Forms.ComboBox();
-            this.cmdEdit = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
@@ -426,7 +426,7 @@
             // 
             this.picList.Controls.Add(this.lstSnippets);
             this.picList.Controls.Add(this.cmbLanguageFilter);
-            this.picList.Controls.Add(this.cmdEdit);
+            this.picList.Controls.Add(this.btnEdit);
             this.picList.Controls.Add(this.btnView);
             this.picList.Controls.Add(this.btnRefresh);
             this.picList.Dock = System.Windows.Forms.DockStyle.Left;
@@ -455,14 +455,15 @@
             this.cmbLanguageFilter.TabIndex = 4;
             this.cmbLanguageFilter.SelectedIndexChanged += new System.EventHandler(this.CmbLanguageFilter_SelectedIndexChanged);
             // 
-            // cmdEdit
+            // btnEdit
             // 
-            this.cmdEdit.Location = new System.Drawing.Point(80, 40);
-            this.cmdEdit.Name = "cmdEdit";
-            this.cmdEdit.Size = new System.Drawing.Size(65, 25);
-            this.cmdEdit.TabIndex = 1;
-            this.cmdEdit.Text = "Edit";
-            this.cmdEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Location = new System.Drawing.Point(80, 40);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(65, 25);
+            this.btnEdit.TabIndex = 1;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // btnView
             // 
@@ -566,7 +567,7 @@
         internal System.Windows.Forms.Panel picList;
         internal System.Windows.Forms.ListBox lstSnippets;
         internal System.Windows.Forms.ComboBox cmbLanguageFilter;
-        internal System.Windows.Forms.Button cmdEdit;
+        internal System.Windows.Forms.Button btnEdit;
         internal System.Windows.Forms.Button btnView;
         internal System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Timer tmrDateTime;

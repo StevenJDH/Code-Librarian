@@ -114,5 +114,15 @@ namespace Code_Librarian
         {
             _unitOfWork?.Dispose();
         }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            if (lstSnippets.Text == "")
+            {
+                return;
+            }
+
+            ShowChildWindow(new FrmEdit(_unitOfWork, lstSnippets.Text, cmbLanguageFilter.Text));
+        }
     }
 }
