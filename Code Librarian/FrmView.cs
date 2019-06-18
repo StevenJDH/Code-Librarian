@@ -15,24 +15,25 @@ namespace Code_Librarian
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly string _selectedTitle;
+        private readonly string _selectedLanguage;
 
-        public FrmView(IUnitOfWork unitOfWork, string snippetTitle)
+        public FrmView(IUnitOfWork unitOfWork, string snippetTitle, string language)
         {
             InitializeComponent();
 
             _unitOfWork = unitOfWork;
             _selectedTitle = snippetTitle;
+            _selectedLanguage = language;
         }
 
         private void FrmView_Load(object sender, EventArgs e)
         {
             var snippet = _unitOfWork.Snippets.GetSnippetsWithAll()
-                .FirstOrDefault(s => s.Title == _selectedTitle);
+                .FirstOrDefault(s => s.Title == _selectedTitle && s.Language.Name == _selectedLanguage);
 
             if (snippet == null)
             {
-                // TODO: prompt maybe with a message.
-                return;
+                throw new InvalidOperationException($"The snippet record '{_selectedTitle}' was not found.");
             }
 
             txtAuthor.Text = snippet.Author.Name;

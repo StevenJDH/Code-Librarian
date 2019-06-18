@@ -31,7 +31,7 @@ namespace Code_Librarian
             int count = _unitOfWork.Snippets.GetAll().Count();
             toolStripInfo.Text = $"There are currently {count} snippet {(count == 1 ? "record" : "records")} in the database.";
 
-            cmbLanguageFilter.Items.Add("All Languages");
+            cmbLanguageFilter.Items.Add("--- Select Language ---");
 
             _unitOfWork.Languages.GetAll()
                 .OrderBy(l => l.Name)
@@ -61,21 +61,16 @@ namespace Code_Librarian
         {
             lstSnippets.Items.Clear();
 
-            if (cmbLanguageFilter.Text == "All Languages")
+            if (cmbLanguageFilter.Text == "--- Select Language ---")
             {
-                _unitOfWork.Snippets.GetAll()
-                    .Select(s => s.Title)
-                    .ToList()
-                    .ForEach(t => lstSnippets.Items.Add(t));
+                return;
             }
-            else
-            {
-                _unitOfWork.Snippets.GetSnippetsWithAll()
-                    .Where(s => s.Language.Name == cmbLanguageFilter.Text)
-                    .Select(s => s.Title)
-                    .ToList()
-                    .ForEach(t => lstSnippets.Items.Add(t));
-            }
+
+            _unitOfWork.Snippets.GetSnippetsWithAll()
+                .Where(s => s.Language.Name == cmbLanguageFilter.Text)
+                .Select(s => s.Title)
+                .ToList()
+                .ForEach(t => lstSnippets.Items.Add(t));
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)
@@ -90,7 +85,7 @@ namespace Code_Librarian
                 return;
             }
 
-            ShowChildWindow(new FrmView(_unitOfWork, lstSnippets.Text));
+            ShowChildWindow(new FrmView(_unitOfWork, lstSnippets.Text, cmbLanguageFilter.Text));
         }
 
         private void ShowChildWindow(Form mdiChild)
