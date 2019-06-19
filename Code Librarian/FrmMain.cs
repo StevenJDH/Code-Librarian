@@ -209,5 +209,18 @@ namespace Code_Librarian
         {
             MnuAbout_Click(this, EventArgs.Empty);
         }
+
+        private void MnuManageLanguages_Click(object sender, EventArgs e)
+        {
+            using (var frm = new FrmManageLanguages(_unitOfWork))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void ToolStripManageLanguages_Click(object sender, EventArgs e)
+        {
+            MnuManageLanguages_Click(this, EventArgs.Empty);
+        }
     }
 }

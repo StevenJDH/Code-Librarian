@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AppConfiguration.cs" />
+    <Compile Include="Extensions\ObjectCollectionExtensions.cs" />
     <Compile Include="FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +77,12 @@
     </Compile>
     <Compile Include="FrmAdd.Designer.cs">
       <DependentUpon>FrmAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmManageLanguages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmManageLanguages.Designer.cs">
+      <DependentUpon>FrmManageLanguages.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -117,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAdd.resx">
       <DependentUpon>FrmAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmManageLanguages.resx">
+      <DependentUpon>FrmManageLanguages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
