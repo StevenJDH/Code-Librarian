@@ -39,7 +39,7 @@
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SearchForRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddNewRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAddNewRecord = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDeleteRecord = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +59,7 @@
             this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.ToolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAddNewRecord = new System.Windows.Forms.ToolStripButton();
             this.ToolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripDeleteRecord = new System.Windows.Forms.ToolStripButton();
@@ -151,7 +151,7 @@
             // 
             this.DatabaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SearchForRecordToolStripMenuItem,
-            this.AddNewRecordToolStripMenuItem,
+            this.mnuAddNewRecord,
             this.mnuDeleteRecord,
             this.ToolStripSeparator1,
             this.MaintenanceToolStripMenuItem});
@@ -166,12 +166,13 @@
             this.SearchForRecordToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.SearchForRecordToolStripMenuItem.Text = "Search For Record";
             // 
-            // AddNewRecordToolStripMenuItem
+            // mnuAddNewRecord
             // 
-            this.AddNewRecordToolStripMenuItem.Name = "AddNewRecordToolStripMenuItem";
-            this.AddNewRecordToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.AddNewRecordToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.AddNewRecordToolStripMenuItem.Text = "Add New Record";
+            this.mnuAddNewRecord.Name = "mnuAddNewRecord";
+            this.mnuAddNewRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.mnuAddNewRecord.Size = new System.Drawing.Size(206, 22);
+            this.mnuAddNewRecord.Text = "Add New Record";
+            this.mnuAddNewRecord.Click += new System.EventHandler(this.MnuAddNewRecord_Click);
             // 
             // mnuDeleteRecord
             // 
@@ -295,7 +296,7 @@
             this.ToolStripButton1,
             this.ToolStripButton2,
             this.ToolStripSeparator4,
-            this.ToolStripButton3,
+            this.toolStripAddNewRecord,
             this.ToolStripButton4,
             this.ToolStripButton5,
             this.toolStripDeleteRecord,
@@ -336,14 +337,15 @@
             this.ToolStripSeparator4.Name = "ToolStripSeparator4";
             this.ToolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
-            // ToolStripButton3
+            // toolStripAddNewRecord
             // 
-            this.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton3.Image = global::Code_Librarian.Properties.Resources.add;
-            this.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton3.Name = "ToolStripButton3";
-            this.ToolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton3.ToolTipText = "Add new record";
+            this.toolStripAddNewRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAddNewRecord.Image = global::Code_Librarian.Properties.Resources.add;
+            this.toolStripAddNewRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAddNewRecord.Name = "toolStripAddNewRecord";
+            this.toolStripAddNewRecord.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAddNewRecord.ToolTipText = "Add new record";
+            this.toolStripAddNewRecord.Click += new System.EventHandler(this.ToolStripAddNewRecord_Click);
             // 
             // ToolStripButton4
             // 
@@ -446,6 +448,7 @@
             this.lstSnippets.Size = new System.Drawing.Size(136, 342);
             this.lstSnippets.Sorted = true;
             this.lstSnippets.TabIndex = 2;
+            this.lstSnippets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LstSnippets_KeyDown);
             // 
             // cmbLanguageFilter
             // 
@@ -535,7 +538,7 @@
         internal System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem DatabaseToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem SearchForRecordToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem AddNewRecordToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem mnuAddNewRecord;
         internal System.Windows.Forms.ToolStripMenuItem mnuDeleteRecord;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator1;
         internal System.Windows.Forms.ToolStripMenuItem MaintenanceToolStripMenuItem;
@@ -555,7 +558,7 @@
         internal System.Windows.Forms.ToolStripButton ToolStripButton1;
         internal System.Windows.Forms.ToolStripButton ToolStripButton2;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator4;
-        internal System.Windows.Forms.ToolStripButton ToolStripButton3;
+        internal System.Windows.Forms.ToolStripButton toolStripAddNewRecord;
         internal System.Windows.Forms.ToolStripButton ToolStripButton4;
         internal System.Windows.Forms.ToolStripButton ToolStripButton5;
         internal System.Windows.Forms.ToolStripButton toolStripDeleteRecord;

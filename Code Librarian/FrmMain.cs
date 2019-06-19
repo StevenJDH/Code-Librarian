@@ -163,5 +163,24 @@ namespace Code_Librarian
         {
             MnuDeleteRecord_Click(this, EventArgs.Empty);
         }
+
+        private void MnuAddNewRecord_Click(object sender, EventArgs e)
+        {
+            ShowChildWindow(new FrmAdd(_unitOfWork));
+        }
+
+        private void ToolStripAddNewRecord_Click(object sender, EventArgs e)
+        {
+            MnuAddNewRecord_Click(this, EventArgs.Empty);
+        }
+
+        private void LstSnippets_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                BtnView_Click(this, EventArgs.Empty);
+            }
+        }
     }
 }
