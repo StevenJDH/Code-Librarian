@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Code_Librarian.Models;
@@ -59,7 +60,7 @@ namespace Code_Librarian
                 .FirstOrDefault(a => a.Name == cmbAuthor.Text)
                 .AuthorId;
             _snippetRecord.Title = txtTitle.Text.Trim();
-            _snippetRecord.DateUpdated = DateTime.Now;
+            _snippetRecord.DateUpdated = DateTime.Parse(txtDateUpdated.Text, Thread.CurrentThread.CurrentCulture);
             _snippetRecord.Version = txtVersion.Text.Trim();
             _snippetRecord.LanguageId = _unitOfWork.Languages
                 .FirstOrDefault(l => l.Name == cmbLanguage.Text)
@@ -74,6 +75,7 @@ namespace Code_Librarian
                 MessageBox.Show("The record has been updated successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // TODO: Trigger a refresh on the parent form with an event maybe.
+                this.Close();
             }
             catch (DbUpdateException ex)
             {
@@ -111,6 +113,27 @@ namespace Code_Librarian
             txtPurpose.Text = _snippetRecord.Purpose;
             txtKeywords.Text = _snippetRecord.Keywords;
             txtCode.Text = _snippetRecord.CodeSnippet;
+        }
+
+        private void CmbAuthor_DropDownClosed(object sender, EventArgs e)
+        {
+            // Using the DropDownClosed event to avoid form's Load event raising the SelectedIndexChanged
+            // event when setting cmbAuthor's index.
+
+            if (cmbAuthor.Text == "")
+            {
+                return;
+            }
+
+            txtPhone.Text = _unitOfWork.Authors
+                .FirstOrDefault(a => a.Name == cmbAuthor.Text)
+                .PhoneNumber;
+        }
+
+        private void CmbAuthor_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Prevents mouse scrolling via mouse wheel and arrow keys.
+            e.Handled = true;
         }
     }
 }

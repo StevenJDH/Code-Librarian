@@ -45,7 +45,7 @@ namespace Code_Librarian
             txtLanguage.Text = snippet.Language.Name;
             txtPurpose.Text = snippet.Purpose;
             txtKeywords.Text = snippet.Keywords;
-            rtfCode.Text = snippet.CodeSnippet;
+            txtCode.Text = snippet.CodeSnippet;
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace Code_Librarian
 
         private void BtnCopy_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(rtfCode.Text);
+            Clipboard.SetText(txtCode.Text);
             MessageBox.Show("The code snippet was copied to clipboard successfully.",
                 Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

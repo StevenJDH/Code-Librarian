@@ -32,7 +32,7 @@
             this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
-            this.rtfCode = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
             this.txtAuthor = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblPhone = new System.Windows.Forms.Label();
@@ -57,9 +57,9 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(515, 8);
+            this.btnClose.Location = new System.Drawing.Point(514, 8);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(129, 33);
+            this.btnClose.Size = new System.Drawing.Size(131, 33);
             this.btnClose.TabIndex = 45;
             this.btnClose.Text = "Close";
             this.ToolTip1.SetToolTip(this.btnClose, "Close window");
@@ -70,25 +70,26 @@
             // 
             this.btnCopy.Location = new System.Drawing.Point(376, 8);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(129, 33);
+            this.btnCopy.Size = new System.Drawing.Size(131, 33);
             this.btnCopy.TabIndex = 46;
             this.btnCopy.Text = "Copy Code to Clipboard";
             this.ToolTip1.SetToolTip(this.btnCopy, "Copies the Code Snippet area to the clipboard to be pasted in your projects");
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.BtnCopy_Click);
             // 
-            // rtfCode
+            // txtCode
             // 
-            this.rtfCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.rtfCode.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtfCode.Location = new System.Drawing.Point(8, 160);
-            this.rtfCode.Multiline = true;
-            this.rtfCode.Name = "rtfCode";
-            this.rtfCode.ReadOnly = true;
-            this.rtfCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.rtfCode.Size = new System.Drawing.Size(638, 285);
-            this.rtfCode.TabIndex = 66;
-            this.rtfCode.TabStop = false;
+            this.txtCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.txtCode.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCode.Location = new System.Drawing.Point(8, 160);
+            this.txtCode.MaxLength = 60000;
+            this.txtCode.Multiline = true;
+            this.txtCode.Name = "txtCode";
+            this.txtCode.ReadOnly = true;
+            this.txtCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtCode.Size = new System.Drawing.Size(638, 285);
+            this.txtCode.TabIndex = 66;
+            this.txtCode.TabStop = false;
             // 
             // txtAuthor
             // 
@@ -403,7 +404,7 @@
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(655, 458);
             this.ControlBox = false;
-            this.Controls.Add(this.rtfCode);
+            this.Controls.Add(this.txtCode);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.txtAuthor);
@@ -443,7 +444,7 @@
         internal System.Windows.Forms.ToolTip ToolTip1;
         internal System.Windows.Forms.Button btnClose;
         internal System.Windows.Forms.Button btnCopy;
-        internal System.Windows.Forms.TextBox rtfCode;
+        internal System.Windows.Forms.TextBox txtCode;
         public System.Windows.Forms.TextBox txtAuthor;
         public System.Windows.Forms.TextBox txtPhone;
         public System.Windows.Forms.Label lblPhone;

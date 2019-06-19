@@ -58,9 +58,9 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(564, 8);
+            this.btnCancel.Location = new System.Drawing.Point(560, 8);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(81, 33);
+            this.btnCancel.Size = new System.Drawing.Size(85, 33);
             this.btnCancel.TabIndex = 72;
             this.btnCancel.Text = "Cancel";
             this.ToolTip1.SetToolTip(this.btnCancel, "Close window");
@@ -70,9 +70,9 @@
             // btnRevert
             // 
             this.btnRevert.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRevert.Location = new System.Drawing.Point(470, 8);
+            this.btnRevert.Location = new System.Drawing.Point(468, 8);
             this.btnRevert.Name = "btnRevert";
-            this.btnRevert.Size = new System.Drawing.Size(81, 33);
+            this.btnRevert.Size = new System.Drawing.Size(85, 33);
             this.btnRevert.TabIndex = 71;
             this.btnRevert.Text = "Revert";
             this.ToolTip1.SetToolTip(this.btnRevert, "Clears changes");
@@ -84,7 +84,7 @@
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Location = new System.Drawing.Point(376, 8);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(80, 33);
+            this.btnUpdate.Size = new System.Drawing.Size(85, 33);
             this.btnUpdate.TabIndex = 69;
             this.btnUpdate.Text = "Update";
             this.ToolTip1.SetToolTip(this.btnUpdate, "Updates changes made to current record");
@@ -392,6 +392,8 @@
             this.cmbAuthor.Name = "cmbAuthor";
             this.cmbAuthor.Size = new System.Drawing.Size(208, 21);
             this.cmbAuthor.TabIndex = 67;
+            this.cmbAuthor.DropDownClosed += new System.EventHandler(this.CmbAuthor_DropDownClosed);
+            this.cmbAuthor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbAuthor_KeyDown);
             // 
             // FrmEdit
             // 
@@ -428,7 +430,7 @@
             this.Name = "FrmEdit";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Edit/Update Code Record";
+            this.Text = "Edit/Update Snippet Record";
             this.Load += new System.EventHandler(this.FrmEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
