@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -181,6 +182,32 @@ namespace Code_Librarian
                 e.SuppressKeyPress = true;
                 BtnView_Click(this, EventArgs.Empty);
             }
+        }
+
+        private void MnuDonate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Sends URL to the operating system for opening.
+                Process.Start("https://www.paypal.me/stevenjdh/5");
+            }
+            catch (Exception)
+            {
+                // Consuming exceptions
+            }
+        }
+
+        private void MnuAbout_Click(object sender, EventArgs e)
+        {
+            using (var frm = new FrmAbout())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void ToolStripAbout_Click(object sender, EventArgs e)
+        {
+            MnuAbout_Click(this, EventArgs.Empty);
         }
     }
 }
