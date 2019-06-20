@@ -222,5 +222,18 @@ namespace Code_Librarian
         {
             MnuManageLanguages_Click(this, EventArgs.Empty);
         }
+
+        private void MnuManageAuthors_Click(object sender, EventArgs e)
+        {
+            using (var frm = new FrmManageAuthors(_unitOfWork))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void ToolStripManageAuthors_Click(object sender, EventArgs e)
+        {
+            MnuManageAuthors_Click(this, EventArgs.Empty);
+        }
     }
 }
