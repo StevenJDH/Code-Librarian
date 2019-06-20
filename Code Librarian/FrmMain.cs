@@ -80,6 +80,11 @@ namespace Code_Librarian
             FilterList();
         }
 
+        private void ToolStripRefresh_Click(object sender, EventArgs e)
+        {
+            BtnRefresh_Click(this, EventArgs.Empty);
+        }
+
         private void BtnView_Click(object sender, EventArgs e)
         {
             if (lstSnippets.Text == "")

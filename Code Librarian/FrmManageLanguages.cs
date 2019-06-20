@@ -48,7 +48,7 @@ namespace Code_Librarian
                 return;
             }
 
-            if (lstLanguages.Items.ContainsEx(txtLanguage.Text, StringComparison.OrdinalIgnoreCase))
+            if (lstLanguages.Items.ContainsEx(txtLanguage.Text.Trim(), StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("Language already exists, and therefore, cannot be added again.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -99,6 +99,13 @@ namespace Code_Librarian
                 return;
             }
 
+            if (lstLanguages.Items.ContainsEx(txtLanguage.Text.Trim(), StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Language already exists, and therefore, cannot be updated to this.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (MessageBox.Show("Are you sure you want to update this language?",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
@@ -135,9 +142,9 @@ namespace Code_Librarian
                 return;
             }
 
-            var useCount = _unitOfWork.Snippets
-                .GetSnippetsWithAll()
-                .Count(s => s.Language.Name == lstLanguages.Text);
+            var language = _unitOfWork.Languages
+                .FirstOrDefault(l => l.Name == lstLanguages.Text);
+            var useCount = language.Snippets.Count;
 
             if (useCount > 0)
             {
@@ -151,9 +158,6 @@ namespace Code_Librarian
             {
                 return;
             }
-
-            var language = _unitOfWork.Languages
-                .FirstOrDefault(l => l.Name == lstLanguages.Text);
 
             _unitOfWork.Languages.Remove(language);
 

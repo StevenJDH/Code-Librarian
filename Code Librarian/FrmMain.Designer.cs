@@ -70,7 +70,7 @@
             this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripAddNewRecord = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripRefresh = new System.Windows.Forms.ToolStripButton();
             this.ToolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripDeleteRecord = new System.Windows.Forms.ToolStripButton();
             this.toolStripManageAuthors = new System.Windows.Forms.ToolStripButton();
@@ -301,7 +301,7 @@
             this.ToolStripButton2,
             this.ToolStripSeparator4,
             this.toolStripAddNewRecord,
-            this.ToolStripButton4,
+            this.toolStripRefresh,
             this.ToolStripButton5,
             this.toolStripDeleteRecord,
             this.ToolStripSeparator5,
@@ -436,14 +436,15 @@
             this.toolStripAddNewRecord.ToolTipText = "Add new record";
             this.toolStripAddNewRecord.Click += new System.EventHandler(this.ToolStripAddNewRecord_Click);
             // 
-            // ToolStripButton4
+            // toolStripRefresh
             // 
-            this.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton4.Image = global::Code_Librarian.Properties.Resources.refresh;
-            this.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton4.Name = "ToolStripButton4";
-            this.ToolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton4.ToolTipText = "Refresh list";
+            this.toolStripRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripRefresh.Image = global::Code_Librarian.Properties.Resources.refresh;
+            this.toolStripRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripRefresh.Name = "toolStripRefresh";
+            this.toolStripRefresh.Size = new System.Drawing.Size(23, 22);
+            this.toolStripRefresh.ToolTipText = "Refresh list";
+            this.toolStripRefresh.Click += new System.EventHandler(this.ToolStripRefresh_Click);
             // 
             // ToolStripButton5
             // 
@@ -566,7 +567,7 @@
         internal System.Windows.Forms.ToolStripButton ToolStripButton2;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator4;
         internal System.Windows.Forms.ToolStripButton toolStripAddNewRecord;
-        internal System.Windows.Forms.ToolStripButton ToolStripButton4;
+        internal System.Windows.Forms.ToolStripButton toolStripRefresh;
         internal System.Windows.Forms.ToolStripButton ToolStripButton5;
         internal System.Windows.Forms.ToolStripButton toolStripDeleteRecord;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator5;
