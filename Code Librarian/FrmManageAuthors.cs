@@ -97,8 +97,7 @@ namespace Code_Librarian
                 return;
             }
 
-            var row = lstViewAuthors.SelectedIndices[0];
-            var name = lstViewAuthors.SelectedItems[row].SubItems[clmName.Index];
+            var name = lstViewAuthors.SelectedItems[0].SubItems[clmName.Index];
             var author = _unitOfWork.Authors.FirstOrDefault(a => a.Name == name.Text);
 
             author.Name = txtName.Text.Trim();
@@ -107,7 +106,7 @@ namespace Code_Librarian
             try
             {
                 _unitOfWork.Complete();
-                lstViewAuthors.SelectedItems[row].Remove();
+                lstViewAuthors.SelectedItems[0].Remove();
                 var newEntry = lstViewAuthors.Items.Add(new ListViewItem(new[] { author.Name, author.PhoneNumber }));
                 newEntry.Selected = true;
 
@@ -129,8 +128,7 @@ namespace Code_Librarian
                 return;
             }
 
-            var row = lstViewAuthors.SelectedIndices[0];
-            var name = lstViewAuthors.SelectedItems[row].SubItems[clmName.Index];
+            var name = lstViewAuthors.SelectedItems[0].SubItems[clmName.Index];
             var author = _unitOfWork.Authors.FirstOrDefault(a => a.Name == name.Text);
             var useCount = author.Snippets.Count;
 
@@ -152,7 +150,7 @@ namespace Code_Librarian
             try
             {
                 _unitOfWork.Complete();
-                lstViewAuthors.SelectedItems[row].Remove();
+                lstViewAuthors.SelectedItems[0].Remove();
                 txtName.Text = "";
                 txtPhone.Text = "";
 
@@ -180,10 +178,8 @@ namespace Code_Librarian
                 return;
             }
 
-            var row = lstViewAuthors.SelectedIndices[0];
-
-            txtName.Text = lstViewAuthors.SelectedItems[row].SubItems[clmName.Index].Text;
-            txtPhone.Text = lstViewAuthors.SelectedItems[row].SubItems[clmPhone.Index].Text;
+            txtName.Text = lstViewAuthors.SelectedItems[0].SubItems[clmName.Index].Text;
+            txtPhone.Text = lstViewAuthors.SelectedItems[0].SubItems[clmPhone.Index].Text;
         }
     }
 }
