@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Code_Librarian.Classes;
 using Code_Librarian.Models;
 using Code_Librarian.Models.UnitOfWork;
 
@@ -239,6 +240,31 @@ namespace Code_Librarian
         private void ToolStripManageAuthors_Click(object sender, EventArgs e)
         {
             MnuManageAuthors_Click(this, EventArgs.Empty);
+        }
+
+        private void MnuSearch_Click(object sender, EventArgs e)
+        {
+            using (var frm = new FrmSearch(_unitOfWork))
+            {
+                frm.SearchResultViewSelected += FrmSearch_SearchResultViewSelected;
+                frm.SearchResultEditSelected += FrmSearch_SearchResultEditSelected;
+                frm.ShowDialog();
+            }
+        }
+
+        private void FrmSearch_SearchResultViewSelected(object sender, SearchResultEventArgs e)
+        {
+            ShowChildWindow(new FrmView(_unitOfWork, e.Title, e.Language));
+        }
+
+        private void FrmSearch_SearchResultEditSelected(object sender, SearchResultEventArgs e)
+        {
+            ShowChildWindow(new FrmEdit(_unitOfWork, e.Title, e.Language));
+        }
+        
+        private void ToolStripSearch_Click(object sender, EventArgs e)
+        {
+            MnuSearch_Click(this, EventArgs.Empty);
         }
     }
 }

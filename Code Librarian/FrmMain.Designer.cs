@@ -38,7 +38,7 @@
             this.ToolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SearchForRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddNewRecord = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDeleteRecord = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -71,7 +71,7 @@
             this.ToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripAddNewRecord = new System.Windows.Forms.ToolStripButton();
             this.toolStripRefresh = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripDeleteRecord = new System.Windows.Forms.ToolStripButton();
             this.toolStripManageAuthors = new System.Windows.Forms.ToolStripButton();
             this.toolStripManageLanguages = new System.Windows.Forms.ToolStripButton();
@@ -150,7 +150,7 @@
             // DatabaseToolStripMenuItem
             // 
             this.DatabaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SearchForRecordToolStripMenuItem,
+            this.mnuSearch,
             this.mnuAddNewRecord,
             this.mnuDeleteRecord,
             this.ToolStripSeparator1,
@@ -159,12 +159,13 @@
             this.DatabaseToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.DatabaseToolStripMenuItem.Text = "Database";
             // 
-            // SearchForRecordToolStripMenuItem
+            // mnuSearch
             // 
-            this.SearchForRecordToolStripMenuItem.Name = "SearchForRecordToolStripMenuItem";
-            this.SearchForRecordToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.SearchForRecordToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.SearchForRecordToolStripMenuItem.Text = "Search For Record";
+            this.mnuSearch.Name = "mnuSearch";
+            this.mnuSearch.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.mnuSearch.Size = new System.Drawing.Size(207, 22);
+            this.mnuSearch.Text = "Search for Record";
+            this.mnuSearch.Click += new System.EventHandler(this.MnuSearch_Click);
             // 
             // mnuAddNewRecord
             // 
@@ -302,7 +303,7 @@
             this.ToolStripSeparator4,
             this.toolStripAddNewRecord,
             this.toolStripRefresh,
-            this.ToolStripButton5,
+            this.toolStripSearch,
             this.toolStripDeleteRecord,
             this.ToolStripSeparator5,
             this.toolStripManageAuthors,
@@ -446,14 +447,15 @@
             this.toolStripRefresh.ToolTipText = "Refresh list";
             this.toolStripRefresh.Click += new System.EventHandler(this.ToolStripRefresh_Click);
             // 
-            // ToolStripButton5
+            // toolStripSearch
             // 
-            this.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton5.Image = global::Code_Librarian.Properties.Resources.search;
-            this.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton5.Name = "ToolStripButton5";
-            this.ToolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton5.ToolTipText = "Search for a specific record";
+            this.toolStripSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSearch.Image = global::Code_Librarian.Properties.Resources.search;
+            this.toolStripSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSearch.Name = "toolStripSearch";
+            this.toolStripSearch.Size = new System.Drawing.Size(23, 22);
+            this.toolStripSearch.ToolTipText = "Search for a specific record";
+            this.toolStripSearch.Click += new System.EventHandler(this.ToolStripSearch_Click);
             // 
             // toolStripDeleteRecord
             // 
@@ -545,7 +547,7 @@
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator3;
         internal System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem DatabaseToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem SearchForRecordToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem mnuSearch;
         internal System.Windows.Forms.ToolStripMenuItem mnuAddNewRecord;
         internal System.Windows.Forms.ToolStripMenuItem mnuDeleteRecord;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator1;
@@ -568,7 +570,7 @@
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator4;
         internal System.Windows.Forms.ToolStripButton toolStripAddNewRecord;
         internal System.Windows.Forms.ToolStripButton toolStripRefresh;
-        internal System.Windows.Forms.ToolStripButton ToolStripButton5;
+        internal System.Windows.Forms.ToolStripButton toolStripSearch;
         internal System.Windows.Forms.ToolStripButton toolStripDeleteRecord;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator5;
         internal System.Windows.Forms.ToolStripButton toolStripManageAuthors;
