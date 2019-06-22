@@ -1,19 +1,19 @@
 ﻿/**
- * This file is part of QTemplates <https://github.com/StevenJDH/QTemplates>.
+ * This file is part of Code Librarian <https://github.com/StevenJDH/Code-Librarian>.
  * Copyright (C) 2019 Steven Jenkins De Haro.
  *
- * QTemplates is free software: you can redistribute it and/or modify
+ * Code Librarian is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * QTemplates is distributed in the hope that it will be useful,
+ * Code Librarian is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with QTemplates.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Code Librarian.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 using System;
