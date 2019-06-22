@@ -1,1 +1,0 @@
-Database must be placed in the same folder as the application.
