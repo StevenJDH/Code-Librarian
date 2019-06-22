@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -63,7 +61,6 @@
             this.btnCancel.Size = new System.Drawing.Size(85, 33);
             this.btnCancel.TabIndex = 72;
             this.btnCancel.Text = "Cancel";
-            this.ToolTip1.SetToolTip(this.btnCancel, "Close window");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
@@ -75,7 +72,6 @@
             this.btnClear.Size = new System.Drawing.Size(85, 33);
             this.btnClear.TabIndex = 71;
             this.btnClear.Text = "Clear";
-            this.ToolTip1.SetToolTip(this.btnClear, "Clears changes");
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
@@ -87,7 +83,6 @@
             this.btnAdd.Size = new System.Drawing.Size(85, 33);
             this.btnAdd.TabIndex = 69;
             this.btnAdd.Text = "Add";
-            this.ToolTip1.SetToolTip(this.btnAdd, "Updates changes made to current record");
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
@@ -100,7 +95,6 @@
             this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
             this.cmbLanguage.Sorted = true;
             this.cmbLanguage.TabIndex = 68;
-            this.ToolTip1.SetToolTip(this.cmbLanguage, "Required");
             // 
             // txtCode
             // 
@@ -438,8 +432,6 @@
         }
 
         #endregion
-
-        internal System.Windows.Forms.ToolTip ToolTip1;
         internal System.Windows.Forms.TextBox txtCode;
         public System.Windows.Forms.TextBox txtPhone;
         public System.Windows.Forms.Label lblPhone;

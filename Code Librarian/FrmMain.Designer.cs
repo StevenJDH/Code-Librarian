@@ -56,9 +56,19 @@
             this.toolStripTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripAddNewRecord = new System.Windows.Forms.ToolStripButton();
+            this.toolStripRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSearch = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDeleteRecord = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripManageAuthors = new System.Windows.Forms.ToolStripButton();
+            this.toolStripManageLanguages = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripAbout = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.picList = new System.Windows.Forms.Panel();
             this.lstSnippets = new System.Windows.Forms.ListBox();
@@ -67,16 +77,6 @@
             this.btnView = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
-            this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripAddNewRecord = new System.Windows.Forms.ToolStripButton();
-            this.toolStripRefresh = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSearch = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDeleteRecord = new System.Windows.Forms.ToolStripButton();
-            this.toolStripManageAuthors = new System.Windows.Forms.ToolStripButton();
-            this.toolStripManageLanguages = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripAbout = new System.Windows.Forms.ToolStripButton();
             this.MenuStrip1.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
@@ -171,7 +171,7 @@
             // 
             this.mnuAddNewRecord.Name = "mnuAddNewRecord";
             this.mnuAddNewRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.mnuAddNewRecord.Size = new System.Drawing.Size(206, 22);
+            this.mnuAddNewRecord.Size = new System.Drawing.Size(207, 22);
             this.mnuAddNewRecord.Text = "Add New Record";
             this.mnuAddNewRecord.Click += new System.EventHandler(this.MnuAddNewRecord_Click);
             // 
@@ -179,14 +179,14 @@
             // 
             this.mnuDeleteRecord.Name = "mnuDeleteRecord";
             this.mnuDeleteRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
-            this.mnuDeleteRecord.Size = new System.Drawing.Size(206, 22);
+            this.mnuDeleteRecord.Size = new System.Drawing.Size(207, 22);
             this.mnuDeleteRecord.Text = "Delete Record";
             this.mnuDeleteRecord.Click += new System.EventHandler(this.MnuDeleteRecord_Click);
             // 
             // ToolStripSeparator1
             // 
             this.ToolStripSeparator1.Name = "ToolStripSeparator1";
-            this.ToolStripSeparator1.Size = new System.Drawing.Size(203, 6);
+            this.ToolStripSeparator1.Size = new System.Drawing.Size(204, 6);
             // 
             // MaintenanceToolStripMenuItem
             // 
@@ -196,7 +196,7 @@
             this.ToolStripSeparator8,
             this.SaveBackupToolStripMenuItem});
             this.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem";
-            this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.MaintenanceToolStripMenuItem.Text = "Maintenance";
             // 
             // mnuManageAuthors
@@ -318,20 +318,118 @@
             this.ToolStrip1.TabIndex = 6;
             this.ToolStrip1.Text = "ToolStrip1";
             // 
+            // ToolStripButton1
+            // 
+            this.ToolStripButton1.AutoSize = false;
+            this.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButton1.Image = global::Code_Librarian.Properties.Resources.open;
+            this.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButton1.Name = "ToolStripButton1";
+            this.ToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripButton1.ToolTipText = "Open an existing database";
+            // 
+            // ToolStripButton2
+            // 
+            this.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButton2.Image = global::Code_Librarian.Properties.Resources.settings;
+            this.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButton2.Name = "ToolStripButton2";
+            this.ToolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripButton2.ToolTipText = "Settings";
+            // 
             // ToolStripSeparator4
             // 
             this.ToolStripSeparator4.Name = "ToolStripSeparator4";
             this.ToolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripAddNewRecord
+            // 
+            this.toolStripAddNewRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAddNewRecord.Image = global::Code_Librarian.Properties.Resources.add;
+            this.toolStripAddNewRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAddNewRecord.Name = "toolStripAddNewRecord";
+            this.toolStripAddNewRecord.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAddNewRecord.ToolTipText = "Add new record";
+            this.toolStripAddNewRecord.Click += new System.EventHandler(this.ToolStripAddNewRecord_Click);
+            // 
+            // toolStripRefresh
+            // 
+            this.toolStripRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripRefresh.Image = global::Code_Librarian.Properties.Resources.refresh;
+            this.toolStripRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripRefresh.Name = "toolStripRefresh";
+            this.toolStripRefresh.Size = new System.Drawing.Size(23, 22);
+            this.toolStripRefresh.ToolTipText = "Refresh list";
+            this.toolStripRefresh.Click += new System.EventHandler(this.ToolStripRefresh_Click);
+            // 
+            // toolStripSearch
+            // 
+            this.toolStripSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSearch.Image = global::Code_Librarian.Properties.Resources.search;
+            this.toolStripSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSearch.Name = "toolStripSearch";
+            this.toolStripSearch.Size = new System.Drawing.Size(23, 22);
+            this.toolStripSearch.ToolTipText = "Search for a specific record";
+            this.toolStripSearch.Click += new System.EventHandler(this.ToolStripSearch_Click);
+            // 
+            // toolStripDeleteRecord
+            // 
+            this.toolStripDeleteRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDeleteRecord.Image = global::Code_Librarian.Properties.Resources.delete;
+            this.toolStripDeleteRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDeleteRecord.Name = "toolStripDeleteRecord";
+            this.toolStripDeleteRecord.Size = new System.Drawing.Size(23, 22);
+            this.toolStripDeleteRecord.ToolTipText = "Deletes a record from the database";
+            this.toolStripDeleteRecord.Click += new System.EventHandler(this.ToolStripDeleteRecord_Click);
             // 
             // ToolStripSeparator5
             // 
             this.ToolStripSeparator5.Name = "ToolStripSeparator5";
             this.ToolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripManageAuthors
+            // 
+            this.toolStripManageAuthors.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripManageAuthors.Image = global::Code_Librarian.Properties.Resources.author;
+            this.toolStripManageAuthors.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripManageAuthors.Name = "toolStripManageAuthors";
+            this.toolStripManageAuthors.Size = new System.Drawing.Size(23, 22);
+            this.toolStripManageAuthors.ToolTipText = "Add/edit author information";
+            this.toolStripManageAuthors.Click += new System.EventHandler(this.ToolStripManageAuthors_Click);
+            // 
+            // toolStripManageLanguages
+            // 
+            this.toolStripManageLanguages.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripManageLanguages.Image = global::Code_Librarian.Properties.Resources.lang;
+            this.toolStripManageLanguages.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripManageLanguages.Name = "toolStripManageLanguages";
+            this.toolStripManageLanguages.Size = new System.Drawing.Size(23, 22);
+            this.toolStripManageLanguages.ToolTipText = "Add/edit language information";
+            this.toolStripManageLanguages.Click += new System.EventHandler(this.ToolStripManageLanguages_Click);
+            // 
+            // ToolStripButton9
+            // 
+            this.ToolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ToolStripButton9.Image = global::Code_Librarian.Properties.Resources.database;
+            this.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButton9.Name = "ToolStripButton9";
+            this.ToolStripButton9.Size = new System.Drawing.Size(23, 22);
+            this.ToolStripButton9.ToolTipText = "Creates a backup of your personal database";
+            // 
             // ToolStripSeparator6
             // 
             this.ToolStripSeparator6.Name = "ToolStripSeparator6";
             this.ToolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripAbout
+            // 
+            this.toolStripAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAbout.Image = global::Code_Librarian.Properties.Resources.about;
+            this.toolStripAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAbout.Name = "toolStripAbout";
+            this.toolStripAbout.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAbout.ToolTipText = "About";
+            this.toolStripAbout.Click += new System.EventHandler(this.ToolStripAbout_Click);
             // 
             // ToolStripSeparator7
             // 
@@ -407,104 +505,6 @@
             this.tmrDateTime.Enabled = true;
             this.tmrDateTime.Interval = 1000;
             this.tmrDateTime.Tick += new System.EventHandler(this.TmrDateTime_Tick);
-            // 
-            // ToolStripButton1
-            // 
-            this.ToolStripButton1.AutoSize = false;
-            this.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton1.Image = global::Code_Librarian.Properties.Resources.open;
-            this.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton1.Name = "ToolStripButton1";
-            this.ToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton1.ToolTipText = "Open an existing database";
-            // 
-            // ToolStripButton2
-            // 
-            this.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton2.Image = global::Code_Librarian.Properties.Resources.settings;
-            this.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton2.Name = "ToolStripButton2";
-            this.ToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton2.ToolTipText = "Settings";
-            // 
-            // toolStripAddNewRecord
-            // 
-            this.toolStripAddNewRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAddNewRecord.Image = global::Code_Librarian.Properties.Resources.add;
-            this.toolStripAddNewRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAddNewRecord.Name = "toolStripAddNewRecord";
-            this.toolStripAddNewRecord.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAddNewRecord.ToolTipText = "Add new record";
-            this.toolStripAddNewRecord.Click += new System.EventHandler(this.ToolStripAddNewRecord_Click);
-            // 
-            // toolStripRefresh
-            // 
-            this.toolStripRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripRefresh.Image = global::Code_Librarian.Properties.Resources.refresh;
-            this.toolStripRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripRefresh.Name = "toolStripRefresh";
-            this.toolStripRefresh.Size = new System.Drawing.Size(23, 22);
-            this.toolStripRefresh.ToolTipText = "Refresh list";
-            this.toolStripRefresh.Click += new System.EventHandler(this.ToolStripRefresh_Click);
-            // 
-            // toolStripSearch
-            // 
-            this.toolStripSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSearch.Image = global::Code_Librarian.Properties.Resources.search;
-            this.toolStripSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSearch.Name = "toolStripSearch";
-            this.toolStripSearch.Size = new System.Drawing.Size(23, 22);
-            this.toolStripSearch.ToolTipText = "Search for a specific record";
-            this.toolStripSearch.Click += new System.EventHandler(this.ToolStripSearch_Click);
-            // 
-            // toolStripDeleteRecord
-            // 
-            this.toolStripDeleteRecord.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDeleteRecord.Image = global::Code_Librarian.Properties.Resources.delete;
-            this.toolStripDeleteRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDeleteRecord.Name = "toolStripDeleteRecord";
-            this.toolStripDeleteRecord.Size = new System.Drawing.Size(23, 22);
-            this.toolStripDeleteRecord.ToolTipText = "Deletes a record from the database";
-            this.toolStripDeleteRecord.Click += new System.EventHandler(this.ToolStripDeleteRecord_Click);
-            // 
-            // toolStripManageAuthors
-            // 
-            this.toolStripManageAuthors.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripManageAuthors.Image = global::Code_Librarian.Properties.Resources.author;
-            this.toolStripManageAuthors.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripManageAuthors.Name = "toolStripManageAuthors";
-            this.toolStripManageAuthors.Size = new System.Drawing.Size(23, 22);
-            this.toolStripManageAuthors.ToolTipText = "Add/edit author information";
-            this.toolStripManageAuthors.Click += new System.EventHandler(this.ToolStripManageAuthors_Click);
-            // 
-            // toolStripManageLanguages
-            // 
-            this.toolStripManageLanguages.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripManageLanguages.Image = global::Code_Librarian.Properties.Resources.lang;
-            this.toolStripManageLanguages.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripManageLanguages.Name = "toolStripManageLanguages";
-            this.toolStripManageLanguages.Size = new System.Drawing.Size(23, 22);
-            this.toolStripManageLanguages.ToolTipText = "Add/edit language information";
-            this.toolStripManageLanguages.Click += new System.EventHandler(this.ToolStripManageLanguages_Click);
-            // 
-            // ToolStripButton9
-            // 
-            this.ToolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton9.Image = global::Code_Librarian.Properties.Resources.database;
-            this.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton9.Name = "ToolStripButton9";
-            this.ToolStripButton9.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton9.ToolTipText = "Creates a backup of your personal database";
-            // 
-            // toolStripAbout
-            // 
-            this.toolStripAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAbout.Image = global::Code_Librarian.Properties.Resources.about;
-            this.toolStripAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAbout.Name = "toolStripAbout";
-            this.toolStripAbout.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAbout.ToolTipText = "About";
-            this.toolStripAbout.Click += new System.EventHandler(this.ToolStripAbout_Click);
             // 
             // FrmMain
             // 

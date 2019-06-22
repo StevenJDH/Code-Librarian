@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -171,7 +169,6 @@
         }
 
         #endregion
-        internal System.Windows.Forms.ToolTip ToolTip1;
         internal System.Windows.Forms.Button btnClose;
         internal System.Windows.Forms.Button btnDelete;
         internal System.Windows.Forms.Button btnUpdate;

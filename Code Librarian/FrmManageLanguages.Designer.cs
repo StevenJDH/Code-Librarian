@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lstLanguages = new System.Windows.Forms.ListBox();
             this.txtLanguage = new System.Windows.Forms.TextBox();
-            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnClose
@@ -46,7 +44,6 @@
             this.btnClose.Size = new System.Drawing.Size(81, 25);
             this.btnClose.TabIndex = 12;
             this.btnClose.Text = "Close";
-            this.ToolTip1.SetToolTip(this.btnClose, "Close window");
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
@@ -57,7 +54,6 @@
             this.btnDelete.Size = new System.Drawing.Size(81, 25);
             this.btnDelete.TabIndex = 11;
             this.btnDelete.Text = "Delete";
-            this.ToolTip1.SetToolTip(this.btnDelete, "Deletes language from database");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
@@ -68,7 +64,6 @@
             this.btnUpdate.Size = new System.Drawing.Size(81, 25);
             this.btnUpdate.TabIndex = 10;
             this.btnUpdate.Text = "Update";
-            this.ToolTip1.SetToolTip(this.btnUpdate, "Updates changes for highlighted language");
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
@@ -79,7 +74,6 @@
             this.btnAdd.Size = new System.Drawing.Size(81, 25);
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Add";
-            this.ToolTip1.SetToolTip(this.btnAdd, "Add a new language to the database");
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
@@ -97,7 +91,6 @@
             this.lstLanguages.Sorted = true;
             this.lstLanguages.TabIndex = 13;
             this.lstLanguages.TabStop = false;
-            this.ToolTip1.SetToolTip(this.lstLanguages, "Displays programming languages");
             this.lstLanguages.SelectedIndexChanged += new System.EventHandler(this.LstLanguages_SelectedIndexChanged);
             // 
             // txtLanguage
@@ -114,7 +107,6 @@
             this.txtLanguage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtLanguage.Size = new System.Drawing.Size(241, 20);
             this.txtLanguage.TabIndex = 8;
-            this.ToolTip1.SetToolTip(this.txtLanguage, "Add/edit box for programming languages (Required)");
             // 
             // FrmManageLanguages
             // 
@@ -146,7 +138,6 @@
         #endregion
 
         internal System.Windows.Forms.Button btnClose;
-        internal System.Windows.Forms.ToolTip ToolTip1;
         internal System.Windows.Forms.Button btnDelete;
         internal System.Windows.Forms.Button btnUpdate;
         internal System.Windows.Forms.Button btnAdd;

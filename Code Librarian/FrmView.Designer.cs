@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
             this.txtCode = new System.Windows.Forms.TextBox();
@@ -62,7 +60,6 @@
             this.btnClose.Size = new System.Drawing.Size(131, 33);
             this.btnClose.TabIndex = 45;
             this.btnClose.Text = "Close";
-            this.ToolTip1.SetToolTip(this.btnClose, "Close window");
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
@@ -73,7 +70,6 @@
             this.btnCopy.Size = new System.Drawing.Size(131, 33);
             this.btnCopy.TabIndex = 46;
             this.btnCopy.Text = "Copy Code to Clipboard";
-            this.ToolTip1.SetToolTip(this.btnCopy, "Copies the Code Snippet area to the clipboard to be pasted in your projects");
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.BtnCopy_Click);
             // 
@@ -440,8 +436,6 @@
         }
 
         #endregion
-
-        internal System.Windows.Forms.ToolTip ToolTip1;
         internal System.Windows.Forms.Button btnClose;
         internal System.Windows.Forms.Button btnCopy;
         internal System.Windows.Forms.TextBox txtCode;

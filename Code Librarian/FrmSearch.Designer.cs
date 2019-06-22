@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cmbAuthors = new System.Windows.Forms.ComboBox();
@@ -64,7 +61,6 @@
             this.btnClose.Size = new System.Drawing.Size(73, 25);
             this.btnClose.TabIndex = 23;
             this.btnClose.Text = "Close";
-            this.toolTip2.SetToolTip(this.btnClose, "Close window");
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
@@ -75,7 +71,6 @@
             this.btnSearch.Size = new System.Drawing.Size(73, 25);
             this.btnSearch.TabIndex = 22;
             this.btnSearch.Text = "Search";
-            this.toolTip2.SetToolTip(this.btnSearch, "Begin search");
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
@@ -92,7 +87,6 @@
             this.cmbAuthors.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbAuthors.Size = new System.Drawing.Size(153, 22);
             this.cmbAuthors.TabIndex = 21;
-            this.toolTip2.SetToolTip(this.cmbAuthors, "This list shows the which authors to search by");
             // 
             // cmbLanguages
             // 
@@ -108,7 +102,6 @@
             this.cmbLanguages.Size = new System.Drawing.Size(153, 22);
             this.cmbLanguages.Sorted = true;
             this.cmbLanguages.TabIndex = 20;
-            this.toolTip2.SetToolTip(this.cmbLanguages, "This list shows the current Languages to search by");
             // 
             // txtKeywords
             // 
@@ -124,7 +117,6 @@
             this.txtKeywords.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtKeywords.Size = new System.Drawing.Size(153, 20);
             this.txtKeywords.TabIndex = 18;
-            this.toolTip2.SetToolTip(this.txtKeywords, "Type in up to 5 COMMAs seperated keywords");
             // 
             // chkKeywords
             // 
@@ -142,7 +134,6 @@
             this.chkKeywords.TabIndex = 27;
             this.chkKeywords.TabStop = false;
             this.chkKeywords.Text = "By Keywords (Comma list)";
-            this.toolTip2.SetToolTip(this.chkKeywords, "Enable/Disable Search by Keywords");
             this.chkKeywords.UseVisualStyleBackColor = false;
             this.chkKeywords.CheckedChanged += new System.EventHandler(this.ChkKeywords_CheckedChanged);
             // 
@@ -160,7 +151,6 @@
             this.chkLanguage.TabIndex = 26;
             this.chkLanguage.TabStop = false;
             this.chkLanguage.Text = "By Language";
-            this.toolTip2.SetToolTip(this.chkLanguage, "Enable/Disable Search by Language");
             this.chkLanguage.UseVisualStyleBackColor = false;
             this.chkLanguage.CheckedChanged += new System.EventHandler(this.ChkLanguage_CheckedChanged);
             // 
@@ -178,7 +168,6 @@
             this.chkAuthor.TabIndex = 25;
             this.chkAuthor.TabStop = false;
             this.chkAuthor.Text = "By Author";
-            this.toolTip2.SetToolTip(this.chkAuthor, "Enable/Disable Search by Author");
             this.chkAuthor.UseVisualStyleBackColor = false;
             this.chkAuthor.CheckedChanged += new System.EventHandler(this.ChkAuthor_CheckedChanged);
             // 
@@ -199,7 +188,7 @@
             // 
             this.mnuReset.Name = "mnuReset";
             this.mnuReset.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.mnuReset.Size = new System.Drawing.Size(180, 22);
+            this.mnuReset.Size = new System.Drawing.Size(149, 22);
             this.mnuReset.Text = "Reset";
             this.mnuReset.Click += new System.EventHandler(this.MnuReset_Click);
             // 
@@ -227,7 +216,7 @@
             // 
             this.mnuEdit.Name = "mnuEdit";
             this.mnuEdit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.mnuEdit.Size = new System.Drawing.Size(180, 22);
+            this.mnuEdit.Size = new System.Drawing.Size(149, 22);
             this.mnuEdit.Text = "Edit";
             this.mnuEdit.Click += new System.EventHandler(this.MnuEdit_Click);
             // 
@@ -298,14 +287,16 @@
             this.ControlsToolStripMenuItem});
             this.MenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip1.Name = "MenuStrip1";
-            this.MenuStrip1.Size = new System.Drawing.Size(409, 24);
+            this.MenuStrip1.Size = new System.Drawing.Size(405, 24);
             this.MenuStrip1.TabIndex = 19;
             this.MenuStrip1.Text = "MenuStrip1";
             // 
             // FrmSearch
             // 
+            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(409, 209);
             this.ControlBox = false;
             this.Controls.Add(this.btnClose);
@@ -336,8 +327,6 @@
         }
 
         #endregion
-        internal System.Windows.Forms.ToolTip ToolTip1;
-        internal System.Windows.Forms.ToolTip toolTip2;
         internal System.Windows.Forms.Button btnClose;
         internal System.Windows.Forms.Button btnSearch;
         public System.Windows.Forms.ComboBox cmbAuthors;
