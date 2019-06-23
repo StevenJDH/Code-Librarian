@@ -34,7 +34,7 @@
             this.OpenDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CloseDatabaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +57,7 @@
             this.toolStripDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSettings = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAddNewRecord = new System.Windows.Forms.ToolStripButton();
             this.toolStripRefresh = new System.Windows.Forms.ToolStripButton();
@@ -70,7 +70,7 @@
             this.ToolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAbout = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.picList = new System.Windows.Forms.Panel();
+            this.pnlDock = new System.Windows.Forms.Panel();
             this.lstSnippets = new System.Windows.Forms.ListBox();
             this.cmbLanguageFilter = new System.Windows.Forms.ComboBox();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -80,7 +80,7 @@
             this.MenuStrip1.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
-            this.picList.SuspendLayout();
+            this.pnlDock.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuStrip1
@@ -101,7 +101,7 @@
             this.OpenDatabaseToolStripMenuItem,
             this.CloseDatabaseToolStripMenuItem1,
             this.ToolStripSeparator9,
-            this.SettingsToolStripMenuItem,
+            this.mnuSettings,
             this.ToolStripSeparator3,
             this.ExitToolStripMenuItem});
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
@@ -128,12 +128,13 @@
             this.ToolStripSeparator9.Size = new System.Drawing.Size(194, 6);
             this.ToolStripSeparator9.Visible = false;
             // 
-            // SettingsToolStripMenuItem
+            // mnuSettings
             // 
-            this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
-            this.SettingsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.SettingsToolStripMenuItem.Text = "Settings";
+            this.mnuSettings.Name = "mnuSettings";
+            this.mnuSettings.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.mnuSettings.Size = new System.Drawing.Size(197, 22);
+            this.mnuSettings.Text = "Settings";
+            this.mnuSettings.Click += new System.EventHandler(this.MnuSettings_Click);
             // 
             // ToolStripSeparator3
             // 
@@ -299,7 +300,7 @@
             // 
             this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripButton1,
-            this.ToolStripButton2,
+            this.toolStripSettings,
             this.ToolStripSeparator4,
             this.toolStripAddNewRecord,
             this.toolStripRefresh,
@@ -328,14 +329,15 @@
             this.ToolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.ToolStripButton1.ToolTipText = "Open an existing database";
             // 
-            // ToolStripButton2
+            // toolStripSettings
             // 
-            this.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton2.Image = global::Code_Librarian.Properties.Resources.settings;
-            this.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton2.Name = "ToolStripButton2";
-            this.ToolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton2.ToolTipText = "Settings";
+            this.toolStripSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSettings.Image = global::Code_Librarian.Properties.Resources.settings;
+            this.toolStripSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSettings.Name = "toolStripSettings";
+            this.toolStripSettings.Size = new System.Drawing.Size(23, 22);
+            this.toolStripSettings.ToolTipText = "Settings";
+            this.toolStripSettings.Click += new System.EventHandler(this.ToolStripSettings_Click);
             // 
             // ToolStripSeparator4
             // 
@@ -436,18 +438,18 @@
             this.ToolStripSeparator7.Name = "ToolStripSeparator7";
             this.ToolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
-            // picList
+            // pnlDock
             // 
-            this.picList.Controls.Add(this.lstSnippets);
-            this.picList.Controls.Add(this.cmbLanguageFilter);
-            this.picList.Controls.Add(this.btnEdit);
-            this.picList.Controls.Add(this.btnView);
-            this.picList.Controls.Add(this.btnRefresh);
-            this.picList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.picList.Location = new System.Drawing.Point(0, 49);
-            this.picList.Name = "picList";
-            this.picList.Size = new System.Drawing.Size(153, 456);
-            this.picList.TabIndex = 7;
+            this.pnlDock.Controls.Add(this.lstSnippets);
+            this.pnlDock.Controls.Add(this.cmbLanguageFilter);
+            this.pnlDock.Controls.Add(this.btnEdit);
+            this.pnlDock.Controls.Add(this.btnView);
+            this.pnlDock.Controls.Add(this.btnRefresh);
+            this.pnlDock.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlDock.Location = new System.Drawing.Point(0, 49);
+            this.pnlDock.Name = "pnlDock";
+            this.pnlDock.Size = new System.Drawing.Size(153, 456);
+            this.pnlDock.TabIndex = 7;
             // 
             // lstSnippets
             // 
@@ -458,6 +460,7 @@
             this.lstSnippets.Size = new System.Drawing.Size(136, 342);
             this.lstSnippets.Sorted = true;
             this.lstSnippets.TabIndex = 2;
+            this.lstSnippets.DoubleClick += new System.EventHandler(this.LstSnippets_DoubleClick);
             this.lstSnippets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LstSnippets_KeyDown);
             // 
             // cmbLanguageFilter
@@ -512,7 +515,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(809, 527);
-            this.Controls.Add(this.picList);
+            this.Controls.Add(this.pnlDock);
             this.Controls.Add(this.ToolStrip1);
             this.Controls.Add(this.StatusStrip1);
             this.Controls.Add(this.MenuStrip1);
@@ -530,7 +533,7 @@
             this.StatusStrip1.PerformLayout();
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
-            this.picList.ResumeLayout(false);
+            this.pnlDock.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,7 +546,7 @@
         internal System.Windows.Forms.ToolStripMenuItem OpenDatabaseToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem CloseDatabaseToolStripMenuItem1;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator9;
-        internal System.Windows.Forms.ToolStripMenuItem SettingsToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem mnuSettings;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator3;
         internal System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem DatabaseToolStripMenuItem;
@@ -566,7 +569,7 @@
         internal System.Windows.Forms.ToolStripStatusLabel toolStripDate;
         public System.Windows.Forms.ToolStrip ToolStrip1;
         internal System.Windows.Forms.ToolStripButton ToolStripButton1;
-        internal System.Windows.Forms.ToolStripButton ToolStripButton2;
+        internal System.Windows.Forms.ToolStripButton toolStripSettings;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator4;
         internal System.Windows.Forms.ToolStripButton toolStripAddNewRecord;
         internal System.Windows.Forms.ToolStripButton toolStripRefresh;
@@ -579,7 +582,7 @@
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator6;
         internal System.Windows.Forms.ToolStripButton toolStripAbout;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator7;
-        internal System.Windows.Forms.Panel picList;
+        internal System.Windows.Forms.Panel pnlDock;
         internal System.Windows.Forms.ListBox lstSnippets;
         internal System.Windows.Forms.ComboBox cmbLanguageFilter;
         internal System.Windows.Forms.Button btnEdit;

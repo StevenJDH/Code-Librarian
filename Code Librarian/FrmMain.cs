@@ -208,6 +208,11 @@ namespace Code_Librarian
             }
         }
 
+        private void LstSnippets_DoubleClick(object sender, EventArgs e)
+        {
+            BtnView_Click(this, EventArgs.Empty);
+        }
+
         private void MnuDonate_Click(object sender, EventArgs e)
         {
             try
@@ -283,6 +288,19 @@ namespace Code_Librarian
         private void ToolStripSearch_Click(object sender, EventArgs e)
         {
             MnuSearch_Click(this, EventArgs.Empty);
+        }
+
+        private void MnuSettings_Click(object sender, EventArgs e)
+        {
+            using (var frm = new FrmSettings(pnlDock))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void ToolStripSettings_Click(object sender, EventArgs e)
+        {
+            MnuSettings_Click(this, EventArgs.Empty);
         }
     }
 }
