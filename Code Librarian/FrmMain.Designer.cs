@@ -36,7 +36,7 @@
             this.ToolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.DatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddNewRecord = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +46,7 @@
             this.mnuManageAuthors = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuManageLanguages = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.SaveBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCreateBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDonate = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -66,7 +66,7 @@
             this.ToolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripManageAuthors = new System.Windows.Forms.ToolStripButton();
             this.toolStripManageLanguages = new System.Windows.Forms.ToolStripButton();
-            this.ToolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripCreateBackup = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAbout = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -77,6 +77,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
+            this.fbDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.MenuStrip1.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
@@ -103,7 +104,7 @@
             this.ToolStripSeparator9,
             this.mnuSettings,
             this.ToolStripSeparator3,
-            this.ExitToolStripMenuItem});
+            this.mnuExit});
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
             this.FileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.FileToolStripMenuItem.Text = "File";
@@ -141,12 +142,13 @@
             this.ToolStripSeparator3.Name = "ToolStripSeparator3";
             this.ToolStripSeparator3.Size = new System.Drawing.Size(194, 6);
             // 
-            // ExitToolStripMenuItem
+            // mnuExit
             // 
-            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.ExitToolStripMenuItem.Text = "Exit";
+            this.mnuExit.Name = "mnuExit";
+            this.mnuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.mnuExit.Size = new System.Drawing.Size(197, 22);
+            this.mnuExit.Text = "Exit";
+            this.mnuExit.Click += new System.EventHandler(this.MnuExit_Click);
             // 
             // DatabaseToolStripMenuItem
             // 
@@ -195,7 +197,7 @@
             this.mnuManageAuthors,
             this.mnuManageLanguages,
             this.ToolStripSeparator8,
-            this.SaveBackupToolStripMenuItem});
+            this.mnuCreateBackup});
             this.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem";
             this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.MaintenanceToolStripMenuItem.Text = "Maintenance";
@@ -221,12 +223,13 @@
             this.ToolStripSeparator8.Name = "ToolStripSeparator8";
             this.ToolStripSeparator8.Size = new System.Drawing.Size(214, 6);
             // 
-            // SaveBackupToolStripMenuItem
+            // mnuCreateBackup
             // 
-            this.SaveBackupToolStripMenuItem.Name = "SaveBackupToolStripMenuItem";
-            this.SaveBackupToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.SaveBackupToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.SaveBackupToolStripMenuItem.Text = "Create Backup...";
+            this.mnuCreateBackup.Name = "mnuCreateBackup";
+            this.mnuCreateBackup.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            this.mnuCreateBackup.Size = new System.Drawing.Size(217, 22);
+            this.mnuCreateBackup.Text = "Create Backup...";
+            this.mnuCreateBackup.Click += new System.EventHandler(this.MnuCreateBackup_Click);
             // 
             // HelpToolStripMenuItem
             // 
@@ -309,7 +312,7 @@
             this.ToolStripSeparator5,
             this.toolStripManageAuthors,
             this.toolStripManageLanguages,
-            this.ToolStripButton9,
+            this.toolStripCreateBackup,
             this.ToolStripSeparator6,
             this.toolStripAbout,
             this.ToolStripSeparator7});
@@ -381,7 +384,7 @@
             this.toolStripDeleteRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDeleteRecord.Name = "toolStripDeleteRecord";
             this.toolStripDeleteRecord.Size = new System.Drawing.Size(23, 22);
-            this.toolStripDeleteRecord.ToolTipText = "Deletes a record from the database";
+            this.toolStripDeleteRecord.ToolTipText = "Delete a record from the database";
             this.toolStripDeleteRecord.Click += new System.EventHandler(this.ToolStripDeleteRecord_Click);
             // 
             // ToolStripSeparator5
@@ -396,7 +399,7 @@
             this.toolStripManageAuthors.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripManageAuthors.Name = "toolStripManageAuthors";
             this.toolStripManageAuthors.Size = new System.Drawing.Size(23, 22);
-            this.toolStripManageAuthors.ToolTipText = "Add/edit author information";
+            this.toolStripManageAuthors.ToolTipText = "Manage authors";
             this.toolStripManageAuthors.Click += new System.EventHandler(this.ToolStripManageAuthors_Click);
             // 
             // toolStripManageLanguages
@@ -406,17 +409,18 @@
             this.toolStripManageLanguages.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripManageLanguages.Name = "toolStripManageLanguages";
             this.toolStripManageLanguages.Size = new System.Drawing.Size(23, 22);
-            this.toolStripManageLanguages.ToolTipText = "Add/edit language information";
+            this.toolStripManageLanguages.ToolTipText = "Manage languages";
             this.toolStripManageLanguages.Click += new System.EventHandler(this.ToolStripManageLanguages_Click);
             // 
-            // ToolStripButton9
+            // toolStripCreateBackup
             // 
-            this.ToolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton9.Image = global::Code_Librarian.Properties.Resources.database;
-            this.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton9.Name = "ToolStripButton9";
-            this.ToolStripButton9.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton9.ToolTipText = "Creates a backup of your personal database";
+            this.toolStripCreateBackup.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripCreateBackup.Image = global::Code_Librarian.Properties.Resources.database;
+            this.toolStripCreateBackup.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripCreateBackup.Name = "toolStripCreateBackup";
+            this.toolStripCreateBackup.Size = new System.Drawing.Size(23, 22);
+            this.toolStripCreateBackup.ToolTipText = "Creates a backup of your personal database";
+            this.toolStripCreateBackup.Click += new System.EventHandler(this.ToolStripCreateBackup_Click);
             // 
             // ToolStripSeparator6
             // 
@@ -509,6 +513,10 @@
             this.tmrDateTime.Interval = 1000;
             this.tmrDateTime.Tick += new System.EventHandler(this.TmrDateTime_Tick);
             // 
+            // fbDialog
+            // 
+            this.fbDialog.Description = "Select a folder to backup the database to:";
+            // 
             // FrmMain
             // 
             this.AcceptButton = this.btnView;
@@ -548,7 +556,7 @@
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator9;
         internal System.Windows.Forms.ToolStripMenuItem mnuSettings;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator3;
-        internal System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem mnuExit;
         internal System.Windows.Forms.ToolStripMenuItem DatabaseToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem mnuSearch;
         internal System.Windows.Forms.ToolStripMenuItem mnuAddNewRecord;
@@ -558,7 +566,7 @@
         internal System.Windows.Forms.ToolStripMenuItem mnuManageAuthors;
         internal System.Windows.Forms.ToolStripMenuItem mnuManageLanguages;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator8;
-        internal System.Windows.Forms.ToolStripMenuItem SaveBackupToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem mnuCreateBackup;
         internal System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem mnuDonate;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator2;
@@ -578,7 +586,7 @@
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator5;
         internal System.Windows.Forms.ToolStripButton toolStripManageAuthors;
         internal System.Windows.Forms.ToolStripButton toolStripManageLanguages;
-        internal System.Windows.Forms.ToolStripButton ToolStripButton9;
+        internal System.Windows.Forms.ToolStripButton toolStripCreateBackup;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator6;
         internal System.Windows.Forms.ToolStripButton toolStripAbout;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator7;
@@ -589,6 +597,7 @@
         internal System.Windows.Forms.Button btnView;
         internal System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Timer tmrDateTime;
+        private System.Windows.Forms.FolderBrowserDialog fbDialog;
     }
 }
 

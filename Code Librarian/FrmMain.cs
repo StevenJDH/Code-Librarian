@@ -23,6 +23,7 @@ using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,6 +117,8 @@ namespace Code_Librarian
 
         private void ShowChildWindow(Form mdiChild)
         {
+            this.ActiveMdiChild?.Close();
+
             mdiChild.MdiParent = this;
             mdiChild.Dock = DockStyle.Fill;
             mdiChild.Show();
@@ -301,6 +304,47 @@ namespace Code_Librarian
         private void ToolStripSettings_Click(object sender, EventArgs e)
         {
             MnuSettings_Click(this, EventArgs.Empty);
+        }
+
+        private void MnuCreateBackup_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to backup your personal database?", 
+                    Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+
+            fbDialog.SelectedPath = AppConfiguration.Instance.GetConfigPath();
+
+            if (fbDialog.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            string backup = Path.Combine(fbDialog.SelectedPath, 
+                $"CodeLib_{DateTime.Now.ToString("yyyy-MM-dd_HHmmss")}.sqlite3");
+
+            try
+            {
+                File.Copy(AppConfiguration.Instance.GetDbPath(), backup, overwrite: false);
+                MessageBox.Show("Your personal database has been backed up successfully.", 
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
+            {
+                MessageBox.Show($"Error: {ex.Message}",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ToolStripCreateBackup_Click(object sender, EventArgs e)
+        {
+            MnuCreateBackup_Click(this, EventArgs.Empty);
+        }
+
+        private void MnuExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
