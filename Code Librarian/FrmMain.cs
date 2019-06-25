@@ -36,7 +36,7 @@ namespace Code_Librarian
 {
     public partial class FrmMain : Form
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private IUnitOfWork _unitOfWork;
         private const int WS_EX_COMPOSITED = 0x02000000;
 
         public FrmMain()
@@ -61,7 +61,7 @@ namespace Code_Librarian
                 .ToList()
                 .ForEach(l => cmbLanguageFilter.Items.Add(l));
 
-            // Triggers the CmbLanguageFilter_SelectedIndexChanged event to load the list.
+            // Triggers the CmbLanguageFilter_SelectedIndexChanged event.
             cmbLanguageFilter.SelectedIndex = 0;
         }
 
@@ -332,7 +332,7 @@ namespace Code_Librarian
             }
             catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
             {
-                MessageBox.Show($"Error: {ex.Message}",
+                MessageBox.Show($"{ex.GetType().Name}: {ex.Message}",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -345,6 +345,66 @@ namespace Code_Librarian
         private void MnuExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void MnuOpenDatabase_Click(object sender, EventArgs e)
+        {
+            this.ActiveMdiChild?.Close();
+            _unitOfWork?.Dispose();
+
+            openFileDialog.Filter = "Code Librarian Database (*.sqlite3)|*.sqlite3";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            openFileDialog.FileName = "";
+
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            try
+            {
+                AppConfiguration.Instance.SetGuestDbPath(openFileDialog.FileName);
+                _unitOfWork = new UnitOfWork(new AppDbContext());
+                cmbLanguageFilter.SelectedIndex = 0;
+
+                mnuOpenDatabase.Visible = false;
+                toolStripOpenDatabase.Enabled = false;
+                mnuCloseDatabase.Visible = true;
+
+                // Quick test to check if database can be queried.
+                _unitOfWork.Authors.GetAll();
+
+                MessageBox.Show($"The '{Path.GetFileNameWithoutExtension(openFileDialog.FileName)}' database is now connected.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error: The selected database is invalid or not compatible.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MnuCloseDatabase_Click(this, EventArgs.Empty);
+            }
+        }
+
+        private void ToolStripOpenDatabase_Click(object sender, EventArgs e)
+        {
+            MnuOpenDatabase_Click(this, EventArgs.Empty);
+        }
+
+        private void MnuCloseDatabase_Click(object sender, EventArgs e)
+        {
+            this.ActiveMdiChild?.Close();
+            _unitOfWork?.Dispose();
+            AppConfiguration.Instance.SetGuestDbPath(null);
+            _unitOfWork = new UnitOfWork(new AppDbContext());
+            cmbLanguageFilter.SelectedIndex = 0;
+
+            mnuCloseDatabase.Visible = false;
+            mnuOpenDatabase.Visible = true;
+            toolStripOpenDatabase.Enabled = true;
+
+            MessageBox.Show("Your personal database has been reconnected.",
+                Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

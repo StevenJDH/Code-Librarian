@@ -30,6 +30,7 @@ namespace Code_Librarian.Classes
     sealed class AppConfiguration
     {
         private readonly string _configPath;
+        private string _guestDbPath;
 
         private AppConfiguration()
         {
@@ -41,7 +42,7 @@ namespace Code_Librarian.Classes
             }
             catch (IOException ex)
             {
-                MessageBox.Show($"{ex.GetType().Name}: {ex.Message}",
+                MessageBox.Show($"Error: {ex.Message}",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Process.GetCurrentProcess().Kill();
             }
@@ -50,10 +51,18 @@ namespace Code_Librarian.Classes
         public static AppConfiguration Instance { get; } = new AppConfiguration();
 
         /// <summary>
-        /// Gets the database path from '%AppData%/ASC-C/Code Librarian' in the current user's profile.
+        /// Gets the database path from '%AppData%/ASC-C/Code Librarian' in the current user's profile,
+        /// unless a guest database path is set.
         /// </summary>
         /// <returns>Path to database</returns>
-        public string GetDbPath() => Path.Combine(_configPath, "CodeLib.sqlite3");
+        public string GetDbPath() => _guestDbPath ?? Path.Combine(_configPath, "CodeLib.sqlite3");
+
+        /// <summary>
+        /// Sets the temporary guest database path that will override the path to the current user's
+        /// database. Use <see langword="null" /> to revert back to the current user's database.
+        /// </summary>
+        /// <param name="path">Path to guest database, or null to use current user's database.</param>
+        public void SetGuestDbPath(string path) => _guestDbPath = path;
 
         /// <summary>
         /// Gets the path where the configuration needs to be stored for the current user.

@@ -31,16 +31,14 @@ namespace Code_Librarian.Models
     [DbConfigurationType(typeof(SqliteConfiguration))]
     public class AppDbContext : DbContext
     {
-        private static readonly SQLiteConnection SQLiteConnectionString = new SQLiteConnection()
-        {
-            ConnectionString = (new SQLiteConnectionStringBuilder() // @"data source=...\CodeLib.sqlite3;foreign keys=True"
-            {
-                DataSource = AppConfiguration.Instance.GetDbPath(),
-                ForeignKeys = true
-            }).ConnectionString
-        };
-
-        public AppDbContext() : base(SQLiteConnectionString, true)
+        public AppDbContext() : base(new SQLiteConnection()
+                                        {
+                                            ConnectionString = (new SQLiteConnectionStringBuilder() // @"data source=...\CodeLib.sqlite3;foreign keys=True"
+                                            {
+                                                DataSource = AppConfiguration.Instance.GetDbPath(),
+                                                ForeignKeys = true
+                                            }).ConnectionString
+                                        }, true)
         {
             // Forces code first migrations to be ignored.
             Database.SetInitializer<AppDbContext>(null);

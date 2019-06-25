@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.MenuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CloseDatabaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuOpenDatabase = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCloseDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -56,7 +56,7 @@
             this.toolStripTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDate = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripOpenDatabase = new System.Windows.Forms.ToolStripButton();
             this.toolStripSettings = new System.Windows.Forms.ToolStripButton();
             this.ToolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripAddNewRecord = new System.Windows.Forms.ToolStripButton();
@@ -78,6 +78,7 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
             this.fbDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.MenuStrip1.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
@@ -99,8 +100,8 @@
             // FileToolStripMenuItem
             // 
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenDatabaseToolStripMenuItem,
-            this.CloseDatabaseToolStripMenuItem1,
+            this.mnuOpenDatabase,
+            this.mnuCloseDatabase,
             this.ToolStripSeparator9,
             this.mnuSettings,
             this.ToolStripSeparator3,
@@ -109,19 +110,21 @@
             this.FileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.FileToolStripMenuItem.Text = "File";
             // 
-            // OpenDatabaseToolStripMenuItem
+            // mnuOpenDatabase
             // 
-            this.OpenDatabaseToolStripMenuItem.Name = "OpenDatabaseToolStripMenuItem";
-            this.OpenDatabaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.OpenDatabaseToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.OpenDatabaseToolStripMenuItem.Text = "Open Database";
+            this.mnuOpenDatabase.Name = "mnuOpenDatabase";
+            this.mnuOpenDatabase.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.mnuOpenDatabase.Size = new System.Drawing.Size(197, 22);
+            this.mnuOpenDatabase.Text = "Open Database";
+            this.mnuOpenDatabase.Click += new System.EventHandler(this.MnuOpenDatabase_Click);
             // 
-            // CloseDatabaseToolStripMenuItem1
+            // mnuCloseDatabase
             // 
-            this.CloseDatabaseToolStripMenuItem1.Name = "CloseDatabaseToolStripMenuItem1";
-            this.CloseDatabaseToolStripMenuItem1.Size = new System.Drawing.Size(197, 22);
-            this.CloseDatabaseToolStripMenuItem1.Text = "Close Database";
-            this.CloseDatabaseToolStripMenuItem1.Visible = false;
+            this.mnuCloseDatabase.Name = "mnuCloseDatabase";
+            this.mnuCloseDatabase.Size = new System.Drawing.Size(197, 22);
+            this.mnuCloseDatabase.Text = "Close Database";
+            this.mnuCloseDatabase.Visible = false;
+            this.mnuCloseDatabase.Click += new System.EventHandler(this.MnuCloseDatabase_Click);
             // 
             // ToolStripSeparator9
             // 
@@ -302,7 +305,7 @@
             // ToolStrip1
             // 
             this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripButton1,
+            this.toolStripOpenDatabase,
             this.toolStripSettings,
             this.ToolStripSeparator4,
             this.toolStripAddNewRecord,
@@ -322,15 +325,16 @@
             this.ToolStrip1.TabIndex = 6;
             this.ToolStrip1.Text = "ToolStrip1";
             // 
-            // ToolStripButton1
+            // toolStripOpenDatabase
             // 
-            this.ToolStripButton1.AutoSize = false;
-            this.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ToolStripButton1.Image = global::Code_Librarian.Properties.Resources.open;
-            this.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton1.Name = "ToolStripButton1";
-            this.ToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButton1.ToolTipText = "Open an existing database";
+            this.toolStripOpenDatabase.AutoSize = false;
+            this.toolStripOpenDatabase.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripOpenDatabase.Image = global::Code_Librarian.Properties.Resources.open;
+            this.toolStripOpenDatabase.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripOpenDatabase.Name = "toolStripOpenDatabase";
+            this.toolStripOpenDatabase.Size = new System.Drawing.Size(23, 22);
+            this.toolStripOpenDatabase.ToolTipText = "Open an existing database";
+            this.toolStripOpenDatabase.Click += new System.EventHandler(this.ToolStripOpenDatabase_Click);
             // 
             // toolStripSettings
             // 
@@ -517,6 +521,10 @@
             // 
             this.fbDialog.Description = "Select a folder to backup the database to:";
             // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Title = "Open Database";
+            // 
             // FrmMain
             // 
             this.AcceptButton = this.btnView;
@@ -551,8 +559,8 @@
 
         internal System.Windows.Forms.MenuStrip MenuStrip1;
         internal System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem OpenDatabaseToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem CloseDatabaseToolStripMenuItem1;
+        internal System.Windows.Forms.ToolStripMenuItem mnuOpenDatabase;
+        internal System.Windows.Forms.ToolStripMenuItem mnuCloseDatabase;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator9;
         internal System.Windows.Forms.ToolStripMenuItem mnuSettings;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator3;
@@ -576,7 +584,7 @@
         internal System.Windows.Forms.ToolStripStatusLabel toolStripTime;
         internal System.Windows.Forms.ToolStripStatusLabel toolStripDate;
         public System.Windows.Forms.ToolStrip ToolStrip1;
-        internal System.Windows.Forms.ToolStripButton ToolStripButton1;
+        internal System.Windows.Forms.ToolStripButton toolStripOpenDatabase;
         internal System.Windows.Forms.ToolStripButton toolStripSettings;
         internal System.Windows.Forms.ToolStripSeparator ToolStripSeparator4;
         internal System.Windows.Forms.ToolStripButton toolStripAddNewRecord;
@@ -598,6 +606,7 @@
         internal System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Timer tmrDateTime;
         private System.Windows.Forms.FolderBrowserDialog fbDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 
