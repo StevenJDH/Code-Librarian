@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -69,6 +70,21 @@ namespace Code_Librarian.Models.UnitOfWork
                         entry.Reload();
                         break;
                 }
+            }
+        }
+
+        public void TestDbCompatibility()
+        {
+            try
+            {
+                // Pseudo ID searched to see if exception is thrown.
+                _context.Authors.Find(0);
+                _context.Languages.Find(0);
+                _context.Snippets.Find(0);
+            }
+            catch (EntityCommandExecutionException)
+            {
+                throw new EntityCommandExecutionException("The database is invalid.");
             }
         }
 

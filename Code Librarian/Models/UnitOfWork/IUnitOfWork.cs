@@ -36,6 +36,12 @@ namespace Code_Librarian.Models.UnitOfWork
         void EditRecord<TEntity>(TEntity entity, Expression<Func<TEntity, string>> predicate)
             where TEntity : class;
 
+        /// <summary>
+        /// Tests to see if the database has the needed tables, and if not, throws an exception.
+        /// </summary>
+        /// <exception cref="T:System.Data.Entity.Core.EntityCommandExecutionException">The database is invalid.</exception>
+        void TestDbCompatibility();
+
         void UndoChanges();
 
         int Complete();

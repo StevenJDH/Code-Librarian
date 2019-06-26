@@ -349,9 +349,6 @@ namespace Code_Librarian
 
         private void MnuOpenDatabase_Click(object sender, EventArgs e)
         {
-            this.ActiveMdiChild?.Close();
-            _unitOfWork?.Dispose();
-
             openFileDialog.Filter = "Code Librarian Database (*.sqlite3)|*.sqlite3";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             openFileDialog.FileName = "";
@@ -363,7 +360,9 @@ namespace Code_Librarian
 
             try
             {
+                this.ActiveMdiChild?.Close();
                 AppConfiguration.Instance.SetGuestDbPath(openFileDialog.FileName);
+                _unitOfWork?.Dispose();
                 _unitOfWork = new UnitOfWork(new AppDbContext());
                 cmbLanguageFilter.SelectedIndex = 0;
 
@@ -371,8 +370,7 @@ namespace Code_Librarian
                 toolStripOpenDatabase.Enabled = false;
                 mnuCloseDatabase.Visible = true;
 
-                // Quick test to check if database can be queried.
-                _unitOfWork.Authors.GetAll();
+                _unitOfWork.TestDbCompatibility(); // Throws an exception if database is invalid.
 
                 MessageBox.Show($"The '{Path.GetFileNameWithoutExtension(openFileDialog.FileName)}' database is now connected.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -394,8 +392,8 @@ namespace Code_Librarian
         private void MnuCloseDatabase_Click(object sender, EventArgs e)
         {
             this.ActiveMdiChild?.Close();
-            _unitOfWork?.Dispose();
             AppConfiguration.Instance.SetGuestDbPath(null);
+            _unitOfWork?.Dispose();
             _unitOfWork = new UnitOfWork(new AppDbContext());
             cmbLanguageFilter.SelectedIndex = 0;
 
