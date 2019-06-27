@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,15 +27,25 @@ namespace Code_Librarian
 {
     static class Program
     {
+        static readonly Mutex mutex = new Mutex(initiallyOwned: true, name: "A5B62750-4E7B-4039-952E-E393E82D6F70");
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            if (mutex.WaitOne(timeout: TimeSpan.Zero, exitContext: true))
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new FrmMain());
+            }
+            else
+            {
+                MessageBox.Show($"You can only run one instance of {Application.ProductName} at a time.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }
