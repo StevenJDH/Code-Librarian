@@ -48,6 +48,7 @@ namespace Code_Librarian
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            pnlDock.Dock = AppConfiguration.Instance.ListPanelAlignment;
             this.BackgroundImage = Properties.Resources.Alpha_Background;
             TmrDateTime_Tick(this, EventArgs.Empty);
             int count = _unitOfWork.Snippets.GetAll().Count();
@@ -314,7 +315,7 @@ namespace Code_Librarian
                 return;
             }
 
-            fbDialog.SelectedPath = AppConfiguration.Instance.GetConfigPath();
+            fbDialog.SelectedPath = Path.GetDirectoryName(AppConfiguration.Instance.GetConfigPath());
 
             if (fbDialog.ShowDialog() == DialogResult.Cancel)
             {

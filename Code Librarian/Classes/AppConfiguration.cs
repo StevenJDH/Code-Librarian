@@ -24,6 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Code_Librarian.Classes
 {
@@ -31,6 +32,7 @@ namespace Code_Librarian.Classes
     {
         private readonly string _configPath;
         private string _guestDbPath;
+        private static readonly XNamespace Nspace = "https://github.com/StevenJDH/Code-Librarian";
 
         private AppConfiguration()
         {
@@ -49,6 +51,7 @@ namespace Code_Librarian.Classes
         }
 
         public static AppConfiguration Instance { get; } = new AppConfiguration();
+        public DockStyle ListPanelAlignment { get; set; }
 
         /// <summary>
         /// Gets the database path from '%AppData%/ASC-C/Code Librarian' in the current user's profile,
@@ -58,6 +61,12 @@ namespace Code_Librarian.Classes
         public string GetDbPath() => _guestDbPath ?? Path.Combine(_configPath, "CodeLib.sqlite3");
 
         /// <summary>
+        /// Gets the configuration path from '%AppData%/ASC-C/Code Librarian' in the current user's profile.
+        /// </summary>
+        /// <returns>Path to configuration</returns>
+        public string GetConfigPath() => Path.Combine(_configPath, "Code-Librarian-Config.xml");
+
+        /// <summary>
         /// Sets the temporary guest database path that will override the path to the current user's
         /// database. Use <see langword="null" /> to revert back to the current user's database.
         /// </summary>
@@ -65,13 +74,7 @@ namespace Code_Librarian.Classes
         public void SetGuestDbPath(string path) => _guestDbPath = path;
 
         /// <summary>
-        /// Gets the path where the configuration needs to be stored for the current user.
-        /// </summary>
-        /// <returns>Configuration folder path</returns>
-        public string GetConfigPath() => _configPath;
-
-        /// <summary>
-        /// Sets up the personal database and loads any settings used by the application in general once implemented.
+        /// Sets up the personal database and loads any settings used by the application in general.
         /// </summary>
         private void LoadSettings()
         {
@@ -86,6 +89,30 @@ namespace Code_Librarian.Classes
                 MessageBox.Show("All done! You are now ready to start using the program.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            if (File.Exists(GetConfigPath()))
+            {
+                var xmlConfig = XElement.Load(GetConfigPath(), LoadOptions.None);
+
+                ListPanelAlignment = int.Parse(xmlConfig.Element(Nspace + "ListPanelAlignment")?.Value ?? "0") == 0 ?
+                    DockStyle.Left : DockStyle.Right;
+            }
+            else
+            {
+                ListPanelAlignment = DockStyle.Left;
+                Save();
+            }
+        }
+
+        /// <summary>
+        /// Saves the current configuration state of the application.
+        /// </summary>
+        public void Save()
+        {
+            var xmlTree = new XElement(Nspace + "Root",
+                new XElement(Nspace + "ListPanelAlignment", ListPanelAlignment == DockStyle.Left ? 0 : 1)
+            );
+            xmlTree.Save(GetConfigPath(), SaveOptions.None);
         }
     }
 }

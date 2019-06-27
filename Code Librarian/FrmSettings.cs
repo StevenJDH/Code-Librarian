@@ -25,6 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Code_Librarian.Classes;
 
 namespace Code_Librarian
 {
@@ -46,7 +47,12 @@ namespace Code_Librarian
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            var config = AppConfiguration.Instance;
+
             _panel.Dock = optLeft.Checked ? DockStyle.Left : DockStyle.Right;
+            config.ListPanelAlignment = _panel.Dock;
+            config.Save();
+
             this.Close();
         }
 
