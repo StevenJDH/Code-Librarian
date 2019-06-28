@@ -51,19 +51,7 @@ namespace Code_Librarian
             pnlDock.Dock = AppConfiguration.Instance.ListPanelAlignment;
             this.BackgroundImage = Properties.Resources.Alpha_Background;
             TmrDateTime_Tick(this, EventArgs.Empty);
-            int count = _unitOfWork.Snippets.GetAll().Count();
-            toolStripInfo.Text = $"There are currently {count} snippet {(count == 1 ? "record" : "records")} in the database.";
-
-            cmbLanguageFilter.Items.Add("--- Select Language ---");
-
-            _unitOfWork.Languages.GetAll()
-                .OrderBy(l => l.Name)
-                .Select(l => l.Name)
-                .ToList()
-                .ForEach(l => cmbLanguageFilter.Items.Add(l));
-
-            // Triggers the CmbLanguageFilter_SelectedIndexChanged event.
-            cmbLanguageFilter.SelectedIndex = 0;
+            ReloadLanguages();
         }
 
         private void TmrDateTime_Tick(object sender, EventArgs e)
@@ -78,16 +66,42 @@ namespace Code_Librarian
         }
 
         /// <summary>
+        /// Reloads the available language categories and updates the snippet count in the status bar.
+        /// </summary>
+        private void ReloadLanguages()
+        {
+            cmbLanguageFilter.Items.Clear();
+            lstSnippets.Items.Clear();
+
+            int count = _unitOfWork.Snippets.GetAll().Count();
+
+            toolStripInfo.Text = count == 1 ? 
+                $"There is currently {count} snippet record in the database." : 
+                $"There are currently {count} snippet records in the database.";
+            
+            cmbLanguageFilter.Items.Add("--- Select Language ---");
+
+            _unitOfWork.Languages.GetAll()
+                .OrderBy(l => l.Name)
+                .Select(l => l.Name)
+                .ToList()
+                .ForEach(l => cmbLanguageFilter.Items.Add(l));
+
+            // Triggers the CmbLanguageFilter_SelectedIndexChanged event.
+            cmbLanguageFilter.SelectedIndex = 0;
+        }
+
+        /// <summary>
         /// Filters the snippet list based on the selected language chosen.
         /// </summary>
         private void FilterList()
         {
-            lstSnippets.Items.Clear();
-
             if (cmbLanguageFilter.Text == "--- Select Language ---")
             {
                 return;
             }
+
+            lstSnippets.Items.Clear();
 
             _unitOfWork.Snippets.GetSnippetsWithAll()
                 .Where(s => s.Language.Name == cmbLanguageFilter.Text)
@@ -180,10 +194,10 @@ namespace Code_Librarian
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lstSnippets.Items.Remove(lstSnippets.Text);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 _unitOfWork.UndoChanges();
-                MessageBox.Show($"Error: {ex.Message}", 
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -372,6 +386,7 @@ namespace Code_Librarian
                 mnuCloseDatabase.Visible = true;
 
                 _unitOfWork.TestDbCompatibility(); // Throws an exception if database is invalid.
+                ReloadLanguages();
 
                 MessageBox.Show($"The '{Path.GetFileNameWithoutExtension(openFileDialog.FileName)}' database is now connected.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -401,6 +416,8 @@ namespace Code_Librarian
             mnuCloseDatabase.Visible = false;
             mnuOpenDatabase.Visible = true;
             toolStripOpenDatabase.Enabled = true;
+
+            ReloadLanguages();
 
             MessageBox.Show("Your personal database has been reconnected.",
                 Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
