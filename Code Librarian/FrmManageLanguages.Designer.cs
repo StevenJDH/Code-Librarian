@@ -129,7 +129,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Manage Languages";
-            this.Load += new System.EventHandler(this.FrmEditLang_Load);
+            this.Load += new System.EventHandler(this.FrmManageLanguages_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
