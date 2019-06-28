@@ -27,6 +27,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Code_Librarian.Classes;
 using Code_Librarian.Models;
 using Code_Librarian.Models.UnitOfWork;
 
@@ -66,15 +67,15 @@ namespace Code_Librarian
             var newSnippet = new Snippet()
             {
                 AuthorId = _unitOfWork.Authors
-                    .FirstOrDefault(a => a.Name == cmbAuthor.Text)
-                    .AuthorId,
+                    .FirstOrDefault(a => a.Name == cmbAuthor.Text)?
+                    .AuthorId ?? -1,
                 Title = txtTitle.Text.Trim(),
                 DateCreated = DateTime.Parse(txtDateCreated.Text, cultureInfo),
                 DateUpdated = DateTime.Parse(txtDateUpdated.Text, cultureInfo),
                 Version = txtVersion.Text.Trim(),
                 LanguageId = _unitOfWork.Languages
-                    .FirstOrDefault(l => l.Name == cmbLanguage.Text)
-                    .LanguageId,
+                    .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
+                    .LanguageId ?? -1,
                 Purpose = txtPurpose.Text.Trim(),
                 Keywords = txtKeywords.Text.Trim(),
                 CodeSnippet = txtCode.Text.Trim()
@@ -90,10 +91,16 @@ namespace Code_Librarian
                 // TODO: Trigger a refresh on the parent form with an event maybe.
                 this.Close();
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 _unitOfWork.UndoChanges();
-                MessageBox.Show($"Error: {ex.Message}", 
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (EntityValidationException ex)
+            {
+                _unitOfWork.UndoChanges();
+                MessageBox.Show($"Error: {ex.Message}",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

@@ -44,7 +44,7 @@ namespace Code_Librarian
             _unitOfWork = unitOfWork;
         }
 
-        private void FrmEditLang_Load(object sender, EventArgs e)
+        private void FrmManageLanguages_Load(object sender, EventArgs e)
         {
             _unitOfWork.Languages.GetAll()
                 .Select(l => l.Name)
@@ -95,10 +95,10 @@ namespace Code_Librarian
                 MessageBox.Show("The language has been added successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 _unitOfWork.UndoChanges();
-                MessageBox.Show($"Error: {ex.Message}",
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -145,10 +145,10 @@ namespace Code_Librarian
                 MessageBox.Show("The language has been updated successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 _unitOfWork.UndoChanges();
-                MessageBox.Show($"Error: {ex.Message}",
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -188,10 +188,10 @@ namespace Code_Librarian
                 MessageBox.Show("The language has been deleted successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 _unitOfWork.UndoChanges();
-                MessageBox.Show($"Error: {ex.Message}", 
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

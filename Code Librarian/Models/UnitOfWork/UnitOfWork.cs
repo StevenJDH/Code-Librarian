@@ -20,10 +20,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Code_Librarian.Classes;
 using Code_Librarian.Models.Repositories;
 using Code_Librarian.Models.Repositories.Interfaces;
 
@@ -88,7 +90,16 @@ namespace Code_Librarian.Models.UnitOfWork
             }
         }
 
-        public int Complete() => _context.SaveChanges();
+        public int Complete() {
+            try
+            {
+                return _context.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw new EntityValidationException(ex);
+            }
+        }
 
         public void Dispose()
         {

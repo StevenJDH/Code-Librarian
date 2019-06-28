@@ -98,6 +98,8 @@
             // 
             // txtCode
             // 
+            this.txtCode.AcceptsReturn = true;
+            this.txtCode.AcceptsTab = true;
             this.txtCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.txtCode.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Location = new System.Drawing.Point(8, 160);

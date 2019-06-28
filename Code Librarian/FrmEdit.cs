@@ -27,6 +27,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Code_Librarian.Classes;
 using Code_Librarian.Models;
 using Code_Librarian.Models.UnitOfWork;
 
@@ -75,14 +76,14 @@ namespace Code_Librarian
             }
 
             _snippetRecord.AuthorId = _unitOfWork.Authors
-                .FirstOrDefault(a => a.Name == cmbAuthor.Text)
-                .AuthorId;
+                .FirstOrDefault(a => a.Name == cmbAuthor.Text)?
+                .AuthorId ?? -1;
             _snippetRecord.Title = txtTitle.Text.Trim();
             _snippetRecord.DateUpdated = DateTime.Parse(txtDateUpdated.Text, Thread.CurrentThread.CurrentCulture);
             _snippetRecord.Version = txtVersion.Text.Trim();
             _snippetRecord.LanguageId = _unitOfWork.Languages
-                .FirstOrDefault(l => l.Name == cmbLanguage.Text)
-                .LanguageId;
+                .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
+                .LanguageId ?? -1;
             _snippetRecord.Purpose = txtPurpose.Text.Trim();
             _snippetRecord.Keywords = txtKeywords.Text.Trim();
             _snippetRecord.CodeSnippet = txtCode.Text.Trim();
@@ -95,7 +96,13 @@ namespace Code_Librarian
                 // TODO: Trigger a refresh on the parent form with an event maybe.
                 this.Close();
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
+            {
+                _unitOfWork.UndoChanges();
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (EntityValidationException ex)
             {
                 _unitOfWork.UndoChanges();
                 MessageBox.Show($"Error: {ex.Message}",

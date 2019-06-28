@@ -87,10 +87,10 @@ namespace Code_Librarian
                 MessageBox.Show("The author has been added successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 _unitOfWork.UndoChanges();
-                MessageBox.Show($"Error: {ex.Message}",
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -131,10 +131,10 @@ namespace Code_Librarian
                 MessageBox.Show("The author has been updated successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 _unitOfWork.UndoChanges();
-                MessageBox.Show($"Error: {ex.Message}",
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -175,10 +175,10 @@ namespace Code_Librarian
                 MessageBox.Show("The author has been deleted successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 _unitOfWork.UndoChanges();
-                MessageBox.Show($"Error: {ex.Message}",
+                MessageBox.Show("Error: Could not apply changes due to a constraint rule violation.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
