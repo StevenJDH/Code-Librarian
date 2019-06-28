@@ -166,7 +166,7 @@
             this.txtKeywords.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKeywords.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtKeywords.Location = new System.Drawing.Point(332, 104);
-            this.txtKeywords.MaxLength = 0;
+            this.txtKeywords.MaxLength = 255;
             this.txtKeywords.Multiline = true;
             this.txtKeywords.Name = "txtKeywords";
             this.txtKeywords.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -183,7 +183,7 @@
             this.txtPurpose.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPurpose.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtPurpose.Location = new System.Drawing.Point(8, 104);
-            this.txtPurpose.MaxLength = 0;
+            this.txtPurpose.MaxLength = 255;
             this.txtPurpose.Multiline = true;
             this.txtPurpose.Name = "txtPurpose";
             this.txtPurpose.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -200,7 +200,7 @@
             this.txtVersion.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVersion.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtVersion.Location = new System.Drawing.Point(456, 64);
-            this.txtVersion.MaxLength = 0;
+            this.txtVersion.MaxLength = 5;
             this.txtVersion.Name = "txtVersion";
             this.txtVersion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtVersion.Size = new System.Drawing.Size(60, 20);
@@ -233,7 +233,7 @@
             this.txtTitle.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTitle.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtTitle.Location = new System.Drawing.Point(8, 64);
-            this.txtTitle.MaxLength = 0;
+            this.txtTitle.MaxLength = 50;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTitle.Size = new System.Drawing.Size(265, 20);

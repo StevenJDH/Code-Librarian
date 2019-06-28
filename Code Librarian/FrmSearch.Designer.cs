@@ -112,7 +112,7 @@
             this.txtKeywords.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKeywords.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtKeywords.Location = new System.Drawing.Point(8, 47);
-            this.txtKeywords.MaxLength = 50;
+            this.txtKeywords.MaxLength = 255;
             this.txtKeywords.Name = "txtKeywords";
             this.txtKeywords.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtKeywords.Size = new System.Drawing.Size(153, 20);

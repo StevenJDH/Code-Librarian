@@ -102,7 +102,7 @@
             this.txtLanguage.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLanguage.ForeColor = System.Drawing.Color.Black;
             this.txtLanguage.Location = new System.Drawing.Point(8, 108);
-            this.txtLanguage.MaxLength = 25;
+            this.txtLanguage.MaxLength = 30;
             this.txtLanguage.Name = "txtLanguage";
             this.txtLanguage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtLanguage.Size = new System.Drawing.Size(241, 20);

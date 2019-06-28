@@ -90,7 +90,7 @@
             this.txtPhone.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.ForeColor = System.Drawing.Color.Black;
             this.txtPhone.Location = new System.Drawing.Point(148, 108);
-            this.txtPhone.MaxLength = 50;
+            this.txtPhone.MaxLength = 30;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtPhone.Size = new System.Drawing.Size(141, 20);
@@ -105,7 +105,7 @@
             this.txtName.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.ForeColor = System.Drawing.Color.Black;
             this.txtName.Location = new System.Drawing.Point(8, 108);
-            this.txtName.MaxLength = 50;
+            this.txtName.MaxLength = 60;
             this.txtName.Name = "txtName";
             this.txtName.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtName.Size = new System.Drawing.Size(141, 20);
