@@ -200,7 +200,7 @@
             this.txtVersion.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVersion.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtVersion.Location = new System.Drawing.Point(456, 64);
-            this.txtVersion.MaxLength = 5;
+            this.txtVersion.MaxLength = 8;
             this.txtVersion.Name = "txtVersion";
             this.txtVersion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtVersion.Size = new System.Drawing.Size(60, 20);

@@ -52,7 +52,7 @@ namespace Code_Librarian.Models
         public DateTime DateUpdated { get; set; }
 
         [Required]
-        [StringLength(5)]
+        [StringLength(8)]
         public string Version { get; set; }
 
         [Required]
