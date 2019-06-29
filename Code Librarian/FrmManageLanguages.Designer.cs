@@ -49,6 +49,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.Location = new System.Drawing.Point(256, 72);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(81, 25);
@@ -59,6 +60,7 @@
             // 
             // btnUpdate
             // 
+            this.btnUpdate.Enabled = false;
             this.btnUpdate.Location = new System.Drawing.Point(256, 40);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(81, 25);
@@ -69,6 +71,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Enabled = false;
             this.btnAdd.Location = new System.Drawing.Point(256, 8);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(81, 25);
@@ -107,6 +110,7 @@
             this.txtLanguage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtLanguage.Size = new System.Drawing.Size(241, 20);
             this.txtLanguage.TabIndex = 8;
+            this.txtLanguage.TextChanged += new System.EventHandler(this.TxtLanguage_TextChanged);
             // 
             // FrmManageLanguages
             // 

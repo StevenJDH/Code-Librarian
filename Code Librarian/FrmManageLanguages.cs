@@ -205,6 +205,22 @@ namespace Code_Librarian
         private void LstLanguages_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtLanguage.Text = lstLanguages.Text;
+            ValidateControls();
+        }
+
+        private void TxtLanguage_TextChanged(object sender, EventArgs e)
+        {
+            ValidateControls();
+        }
+
+        private void ValidateControls()
+        {
+            bool state = (String.IsNullOrWhiteSpace(txtLanguage.Text) == false && 
+                          lstLanguages.Items.ContainsEx(txtLanguage.Text.Trim()) == false);
+
+            btnAdd.Enabled = state;
+            btnUpdate.Enabled = (state && lstLanguages.Text != "");
+            btnDelete.Enabled = (lstLanguages.Text != "");
         }
     }
 }

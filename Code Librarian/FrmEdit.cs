@@ -69,6 +69,13 @@ namespace Code_Librarian
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
+            if (Version.TryParse(txtVersion.Text.Trim(), out var versionNumber) == false)
+            {
+                MessageBox.Show($"The version number '{txtVersion.Text.Trim()}' is not using '#.#.#' as the format.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             if (MessageBox.Show("Are you sure you want to update this record in the library?", 
                 Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
@@ -80,7 +87,7 @@ namespace Code_Librarian
                 .AuthorId ?? -1;
             _snippetRecord.Title = txtTitle.Text.Trim();
             _snippetRecord.DateUpdated = DateTime.Parse(txtDateUpdated.Text, Thread.CurrentThread.CurrentCulture);
-            _snippetRecord.Version = txtVersion.Text.Trim();
+            _snippetRecord.Version = versionNumber.ToString();
             _snippetRecord.LanguageId = _unitOfWork.Languages
                 .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
                 .LanguageId ?? -1;

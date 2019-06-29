@@ -60,6 +60,27 @@ namespace Code_Librarian
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
+            if (chkKeywords.Checked && String.IsNullOrWhiteSpace(txtKeywords.Text))
+            {
+                MessageBox.Show("Please provide at least one keyword before searching.", 
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (chkLanguage.Checked && cmbLanguages.Text == "")
+            {
+                MessageBox.Show("Please select a language before searching.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (chkAuthor.Checked && cmbAuthors.Text == "")
+            {
+                MessageBox.Show("Please select an author before searching.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             lstViewResults.Items.Clear();
 
             var keywords = txtKeywords.Text
@@ -150,6 +171,7 @@ namespace Code_Librarian
             chkLanguage.Checked = false;
             chkAuthor.Checked = false;
             txtKeywords.Text = "";
+            txtKeywords.Focus();
             cmbLanguages.SelectedIndex = -1;
             cmbAuthors.SelectedIndex = -1;
             Frame1.Text = "Search results:";

@@ -198,6 +198,28 @@ namespace Code_Librarian
 
             txtName.Text = lstViewAuthors.SelectedItems[0].SubItems[clmName.Index].Text;
             txtPhone.Text = lstViewAuthors.SelectedItems[0].SubItems[clmPhone.Index].Text;
+            ValidateControls();
+        }
+
+        private void TxtName_TextChanged(object sender, EventArgs e)
+        {
+            ValidateControls();
+        }
+
+        private void TxtPhone_TextChanged(object sender, EventArgs e)
+        {
+            ValidateControls();
+        }
+
+        private void ValidateControls()
+        {
+            bool state = (String.IsNullOrWhiteSpace(txtName.Text) == false &&
+                          String.IsNullOrWhiteSpace(txtPhone.Text) == false &&
+                          lstViewAuthors.Items.ContainsEx(txtName.Text.Trim()) == false);
+
+            btnAdd.Enabled = state;
+            btnUpdate.Enabled = (state && lstViewAuthors.SelectedItems.Count > 0);
+            btnDelete.Enabled = (lstViewAuthors.SelectedItems.Count > 0);
         }
     }
 }

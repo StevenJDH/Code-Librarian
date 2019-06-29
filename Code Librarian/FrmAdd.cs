@@ -63,6 +63,13 @@ namespace Code_Librarian
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            if (Version.TryParse(txtVersion.Text.Trim(), out var versionNumber) == false)
+            {
+                MessageBox.Show($"The version number '{txtVersion.Text.Trim()}' is not using '#.#.#' as the format.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             var cultureInfo = Thread.CurrentThread.CurrentCulture;
             var newSnippet = new Snippet()
             {
@@ -72,7 +79,7 @@ namespace Code_Librarian
                 Title = txtTitle.Text.Trim(),
                 DateCreated = DateTime.Parse(txtDateCreated.Text, cultureInfo),
                 DateUpdated = DateTime.Parse(txtDateUpdated.Text, cultureInfo),
-                Version = txtVersion.Text.Trim(),
+                Version = versionNumber.ToString(),
                 LanguageId = _unitOfWork.Languages
                     .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
                     .LanguageId ?? -1,
