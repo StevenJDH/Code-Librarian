@@ -59,7 +59,7 @@
             this.btnClose.Location = new System.Drawing.Point(88, 174);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(73, 25);
-            this.btnClose.TabIndex = 23;
+            this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
@@ -69,7 +69,7 @@
             this.btnSearch.Location = new System.Drawing.Point(8, 174);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(73, 25);
-            this.btnSearch.TabIndex = 22;
+            this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
@@ -86,7 +86,7 @@
             this.cmbAuthors.Name = "cmbAuthors";
             this.cmbAuthors.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbAuthors.Size = new System.Drawing.Size(153, 22);
-            this.cmbAuthors.TabIndex = 21;
+            this.cmbAuthors.TabIndex = 3;
             // 
             // cmbLanguages
             // 
@@ -101,7 +101,7 @@
             this.cmbLanguages.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbLanguages.Size = new System.Drawing.Size(153, 22);
             this.cmbLanguages.Sorted = true;
-            this.cmbLanguages.TabIndex = 20;
+            this.cmbLanguages.TabIndex = 2;
             // 
             // txtKeywords
             // 
@@ -116,7 +116,7 @@
             this.txtKeywords.Name = "txtKeywords";
             this.txtKeywords.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtKeywords.Size = new System.Drawing.Size(153, 20);
-            this.txtKeywords.TabIndex = 18;
+            this.txtKeywords.TabIndex = 1;
             // 
             // chkKeywords
             // 
@@ -266,7 +266,7 @@
             this.lstViewResults.Name = "lstViewResults";
             this.lstViewResults.Size = new System.Drawing.Size(216, 143);
             this.lstViewResults.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lstViewResults.TabIndex = 29;
+            this.lstViewResults.TabIndex = 5;
             this.lstViewResults.UseCompatibleStateImageBehavior = false;
             this.lstViewResults.View = System.Windows.Forms.View.Details;
             this.lstViewResults.DoubleClick += new System.EventHandler(this.LstViewResults_DoubleClick);
