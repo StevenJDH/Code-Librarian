@@ -94,7 +94,7 @@
             this.HelpToolStripMenuItem});
             this.MenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip1.Name = "MenuStrip1";
-            this.MenuStrip1.Size = new System.Drawing.Size(809, 24);
+            this.MenuStrip1.Size = new System.Drawing.Size(849, 24);
             this.MenuStrip1.TabIndex = 2;
             this.MenuStrip1.Text = "MenuStrip1";
             // 
@@ -273,7 +273,7 @@
             this.toolStripDate});
             this.StatusStrip1.Location = new System.Drawing.Point(0, 505);
             this.StatusStrip1.Name = "StatusStrip1";
-            this.StatusStrip1.Size = new System.Drawing.Size(809, 22);
+            this.StatusStrip1.Size = new System.Drawing.Size(849, 22);
             this.StatusStrip1.SizingGrip = false;
             this.StatusStrip1.TabIndex = 3;
             this.StatusStrip1.Text = "StatusStrip1";
@@ -322,7 +322,7 @@
             this.ToolStripSeparator7});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 24);
             this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(809, 25);
+            this.ToolStrip1.Size = new System.Drawing.Size(849, 25);
             this.ToolStrip1.TabIndex = 6;
             this.ToolStrip1.Text = "ToolStrip1";
             // 
@@ -457,7 +457,7 @@
             this.pnlDock.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlDock.Location = new System.Drawing.Point(0, 49);
             this.pnlDock.Name = "pnlDock";
-            this.pnlDock.Size = new System.Drawing.Size(153, 456);
+            this.pnlDock.Size = new System.Drawing.Size(193, 456);
             this.pnlDock.TabIndex = 7;
             // 
             // lstSnippets
@@ -466,7 +466,7 @@
             this.lstSnippets.FormattingEnabled = true;
             this.lstSnippets.Location = new System.Drawing.Point(8, 104);
             this.lstSnippets.Name = "lstSnippets";
-            this.lstSnippets.Size = new System.Drawing.Size(136, 342);
+            this.lstSnippets.Size = new System.Drawing.Size(176, 342);
             this.lstSnippets.Sorted = true;
             this.lstSnippets.TabIndex = 2;
             this.lstSnippets.DoubleClick += new System.EventHandler(this.LstSnippets_DoubleClick);
@@ -478,15 +478,15 @@
             this.cmbLanguageFilter.FormattingEnabled = true;
             this.cmbLanguageFilter.Location = new System.Drawing.Point(8, 72);
             this.cmbLanguageFilter.Name = "cmbLanguageFilter";
-            this.cmbLanguageFilter.Size = new System.Drawing.Size(137, 21);
+            this.cmbLanguageFilter.Size = new System.Drawing.Size(177, 21);
             this.cmbLanguageFilter.TabIndex = 4;
             this.cmbLanguageFilter.SelectedIndexChanged += new System.EventHandler(this.CmbLanguageFilter_SelectedIndexChanged);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(80, 40);
+            this.btnEdit.Location = new System.Drawing.Point(100, 40);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(65, 25);
+            this.btnEdit.Size = new System.Drawing.Size(85, 25);
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -496,7 +496,7 @@
             // 
             this.btnView.Location = new System.Drawing.Point(8, 40);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(65, 25);
+            this.btnView.Size = new System.Drawing.Size(85, 25);
             this.btnView.TabIndex = 0;
             this.btnView.Text = "View";
             this.btnView.UseVisualStyleBackColor = true;
@@ -506,7 +506,7 @@
             // 
             this.btnRefresh.Location = new System.Drawing.Point(8, 8);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(137, 25);
+            this.btnRefresh.Size = new System.Drawing.Size(177, 25);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Refresh List";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -531,7 +531,7 @@
             this.AcceptButton = this.btnView;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(809, 527);
+            this.ClientSize = new System.Drawing.Size(849, 527);
             this.Controls.Add(this.pnlDock);
             this.Controls.Add(this.ToolStrip1);
             this.Controls.Add(this.StatusStrip1);
