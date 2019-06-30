@@ -44,6 +44,7 @@ namespace Code_Librarian
             InitializeComponent();
 
             _unitOfWork = new UnitOfWork(new AppDbContext());
+            _unitOfWork.UnitOfWorkCompleted += UnitOfWork_Completed;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -52,6 +53,7 @@ namespace Code_Librarian
             this.BackgroundImage = Properties.Resources.Alpha_Background;
             TmrDateTime_Tick(this, EventArgs.Empty);
             ReloadLanguages();
+            UpdateStatusBar();
         }
 
         private void TmrDateTime_Tick(object sender, EventArgs e)
@@ -66,19 +68,13 @@ namespace Code_Librarian
         }
 
         /// <summary>
-        /// Reloads the available language categories and updates the snippet count in the status bar.
+        /// Reloads the available language categories for the snippet records.
         /// </summary>
         private void ReloadLanguages()
         {
             cmbLanguageFilter.Items.Clear();
             lstSnippets.Items.Clear();
 
-            int count = _unitOfWork.Snippets.GetAll().Count();
-
-            toolStripInfo.Text = count == 1 ? 
-                $"There is currently {count} snippet record in the database." : 
-                $"There are currently {count} snippet records in the database.";
-            
             cmbLanguageFilter.Items.Add("--- Select Language ---");
 
             _unitOfWork.Languages.GetAll()
@@ -110,9 +106,22 @@ namespace Code_Librarian
                 .ForEach(t => lstSnippets.Items.Add(t));
         }
 
+        /// <summary>
+        /// Updates the status bar with the current snippet record count in the database.
+        /// </summary>
+        private void UpdateStatusBar()
+        {
+            int count = _unitOfWork.Snippets.GetAll().Count();
+
+            toolStripInfo.Text = count == 1 ?
+                $"There is currently {count} snippet record in the database." :
+                $"There are currently {count} snippet records in the database.";
+        }
+
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             FilterList();
+            UpdateStatusBar();
         }
 
         private void ToolStripRefresh_Click(object sender, EventArgs e)
@@ -379,6 +388,7 @@ namespace Code_Librarian
                 AppConfiguration.Instance.SetGuestDbPath(openFileDialog.FileName);
                 _unitOfWork?.Dispose();
                 _unitOfWork = new UnitOfWork(new AppDbContext());
+                _unitOfWork.UnitOfWorkCompleted += UnitOfWork_Completed;
                 cmbLanguageFilter.SelectedIndex = 0;
 
                 mnuOpenDatabase.Visible = false;
@@ -387,6 +397,7 @@ namespace Code_Librarian
 
                 _unitOfWork.TestDbCompatibility(); // Throws an exception if database is invalid.
                 ReloadLanguages();
+                UpdateStatusBar();
 
                 MessageBox.Show($"The '{Path.GetFileNameWithoutExtension(openFileDialog.FileName)}' database is now connected.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -411,6 +422,7 @@ namespace Code_Librarian
             AppConfiguration.Instance.SetGuestDbPath(null);
             _unitOfWork?.Dispose();
             _unitOfWork = new UnitOfWork(new AppDbContext());
+            _unitOfWork.UnitOfWorkCompleted += UnitOfWork_Completed;
             cmbLanguageFilter.SelectedIndex = 0;
 
             mnuCloseDatabase.Visible = false;
@@ -418,9 +430,31 @@ namespace Code_Librarian
             toolStripOpenDatabase.Enabled = true;
 
             ReloadLanguages();
+            UpdateStatusBar();
 
             MessageBox.Show("Your personal database has been reconnected.",
                 Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void UnitOfWork_Completed(object sender, WorkCompletedEventArgs e)
+        {
+            // Only those entities seen from the main form are checked.
+            if (e.EntitiesChanged.Contains(Entity.Language))
+            {
+                var bookmark = cmbLanguageFilter.Text;
+
+                ReloadLanguages();
+
+                if (cmbLanguageFilter.Items.Contains(bookmark))
+                {
+                    cmbLanguageFilter.Text = bookmark;
+                }
+            }
+            else if (e.EntitiesChanged.Contains(Entity.Snippet))
+            {
+                FilterList();
+                UpdateStatusBar();
+            }
         }
     }
 }

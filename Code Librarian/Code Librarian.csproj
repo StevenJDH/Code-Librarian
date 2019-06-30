@@ -70,6 +70,7 @@
     <Compile Include="Classes\AppConfiguration.cs" />
     <Compile Include="Classes\EntityValidationException.cs" />
     <Compile Include="Classes\SearchResultEventArgs.cs" />
+    <Compile Include="Classes\WorkCompletedEventArgs.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\QueryableExtensions.cs" />
     <Compile Include="FrmAbout.cs">

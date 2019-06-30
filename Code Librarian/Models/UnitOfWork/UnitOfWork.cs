@@ -40,6 +40,7 @@ namespace Code_Librarian.Models.UnitOfWork
         public ISnippetRepository Snippets { get; private set; }
         public bool IsDisposed { get; private set; }
 
+        public event EventHandler<WorkCompletedEventArgs> UnitOfWorkCompleted;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -90,10 +91,29 @@ namespace Code_Librarian.Models.UnitOfWork
             }
         }
 
-        public int Complete() {
+        public int Complete()
+        {
+            var changedEntities = _context.ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Modified ||
+                            e.State == EntityState.Added ||
+                            e.State == EntityState.Deleted)
+                .Select(s => (Entity)Enum.Parse(typeof(Entity), s.Entity.GetType().Name))
+                .Distinct()
+                .ToList();
+
+            var args = new WorkCompletedEventArgs()
+            {
+                EntitiesChanged = changedEntities,
+                ChangesMade = changedEntities.Count()
+            };
+
             try
             {
-                return _context.SaveChanges();
+                var count = _context.SaveChanges();
+
+                OnUnitOfWorkCompleted(args);
+
+                return count;
             }
             catch (DbEntityValidationException ex)
             {
@@ -105,6 +125,12 @@ namespace Code_Librarian.Models.UnitOfWork
         {
             _context.Dispose();
             IsDisposed = true;
+        }
+
+        public void OnUnitOfWorkCompleted(WorkCompletedEventArgs e)
+        {
+            EventHandler<WorkCompletedEventArgs> handler = UnitOfWorkCompleted;
+            handler?.Invoke(this, e);
         }
     }
 }

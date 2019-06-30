@@ -22,6 +22,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Code_Librarian.Classes;
 using Code_Librarian.Models.Repositories.Interfaces;
 
 namespace Code_Librarian.Models.UnitOfWork
@@ -32,6 +33,8 @@ namespace Code_Librarian.Models.UnitOfWork
         ILanguageRepository Languages { get; }
         ISnippetRepository Snippets { get; }
         bool IsDisposed { get; }
+
+        event EventHandler<WorkCompletedEventArgs> UnitOfWorkCompleted;
 
         void EditRecord<TEntity>(TEntity entity, Expression<Func<TEntity, string>> predicate)
             where TEntity : class;

@@ -185,7 +185,6 @@ namespace Code_Librarian
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            // TODO: Trigger a refresh on the parent form with an event maybe by raising from closing.
             this.Close();
         }
 

@@ -100,7 +100,7 @@ namespace Code_Librarian
                 _unitOfWork.Complete();
                 MessageBox.Show("The record has been updated successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // TODO: Trigger a refresh on the parent form with an event maybe.
+
                 this.Close();
             }
             catch (DbUpdateException)
