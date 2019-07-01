@@ -44,7 +44,7 @@ namespace Code_Librarian
             InitializeComponent();
 
             _unitOfWork = new UnitOfWork(new AppDbContext());
-            _unitOfWork.UnitOfWorkCompleted += UnitOfWork_Completed;
+            _unitOfWork.WorkCompleted += UnitOfWork_Completed;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -388,7 +388,7 @@ namespace Code_Librarian
                 AppConfiguration.Instance.SetGuestDbPath(openFileDialog.FileName);
                 _unitOfWork?.Dispose();
                 _unitOfWork = new UnitOfWork(new AppDbContext());
-                _unitOfWork.UnitOfWorkCompleted += UnitOfWork_Completed;
+                _unitOfWork.WorkCompleted += UnitOfWork_Completed;
                 cmbLanguageFilter.SelectedIndex = 0;
 
                 mnuOpenDatabase.Visible = false;
@@ -422,7 +422,7 @@ namespace Code_Librarian
             AppConfiguration.Instance.SetGuestDbPath(null);
             _unitOfWork?.Dispose();
             _unitOfWork = new UnitOfWork(new AppDbContext());
-            _unitOfWork.UnitOfWorkCompleted += UnitOfWork_Completed;
+            _unitOfWork.WorkCompleted += UnitOfWork_Completed;
             cmbLanguageFilter.SelectedIndex = 0;
 
             mnuCloseDatabase.Visible = false;

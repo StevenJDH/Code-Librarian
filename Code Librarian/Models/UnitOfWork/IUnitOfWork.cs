@@ -34,7 +34,7 @@ namespace Code_Librarian.Models.UnitOfWork
         ISnippetRepository Snippets { get; }
         bool IsDisposed { get; }
 
-        event EventHandler<WorkCompletedEventArgs> UnitOfWorkCompleted;
+        event EventHandler<WorkCompletedEventArgs> WorkCompleted;
 
         void EditRecord<TEntity>(TEntity entity, Expression<Func<TEntity, string>> predicate)
             where TEntity : class;

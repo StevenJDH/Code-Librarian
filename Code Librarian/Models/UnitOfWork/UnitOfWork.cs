@@ -40,7 +40,7 @@ namespace Code_Librarian.Models.UnitOfWork
         public ISnippetRepository Snippets { get; private set; }
         public bool IsDisposed { get; private set; }
 
-        public event EventHandler<WorkCompletedEventArgs> UnitOfWorkCompleted;
+        public event EventHandler<WorkCompletedEventArgs> WorkCompleted;
 
         public UnitOfWork(AppDbContext context)
         {
@@ -111,7 +111,7 @@ namespace Code_Librarian.Models.UnitOfWork
             {
                 var count = _context.SaveChanges();
 
-                OnUnitOfWorkCompleted(args);
+                OnWorkCompleted(args);
 
                 return count;
             }
@@ -127,9 +127,9 @@ namespace Code_Librarian.Models.UnitOfWork
             IsDisposed = true;
         }
 
-        public void OnUnitOfWorkCompleted(WorkCompletedEventArgs e)
+        public void OnWorkCompleted(WorkCompletedEventArgs e)
         {
-            EventHandler<WorkCompletedEventArgs> handler = UnitOfWorkCompleted;
+            EventHandler<WorkCompletedEventArgs> handler = WorkCompleted;
             handler?.Invoke(this, e);
         }
     }
