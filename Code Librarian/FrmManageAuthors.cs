@@ -26,6 +26,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Code_Librarian.Classes;
 using Code_Librarian.Extensions;
 using Code_Librarian.Models;
 using Code_Librarian.Models.UnitOfWork;
@@ -52,18 +53,6 @@ namespace Code_Librarian
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            if (txtName.Text == "" || txtPhone.Text == "")
-            {
-                return;
-            }
-
-            if (lstViewAuthors.Items.ContainsEx(txtName.Text.Trim(), StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Author already exists, and therefore, cannot be added again.",
-                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
             if (MessageBox.Show("Are you sure you want to add this author?",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
@@ -72,8 +61,8 @@ namespace Code_Librarian
 
             var author = new Author()
             {
-                Name = txtName.Text.Trim(),
-                PhoneNumber = txtPhone.Text.Trim()
+                Name = txtName.Text.RemoveExcessWhiteSpace(),
+                PhoneNumber = txtPhone.Text.RemoveExcessWhiteSpace()
             };
 
             _unitOfWork.Authors.Add(author);
@@ -97,18 +86,6 @@ namespace Code_Librarian
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            if (lstViewAuthors.SelectedItems.Count == 0 || txtName.Text == "" || txtPhone.Text == "")
-            {
-                return;
-            }
-
-            if (lstViewAuthors.Items.ContainsEx(txtName.Text.Trim(), StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Author already exists, and therefore, cannot be updated to this.",
-                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
             if (MessageBox.Show("Are you sure you want to update this author?",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
@@ -118,8 +95,8 @@ namespace Code_Librarian
             var name = lstViewAuthors.SelectedItems[0].SubItems[clmName.Index];
             var author = _unitOfWork.Authors.FirstOrDefault(a => a.Name == name.Text);
 
-            author.Name = txtName.Text.Trim();
-            author.PhoneNumber = txtPhone.Text.Trim();
+            author.Name = txtName.Text.RemoveExcessWhiteSpace();
+            author.PhoneNumber = txtPhone.Text.RemoveExcessWhiteSpace();
 
             try
             {
@@ -141,11 +118,6 @@ namespace Code_Librarian
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (lstViewAuthors.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
             var name = lstViewAuthors.SelectedItems[0].SubItems[clmName.Index];
             var author = _unitOfWork.Authors.FirstOrDefault(a => a.Name == name.Text);
             var useCount = author.Snippets.Count;
@@ -214,7 +186,7 @@ namespace Code_Librarian
         {
             bool state = (String.IsNullOrWhiteSpace(txtName.Text) == false &&
                           String.IsNullOrWhiteSpace(txtPhone.Text) == false &&
-                          lstViewAuthors.Items.ContainsEx(txtName.Text.Trim()) == false);
+                          lstViewAuthors.Items.ContainsEx(txtName.Text.RemoveExcessWhiteSpace()) == false);
 
             btnAdd.Enabled = state;
             btnUpdate.Enabled = (state && lstViewAuthors.SelectedItems.Count > 0);

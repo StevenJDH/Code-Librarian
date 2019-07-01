@@ -28,6 +28,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Code_Librarian.Classes;
+using Code_Librarian.Extensions;
 using Code_Librarian.Models;
 using Code_Librarian.Models.UnitOfWork;
 
@@ -76,7 +77,7 @@ namespace Code_Librarian
                 AuthorId = _unitOfWork.Authors
                     .FirstOrDefault(a => a.Name == cmbAuthor.Text)?
                     .AuthorId ?? -1,
-                Title = txtTitle.Text.Trim(),
+                Title = txtTitle.Text.RemoveExcessWhiteSpace(),
                 DateCreated = DateTime.Parse(txtDateCreated.Text, cultureInfo),
                 DateUpdated = DateTime.Parse(txtDateUpdated.Text, cultureInfo),
                 Version = versionNumber.ToString(),
@@ -84,7 +85,7 @@ namespace Code_Librarian
                     .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
                     .LanguageId ?? -1,
                 Purpose = txtPurpose.Text.Trim(),
-                Keywords = txtKeywords.Text.Trim(),
+                Keywords = txtKeywords.Text.RemoveExcessWhiteSpace(),
                 CodeSnippet = txtCode.Text.Trim()
             };
 

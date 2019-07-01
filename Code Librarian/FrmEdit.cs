@@ -28,6 +28,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Code_Librarian.Classes;
+using Code_Librarian.Extensions;
 using Code_Librarian.Models;
 using Code_Librarian.Models.UnitOfWork;
 
@@ -85,14 +86,14 @@ namespace Code_Librarian
             _snippetRecord.AuthorId = _unitOfWork.Authors
                 .FirstOrDefault(a => a.Name == cmbAuthor.Text)?
                 .AuthorId ?? -1;
-            _snippetRecord.Title = txtTitle.Text.Trim();
+            _snippetRecord.Title = txtTitle.Text.RemoveExcessWhiteSpace();
             _snippetRecord.DateUpdated = DateTime.Parse(txtDateUpdated.Text, Thread.CurrentThread.CurrentCulture);
             _snippetRecord.Version = versionNumber.ToString();
             _snippetRecord.LanguageId = _unitOfWork.Languages
                 .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
                 .LanguageId ?? -1;
             _snippetRecord.Purpose = txtPurpose.Text.Trim();
-            _snippetRecord.Keywords = txtKeywords.Text.Trim();
+            _snippetRecord.Keywords = txtKeywords.Text.RemoveExcessWhiteSpace();
             _snippetRecord.CodeSnippet = txtCode.Text.Trim();
 
             try

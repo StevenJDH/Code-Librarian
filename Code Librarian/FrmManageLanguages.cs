@@ -54,21 +54,10 @@ namespace Code_Librarian
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            if (txtLanguage.Text == "")
-            {
-                return;
-            }
-
-            if (txtLanguage.Text.Trim().ToUpper() == ReservedWordSelectLanguage.ToUpper())
+            if (txtLanguage.Text.RemoveExcessWhiteSpace().Equals(ReservedWordSelectLanguage, 
+                StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("You cannot add this since it is a reserved lebel for filtering.", 
-                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            if (lstLanguages.Items.ContainsEx(txtLanguage.Text.Trim(), StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Language already exists, and therefore, cannot be added again.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -81,7 +70,7 @@ namespace Code_Librarian
 
             var language = new Language()
             {
-                Name = txtLanguage.Text.Trim()
+                Name = txtLanguage.Text.RemoveExcessWhiteSpace()
             };
 
             _unitOfWork.Languages.Add(language);
@@ -105,21 +94,10 @@ namespace Code_Librarian
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            if (lstLanguages.Text == "" || txtLanguage.Text == "")
-            {
-                return;
-            }
-
-            if (txtLanguage.Text.Trim().ToUpper() == ReservedWordSelectLanguage.ToUpper())
+            if (txtLanguage.Text.RemoveExcessWhiteSpace().Equals(ReservedWordSelectLanguage,
+                StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("You cannot update with this since it is a reserved label for filtering.",
-                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-
-            if (lstLanguages.Items.ContainsEx(txtLanguage.Text.Trim(), StringComparison.OrdinalIgnoreCase))
-            {
-                MessageBox.Show("Language already exists, and therefore, cannot be updated to this.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -133,12 +111,12 @@ namespace Code_Librarian
             var language = _unitOfWork.Languages
                 .FirstOrDefault(l => l.Name == lstLanguages.Text);
 
-            language.Name = txtLanguage.Text.Trim();
+            language.Name = txtLanguage.Text.RemoveExcessWhiteSpace();
 
             try
             {
                 _unitOfWork.Complete();
-                lstLanguages.Items.Remove(lstLanguages.Text.Trim());
+                lstLanguages.Items.Remove(lstLanguages.Text);
                 lstLanguages.Items.Add(language.Name);
                 lstLanguages.Text = language.Name;
 
@@ -155,11 +133,6 @@ namespace Code_Librarian
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (lstLanguages.Text == "")
-            {
-                return;
-            }
-
             var language = _unitOfWork.Languages
                 .FirstOrDefault(l => l.Name == lstLanguages.Text);
             var useCount = language.Snippets.Count;
@@ -215,7 +188,7 @@ namespace Code_Librarian
         private void ValidateControls()
         {
             bool state = (String.IsNullOrWhiteSpace(txtLanguage.Text) == false && 
-                          lstLanguages.Items.ContainsEx(txtLanguage.Text.Trim()) == false);
+                          lstLanguages.Items.ContainsEx(txtLanguage.Text.RemoveExcessWhiteSpace()) == false);
 
             btnAdd.Enabled = state;
             btnUpdate.Enabled = (state && lstLanguages.Text != "");
