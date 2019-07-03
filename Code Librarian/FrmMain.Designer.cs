@@ -80,6 +80,7 @@
             this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
             this.fbDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.mnuUpdateCheck = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             this.ToolStrip1.SuspendLayout();
@@ -94,7 +95,7 @@
             this.HelpToolStripMenuItem});
             this.MenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip1.Name = "MenuStrip1";
-            this.MenuStrip1.Size = new System.Drawing.Size(849, 24);
+            this.MenuStrip1.Size = new System.Drawing.Size(850, 24);
             this.MenuStrip1.TabIndex = 2;
             this.MenuStrip1.Text = "MenuStrip1";
             // 
@@ -240,6 +241,7 @@
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuDonate,
             this.ToolStripSeparator2,
+            this.mnuUpdateCheck,
             this.mnuAbout});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
             this.HelpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -273,7 +275,7 @@
             this.toolStripDate});
             this.StatusStrip1.Location = new System.Drawing.Point(0, 505);
             this.StatusStrip1.Name = "StatusStrip1";
-            this.StatusStrip1.Size = new System.Drawing.Size(849, 22);
+            this.StatusStrip1.Size = new System.Drawing.Size(850, 22);
             this.StatusStrip1.SizingGrip = false;
             this.StatusStrip1.TabIndex = 3;
             this.StatusStrip1.Text = "StatusStrip1";
@@ -322,7 +324,7 @@
             this.ToolStripSeparator7});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 24);
             this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(849, 25);
+            this.ToolStrip1.Size = new System.Drawing.Size(850, 25);
             this.ToolStrip1.TabIndex = 6;
             this.ToolStrip1.Text = "ToolStrip1";
             // 
@@ -526,12 +528,19 @@
             // 
             this.openFileDialog.Title = "Open Database";
             // 
+            // mnuUpdateCheck
+            // 
+            this.mnuUpdateCheck.Name = "mnuUpdateCheck";
+            this.mnuUpdateCheck.Size = new System.Drawing.Size(182, 22);
+            this.mnuUpdateCheck.Text = "Check for Updates";
+            this.mnuUpdateCheck.Click += new System.EventHandler(this.MnuUpdateCheck_Click);
+            // 
             // FrmMain
             // 
             this.AcceptButton = this.btnView;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(849, 527);
+            this.ClientSize = new System.Drawing.Size(850, 527);
             this.Controls.Add(this.pnlDock);
             this.Controls.Add(this.ToolStrip1);
             this.Controls.Add(this.StatusStrip1);
@@ -609,6 +618,7 @@
         private System.Windows.Forms.Timer tmrDateTime;
         private System.Windows.Forms.FolderBrowserDialog fbDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem mnuUpdateCheck;
     }
 }
 

@@ -25,6 +25,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -54,6 +55,7 @@ namespace Code_Librarian
             TmrDateTime_Tick(this, EventArgs.Empty);
             ReloadLanguages();
             UpdateStatusBar();
+            Task.Run(BackgroundUpdateCheck);
         }
 
         private void TmrDateTime_Tick(object sender, EventArgs e)
@@ -242,15 +244,7 @@ namespace Code_Librarian
 
         private void MnuDonate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Sends URL to the operating system for opening.
-                Process.Start("https://www.paypal.me/stevenjdh/5");
-            }
-            catch (Exception)
-            {
-                // Consuming exceptions
-            }
+            OpenWebsite("https://www.paypal.me/stevenjdh/5");
         }
 
         private void MnuAbout_Click(object sender, EventArgs e)
@@ -455,6 +449,104 @@ namespace Code_Librarian
                 FilterList();
                 UpdateStatusBar();
             }
+        }
+
+        private async void MnuUpdateCheck_Click(object sender, EventArgs e)
+        {
+            if (Connection.IsInternetAvailable() == false)
+            {
+                MessageBox.Show("A connection to the Internet was not detected.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            GitHubLatestReleaseResponse response;
+
+            try
+            {
+                response = await new GitHubAPI().GetLatestVersionAsync("StevenJDH", "Code-Librarian");
+            }
+            catch (Exception ex)
+            {
+                // HTTP status code 404 can indicate there are no pre/releases available yet, so we want to
+                // show as current version by setting response to null when we get one.
+                if (!(ex is HttpRequestException) && ex.Message.Contains("status code 404") == false)
+                {
+                    MessageBox.Show("Error: Could not connect to GitHub's servers. Please check your " +
+                                    "connection or try again later.",
+                        Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                response = null;
+            }
+
+            if (response?.IsUpdateAvailable() == true)
+            {
+                if (MessageBox.Show($"A new version of {Application.ProductName} ({response.VersionTag}) " +
+                                    "is available! Do you want to download the update now?",
+                        Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+
+                OpenWebsite(response.ReleaseUrl);
+            }
+            else
+            {
+                MessageBox.Show($"You are using the latest version of {Application.ProductName}.",
+                    $"{Application.ProductName} ({Application.ProductVersion})", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// For use by a separate thread other than the UI thread to check for updates in the background.
+        /// </summary>
+        private async Task BackgroundUpdateCheck()
+        {
+            if (Connection.IsInternetAvailable() == false)
+            {
+                return;
+            }
+
+            GitHubLatestReleaseResponse response;
+
+            try
+            {
+                response = await new GitHubAPI().GetLatestVersionAsync("StevenJDH", "Code-Librarian");
+            }
+            catch (Exception)
+            {
+                // Returns here no matter what Exception is thrown as we can get an aggregated
+                // exception unlike a manual update check.
+                return;
+            }
+
+            if (response?.IsUpdateAvailable() == true)
+            {
+                if (MessageBox.Show($"A new version of {Application.ProductName} ({response.VersionTag}) " +
+                                    "is available! Do you want to download the update now?",
+                        Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+
+                OpenWebsite(response.ReleaseUrl);
+            }
+        }
+
+        /// <summary>
+        /// Sends a URL to the operating system to have it open in the default web browser.
+        /// </summary>
+        /// <param name="url">URL of website to open.</param>
+        public static void OpenWebsite(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch (Exception) {/* Consuming exceptions */ }
         }
     }
 }
