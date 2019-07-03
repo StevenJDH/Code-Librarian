@@ -44,15 +44,7 @@ namespace Code_Librarian
 
         private void LblButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Sends URL to the operating system for opening.
-                Process.Start("https://www.paypal.me/stevenjdh");
-            }
-            catch (Exception)
-            {
-                // Consuming exceptions
-            }
+            FrmMain.OpenWebsite("https://www.paypal.me/stevenjdh");
         }
 
         private void PnlButtonImage_Click(object sender, EventArgs e)
@@ -71,15 +63,7 @@ namespace Code_Librarian
 
         private void LnkGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try
-            {
-                // Casts URL back to string and sends it to the operating system for opening.
-                Process.Start(e.Link.LinkData.ToString());
-            }
-            catch (Exception)
-            {
-                // Consuming exceptions
-            }
+            FrmMain.OpenWebsite(e.Link.LinkData.ToString());
         }
     }
 }
