@@ -136,6 +136,7 @@ Section "${PRODUCT_NAME} Core Files (required)" SectionCore
   File "..\Code Librarian\bin\Release\EntityFramework.dll"
   File "..\Code Librarian\bin\Release\EntityFramework.SqlServer.dll"
   File "..\Code Librarian\bin\Release\Code Librarian.exe"
+  File "..\Code Librarian\bin\Release\Newtonsoft.Json.dll"
   File "..\Code Librarian\bin\Release\System.Data.SQLite.dll"
   File "..\Code Librarian\bin\Release\System.Data.SQLite.EF6.dll"
   File "..\Code Librarian\bin\Release\System.Data.SQLite.Linq.dll"
@@ -242,6 +243,7 @@ Section "un.Uninstall Core Files (required)" SectionCoreUninstall
   Delete "$INSTDIR\System.Data.SQLite.EF6.dll"
   Delete "$INSTDIR\System.Data.SQLite.dll"
   Delete "$INSTDIR\Code Librarian.exe"
+  Delete "$INSTDIR\Newtonsoft.Json.dll"
   Delete "$INSTDIR\EntityFramework.SqlServer.dll"
   Delete "$INSTDIR\EntityFramework.dll"
 
