@@ -49,23 +49,65 @@ namespace Code_Librarian
             _selectedTitle = snippetTitle;
             _selectedLanguage = language;
             _snippetRecord = null;
+            _unitOfWork.WorkCompleted += UnitOfWork_Completed;
         }
 
         private void FrmEdit_Load(object sender, EventArgs e)
         {
+            ReloadAuthors();
+            ReloadLanguages();
             LoadSnippetRecord();
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void BtnRevert_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Reloads the available authors for the snippet record.
+        /// </summary>
+        private void ReloadAuthors()
         {
             cmbAuthor.Items.Clear();
+
+            _unitOfWork.Authors.GetAll()
+                .Select(a => a.Name)
+                .ToList()
+                .ForEach(a => cmbAuthor.Items.Add(a));
+        }
+
+        /// <summary>
+        /// Reloads the available language categories for the snippet record.
+        /// </summary>
+        private void ReloadLanguages()
+        {
             cmbLanguage.Items.Clear();
-            LoadSnippetRecord();
+
+            _unitOfWork.Languages.GetAll()
+                .Select(l => l.Name)
+                .ToList()
+                .ForEach(l => cmbLanguage.Items.Add(l));
+        }
+
+        /// <summary>
+        /// Loads the snippet record from the database into view.
+        /// </summary>
+        private void LoadSnippetRecord()
+        {
+            _snippetRecord = _unitOfWork.Snippets.GetSnippetsWithAll()
+                .FirstOrDefault(s => s.Title == _selectedTitle && s.Language.Name == _selectedLanguage);
+
+            if (_snippetRecord == null)
+            {
+                // TODO: ensure all callers catch this.
+                throw new InvalidOperationException($"The snippet record '{_selectedTitle}' was not found.");
+            }
+
+            cmbAuthor.Text = _snippetRecord.Author.Name;
+            txtTitle.Text = _snippetRecord.Title;
+            txtDateCreated.Text = _snippetRecord.DateCreated.ToShortDateString();
+            txtDateUpdated.Text = _snippetRecord.DateUpdated.ToShortDateString();
+            txtVersion.Text = _snippetRecord.Version;
+            cmbLanguage.Text = _snippetRecord.Language.Name;
+            txtPurpose.Text = _snippetRecord.Purpose;
+            txtKeywords.Text = _snippetRecord.Keywords;
+            txtCode.Text = _snippetRecord.CodeSnippet;
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)
@@ -84,14 +126,14 @@ namespace Code_Librarian
             }
 
             _snippetRecord.AuthorId = _unitOfWork.Authors
-                .FirstOrDefault(a => a.Name == cmbAuthor.Text)?
-                .AuthorId ?? -1;
+                                          .FirstOrDefault(a => a.Name == cmbAuthor.Text)?
+                                          .AuthorId ?? -1;
             _snippetRecord.Title = txtTitle.Text.RemoveExcessWhiteSpace();
             _snippetRecord.DateUpdated = DateTime.Parse(txtDateUpdated.Text, Thread.CurrentThread.CurrentCulture);
             _snippetRecord.Version = versionNumber.ToString();
             _snippetRecord.LanguageId = _unitOfWork.Languages
-                .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
-                .LanguageId ?? -1;
+                                            .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
+                                            .LanguageId ?? -1;
             _snippetRecord.Purpose = txtPurpose.Text.Trim();
             _snippetRecord.Keywords = txtKeywords.Text.RemoveExcessWhiteSpace();
             _snippetRecord.CodeSnippet = txtCode.Text.Trim();
@@ -118,43 +160,21 @@ namespace Code_Librarian
             }
         }
 
-        private void LoadSnippetRecord()
+        private void BtnRevert_Click(object sender, EventArgs e)
         {
-            _snippetRecord = _unitOfWork.Snippets.GetSnippetsWithAll()
-                .FirstOrDefault(s => s.Title == _selectedTitle && s.Language.Name == _selectedLanguage);
-
-            if (_snippetRecord == null)
-            {
-                throw new InvalidOperationException($"The snippet record '{_selectedTitle}' was not found.");
-            }
-
-            _unitOfWork.Authors.GetAll()
-                .Select(a => a.Name)
-                .ToList()
-                .ForEach(a => cmbAuthor.Items.Add(a));
-            cmbAuthor.Text = _snippetRecord.Author.Name;
-            txtPhone.Text = _snippetRecord.Author.PhoneNumber;
-            txtTitle.Text = _snippetRecord.Title;
-            txtDateCreated.Text = _snippetRecord.DateCreated.ToShortDateString();
-            txtDateUpdated.Text = _snippetRecord.DateUpdated.ToShortDateString();
-            txtVersion.Text = _snippetRecord.Version;
-            _unitOfWork.Languages.GetAll()
-                .Select(l => l.Name)
-                .ToList()
-                .ForEach(l => cmbLanguage.Items.Add(l));
-            cmbLanguage.Text = _snippetRecord.Language.Name;
-            txtPurpose.Text = _snippetRecord.Purpose;
-            txtKeywords.Text = _snippetRecord.Keywords;
-            txtCode.Text = _snippetRecord.CodeSnippet;
+            LoadSnippetRecord();
         }
 
-        private void CmbAuthor_DropDownClosed(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
-            // Using the DropDownClosed event to avoid form's Load event raising the SelectedIndexChanged
-            // event when setting cmbAuthor's index.
+            this.Close();
+        }
 
+        private void CmbAuthor_SelectedIndexChanged(object sender, EventArgs e)
+        {
             if (cmbAuthor.Text == "")
             {
+                txtPhone.Text = "";
                 return;
             }
 
@@ -163,10 +183,36 @@ namespace Code_Librarian
                 .PhoneNumber;
         }
 
-        private void CmbAuthor_KeyDown(object sender, KeyEventArgs e)
+        private void UnitOfWork_Completed(object sender, WorkCompletedEventArgs e)
         {
-            // Prevents mouse scrolling via mouse wheel and arrow keys.
-            e.Handled = true;
+            if (e.EntitiesChanged.Contains(Entity.Author))
+            {
+                var bookmark = cmbAuthor.Text;
+
+                ReloadAuthors();
+
+                if (cmbAuthor.Items.Contains(bookmark))
+                {
+                    cmbAuthor.Text = bookmark;
+                }
+            }
+
+            if (e.EntitiesChanged.Contains(Entity.Language))
+            {
+                var bookmark = cmbLanguage.Text;
+
+                ReloadLanguages();
+
+                if (cmbLanguage.Items.Contains(bookmark))
+                {
+                    cmbLanguage.Text = bookmark;
+                }
+            }
+        }
+
+        private void FrmEdit_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _unitOfWork.WorkCompleted -= UnitOfWork_Completed;
         }
     }
 }

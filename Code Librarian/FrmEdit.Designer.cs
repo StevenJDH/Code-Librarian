@@ -388,8 +388,7 @@
             this.cmbAuthor.Name = "cmbAuthor";
             this.cmbAuthor.Size = new System.Drawing.Size(208, 21);
             this.cmbAuthor.TabIndex = 67;
-            this.cmbAuthor.DropDownClosed += new System.EventHandler(this.CmbAuthor_DropDownClosed);
-            this.cmbAuthor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmbAuthor_KeyDown);
+            this.cmbAuthor.SelectedIndexChanged += new System.EventHandler(this.CmbAuthor_SelectedIndexChanged);
             // 
             // FrmEdit
             // 
@@ -427,6 +426,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Edit/Update Snippet Record";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEdit_FormClosing);
             this.Load += new System.EventHandler(this.FrmEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

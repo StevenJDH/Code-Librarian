@@ -83,7 +83,7 @@ namespace Code_Librarian
 
             lstViewResults.Items.Clear();
 
-            var keywords = txtKeywords.Text
+            var keywords = txtKeywords.Text // TODO: make keyword comparison all lowercase.
                 .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(p => p.Trim())
                 .ToHashSet();
@@ -109,6 +109,12 @@ namespace Code_Librarian
         private void HideHorizontalScrollBar()
         {
             int itemsCount = lstViewResults.Items.Count;
+
+            if (lstViewResults.Items.Count == 0)
+            {
+                return;
+            }
+
             int itemHeight = lstViewResults.Items[0].Bounds.Height;
             int visibleItem = lstViewResults.ClientRectangle.Height / itemHeight;
 

@@ -143,6 +143,16 @@ namespace Code_Librarian
 
         private void ShowChildWindow(Form mdiChild)
         {
+            if (this.ActiveMdiChild?.GetType().Name == typeof(FrmAdd).Name ||
+                this.ActiveMdiChild?.GetType().Name == typeof(FrmEdit).Name)
+            {
+                if (MessageBox.Show("You are currently working on a snippet that will lose any unsaved work if you continue.\n\nDo you want to proceed?",
+                        Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             this.ActiveMdiChild?.Close();
 
             mdiChild.MdiParent = this;
@@ -184,6 +194,14 @@ namespace Code_Librarian
         {
             if (lstSnippets.Text == "")
             {
+                return;
+            }
+
+            if (this.ActiveMdiChild?.GetType().Name == typeof(FrmAdd).Name ||
+                this.ActiveMdiChild?.GetType().Name == typeof(FrmEdit).Name)
+            {
+                MessageBox.Show("You cannot delete a record while adding/editing a snippet.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -288,6 +306,14 @@ namespace Code_Librarian
 
         private void MnuSearch_Click(object sender, EventArgs e)
         {
+            if (this.ActiveMdiChild?.GetType().Name == typeof(FrmAdd).Name ||
+                this.ActiveMdiChild?.GetType().Name == typeof(FrmEdit).Name)
+            {
+                MessageBox.Show("Please close the snippet you are working on before performing a search.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             using (var frm = new FrmSearch(_unitOfWork))
             {
                 frm.SearchResultViewSelected += FrmSearch_SearchResultViewSelected;
@@ -326,7 +352,7 @@ namespace Code_Librarian
 
         private void MnuCreateBackup_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to backup your personal database?", 
+            if (MessageBox.Show("Are you sure you want to backup the snippet database?", 
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
@@ -367,6 +393,16 @@ namespace Code_Librarian
 
         private void MnuOpenDatabase_Click(object sender, EventArgs e)
         {
+            if (this.ActiveMdiChild?.GetType().Name == typeof(FrmAdd).Name ||
+                this.ActiveMdiChild?.GetType().Name == typeof(FrmEdit).Name)
+            {
+                if (MessageBox.Show("You are currently working on a snippet that will lose any unsaved work if you continue.\n\nDo you want to proceed?",
+                        Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             openFileDialog.Filter = "Code Librarian Database (*.sqlite3)|*.sqlite3";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             openFileDialog.FileName = "";

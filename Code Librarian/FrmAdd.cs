@@ -43,23 +43,43 @@ namespace Code_Librarian
             InitializeComponent();
 
             _unitOfWork = unitOfWork;
+            _unitOfWork.WorkCompleted += UnitOfWork_Completed;
         }
 
         private void FrmAdd_Load(object sender, EventArgs e)
         {
+            ReloadAuthors();
+            ReloadLanguages();
+
+            txtDateCreated.Text = DateTime.Now.ToShortDateString();
+            txtDateUpdated.Text = txtDateCreated.Text;
+            txtVersion.Text = "1.0.0";
+        }
+
+        /// <summary>
+        /// Reloads the available authors for the snippet record.
+        /// </summary>
+        private void ReloadAuthors()
+        {
+            cmbAuthor.Items.Clear();
+
             _unitOfWork.Authors.GetAll()
                 .Select(a => a.Name)
                 .ToList()
                 .ForEach(a => cmbAuthor.Items.Add(a));
+        }
+
+        /// <summary>
+        /// Reloads the available language categories for the snippet record.
+        /// </summary>
+        private void ReloadLanguages()
+        {
+            cmbLanguage.Items.Clear();
 
             _unitOfWork.Languages.GetAll()
                 .Select(l => l.Name)
                 .ToList()
                 .ForEach(l => cmbLanguage.Items.Add(l));
-
-            txtDateCreated.Text = DateTime.Now.ToShortDateString();
-            txtDateUpdated.Text = txtDateCreated.Text;
-            txtVersion.Text = "1.0.0";
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -75,15 +95,15 @@ namespace Code_Librarian
             var newSnippet = new Snippet()
             {
                 AuthorId = _unitOfWork.Authors
-                    .FirstOrDefault(a => a.Name == cmbAuthor.Text)?
-                    .AuthorId ?? -1,
+                               .FirstOrDefault(a => a.Name == cmbAuthor.Text)?
+                               .AuthorId ?? -1,
                 Title = txtTitle.Text.RemoveExcessWhiteSpace(),
                 DateCreated = DateTime.Parse(txtDateCreated.Text, cultureInfo),
                 DateUpdated = DateTime.Parse(txtDateUpdated.Text, cultureInfo),
                 Version = versionNumber.ToString(),
                 LanguageId = _unitOfWork.Languages
-                    .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
-                    .LanguageId ?? -1,
+                                .FirstOrDefault(l => l.Name == cmbLanguage.Text)?
+                                .LanguageId ?? -1,
                 Purpose = txtPurpose.Text.Trim(),
                 Keywords = txtKeywords.Text.RemoveExcessWhiteSpace(),
                 CodeSnippet = txtCode.Text.Trim()
@@ -122,7 +142,6 @@ namespace Code_Librarian
             }
 
             cmbAuthor.SelectedIndex = -1;
-            txtPhone.Text = "";
             txtTitle.Text = "";
             txtDateCreated.Text = DateTime.Now.ToShortDateString();
             txtDateUpdated.Text = txtDateCreated.Text;
@@ -138,10 +157,11 @@ namespace Code_Librarian
             this.Close();
         }
 
-        private void CmbAuthor_DropDownClosed(object sender, EventArgs e)
+        private void CmbAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbAuthor.Text == "")
             {
+                txtPhone.Text = "";
                 return;
             }
 
@@ -150,10 +170,36 @@ namespace Code_Librarian
                 .PhoneNumber;
         }
 
-        private void CmbAuthor_KeyDown(object sender, KeyEventArgs e)
+        private void UnitOfWork_Completed(object sender, WorkCompletedEventArgs e)
         {
-            // Prevents mouse scrolling via mouse wheel and arrow keys.
-            e.Handled = true;
+            if (e.EntitiesChanged.Contains(Entity.Author))
+            {
+                var bookmark = cmbAuthor.Text;
+
+                ReloadAuthors();
+
+                if (cmbAuthor.Items.Contains(bookmark))
+                {
+                    cmbAuthor.Text = bookmark;
+                }
+            }
+
+            if (e.EntitiesChanged.Contains(Entity.Language))
+            {
+                var bookmark = cmbLanguage.Text;
+
+                ReloadLanguages();
+
+                if (cmbLanguage.Items.Contains(bookmark))
+                {
+                    cmbLanguage.Text = bookmark;
+                }
+            }
+        }
+
+        private void FrmAdd_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _unitOfWork.WorkCompleted -= UnitOfWork_Completed;
         }
     }
 }
