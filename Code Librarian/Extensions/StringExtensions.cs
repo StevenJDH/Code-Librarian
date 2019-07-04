@@ -35,15 +35,8 @@ namespace Code_Librarian.Extensions
         /// </summary>
         /// <param name="str">The object where this extension will be attached.</param>
         /// <returns>Original string with excess white space removed.</returns>
-        /// <exception cref="System.InvalidOperationException">String is null, empty, or consists only of white space characters.</exception>
         public static string RemoveExcessWhiteSpace(this string str)
         {
-            if (String.IsNullOrWhiteSpace(str))
-            {
-                throw new InvalidOperationException(
-                    "String is null, empty, or consists only of white space characters.");
-            }
-
             return Regex.Replace(str, @"\s+", " ",
                 RegexOptions.Singleline).Trim();
         }
