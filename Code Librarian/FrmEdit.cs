@@ -95,8 +95,11 @@ namespace Code_Librarian
 
             if (_snippetRecord == null)
             {
-                // TODO: ensure all callers catch this.
-                throw new InvalidOperationException($"The snippet record '{_selectedTitle}' was not found.");
+                MessageBox.Show($"Error: The snippet record '{_selectedTitle}' was not found.",
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Has to be closed like this to avoid a handle not created yet error in form's load event.
+                this.BeginInvoke(new MethodInvoker(Close));
             }
 
             cmbAuthor.Text = _snippetRecord.Author.Name;
