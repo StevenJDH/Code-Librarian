@@ -83,7 +83,7 @@ namespace Code_Librarian
 
             lstViewResults.Items.Clear();
 
-            var keywords = txtKeywords.Text // TODO: make keyword comparison all lowercase.
+            var keywords = txtKeywords.Text
                 .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(p => p.Trim())
                 .ToHashSet();
@@ -91,7 +91,7 @@ namespace Code_Librarian
             _unitOfWork.Snippets.GetSnippetsWithAll().AsQueryable()
                 .OptionalWhere(s => s.Keywords.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(k => k.Trim())
-                    .Intersect(keywords)
+                    .Intersect(keywords, StringComparer.OrdinalIgnoreCase)
                     .Any(), chkKeywords.Checked)
                 .OptionalWhere(s => s.Language.Name == cmbLanguages.Text, chkLanguage.Checked)
                 .OptionalWhere(s => s.Author.Name == cmbAuthors.Text, chkAuthor.Checked)
