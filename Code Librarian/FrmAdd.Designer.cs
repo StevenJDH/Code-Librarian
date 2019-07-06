@@ -240,6 +240,7 @@
             this.txtTitle.TabIndex = 48;
             this.txtTitle.TabStop = false;
             this.txtTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTitle.TextChanged += new System.EventHandler(this.TxtTitle_TextChanged);
             // 
             // txtDateUpdated
             // 

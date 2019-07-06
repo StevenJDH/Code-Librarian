@@ -429,6 +429,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "View Code Record";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmView_FormClosing);
             this.Load += new System.EventHandler(this.FrmView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

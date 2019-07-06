@@ -64,6 +64,7 @@ namespace Code_Librarian
             txtPurpose.Text = snippet.Purpose;
             txtKeywords.Text = snippet.Keywords;
             txtCode.Text = snippet.CodeSnippet;
+            this.MdiParent.Text = $"{Application.ProductName} - [{_selectedTitle}]";
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -76,6 +77,11 @@ namespace Code_Librarian
             Clipboard.SetText(txtCode.Text);
             MessageBox.Show("The code snippet was copied to clipboard successfully.",
                 Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void FrmView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.MdiParent.Text = Application.ProductName;
         }
     }
 }

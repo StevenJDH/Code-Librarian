@@ -51,6 +51,7 @@ namespace Code_Librarian
             ReloadAuthors();
             ReloadLanguages();
 
+            this.MdiParent.Text = $"{Application.ProductName} - [New Record]";
             txtDateCreated.Text = DateTime.Now.ToShortDateString();
             txtDateUpdated.Text = txtDateCreated.Text;
             txtVersion.Text = "1.0.0";
@@ -82,12 +83,25 @@ namespace Code_Librarian
                 .ForEach(l => cmbLanguage.Items.Add(l));
         }
 
+        private void TxtTitle_TextChanged(object sender, EventArgs e)
+        {
+            this.MdiParent.Text = String.IsNullOrWhiteSpace(txtTitle.Text) ? 
+                $"{Application.ProductName} - [New Record]" : 
+                $"{Application.ProductName} - [{txtTitle.Text.RemoveExcessWhiteSpace()}]";
+        }
+
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (Version.TryParse(txtVersion.Text.Trim(), out var versionNumber) == false)
             {
                 MessageBox.Show($"The version number '{txtVersion.Text.Trim()}' is not using '#.#.#' as the format.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure you want to add this record to the library?",
+                    Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
                 return;
             }
 
@@ -200,6 +214,7 @@ namespace Code_Librarian
         private void FrmAdd_FormClosing(object sender, FormClosingEventArgs e)
         {
             _unitOfWork.WorkCompleted -= UnitOfWork_Completed;
+            this.MdiParent.Text = Application.ProductName;
         }
     }
 }

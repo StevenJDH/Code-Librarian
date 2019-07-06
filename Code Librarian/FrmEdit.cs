@@ -57,6 +57,7 @@ namespace Code_Librarian
             ReloadAuthors();
             ReloadLanguages();
             LoadSnippetRecord();
+            this.MdiParent.Text = $"{Application.ProductName} - [{_selectedTitle }]";
         }
 
         /// <summary>
@@ -165,6 +166,12 @@ namespace Code_Librarian
 
         private void BtnRevert_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Are you sure you want to undo all changes?.",
+                    Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+
             LoadSnippetRecord();
         }
 
@@ -216,6 +223,7 @@ namespace Code_Librarian
         private void FrmEdit_FormClosing(object sender, FormClosingEventArgs e)
         {
             _unitOfWork.WorkCompleted -= UnitOfWork_Completed;
+            this.MdiParent.Text = Application.ProductName;
         }
     }
 }
