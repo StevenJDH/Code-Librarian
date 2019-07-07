@@ -30,6 +30,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Code_Librarian.Classes;
+using Code_Librarian.Extensions;
 using Code_Librarian.Models;
 using Code_Librarian.Models.UnitOfWork;
 
@@ -122,7 +123,15 @@ namespace Code_Librarian
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
+            var bookmark = lstSnippets.Text;
+
             FilterList();
+
+            if (lstSnippets.Items.ContainsEx(bookmark))
+            {
+                lstSnippets.Text = bookmark;
+            }
+            
             UpdateStatusBar();
         }
 
@@ -371,7 +380,7 @@ namespace Code_Librarian
             try
             {
                 File.Copy(AppConfiguration.Instance.GetDbPath(), backup, overwrite: false);
-                MessageBox.Show("Your personal database has been backed up successfully.", 
+                MessageBox.Show("The snippet database has been backed up successfully.", 
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
