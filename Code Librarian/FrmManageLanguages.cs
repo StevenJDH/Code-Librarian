@@ -35,7 +35,7 @@ namespace Code_Librarian
     public partial class FrmManageLanguages : Form
     {
         private readonly IUnitOfWork _unitOfWork;
-        private const string ReservedWordSelectLanguage = "--- Select Language ---";
+        private const string ReservedWordSelectLanguage = "--- Select Snippet Language ---";
 
         public FrmManageLanguages(IUnitOfWork unitOfWork)
         {

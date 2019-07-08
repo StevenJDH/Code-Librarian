@@ -78,7 +78,7 @@ namespace Code_Librarian
             cmbLanguageFilter.Items.Clear();
             lstSnippets.Items.Clear();
 
-            cmbLanguageFilter.Items.Add("--- Select Language ---");
+            cmbLanguageFilter.Items.Add("--- Select Snippet Language ---");
 
             _unitOfWork.Languages.GetAll()
                 .OrderBy(l => l.Name)
@@ -95,7 +95,7 @@ namespace Code_Librarian
         /// </summary>
         private void FilterList()
         {
-            if (cmbLanguageFilter.Text == "--- Select Language ---")
+            if (cmbLanguageFilter.Text == "--- Select Snippet Language ---")
             {
                 return;
             }
@@ -199,6 +199,11 @@ namespace Code_Librarian
             ShowChildWindow(new FrmEdit(_unitOfWork, lstSnippets.Text, cmbLanguageFilter.Text));
         }
 
+        private void MnuEditRecord_Click(object sender, EventArgs e)
+        {
+            BtnEdit_Click(this, EventArgs.Empty);
+        }
+
         private void MnuDeleteRecord_Click(object sender, EventArgs e)
         {
             if (lstSnippets.Text == "")
@@ -245,14 +250,14 @@ namespace Code_Librarian
             MnuDeleteRecord_Click(this, EventArgs.Empty);
         }
 
-        private void MnuAddNewRecord_Click(object sender, EventArgs e)
+        private void MnuNewRecord_Click(object sender, EventArgs e)
         {
             ShowChildWindow(new FrmAdd(_unitOfWork));
         }
 
         private void ToolStripAddNewRecord_Click(object sender, EventArgs e)
         {
-            MnuAddNewRecord_Click(this, EventArgs.Empty);
+            MnuNewRecord_Click(this, EventArgs.Empty);
         }
 
         private void LstSnippets_KeyDown(object sender, KeyEventArgs e)
@@ -361,7 +366,7 @@ namespace Code_Librarian
 
         private void MnuCreateBackup_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to backup the snippet database?", 
+            if (MessageBox.Show("Are you sure you want to backup the snippet database?",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
@@ -374,13 +379,13 @@ namespace Code_Librarian
                 return;
             }
 
-            string backup = Path.Combine(fbDialog.SelectedPath, 
+            string backup = Path.Combine(fbDialog.SelectedPath,
                 $"CodeLib_{DateTime.Now.ToString("yyyy-MM-dd_HHmmss")}.sqlite3");
 
             try
             {
                 File.Copy(AppConfiguration.Instance.GetDbPath(), backup, overwrite: false);
-                MessageBox.Show("The snippet database has been backed up successfully.", 
+                MessageBox.Show("The snippet database has been backed up successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
