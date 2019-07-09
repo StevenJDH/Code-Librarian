@@ -32,8 +32,8 @@
             this.btnCopy = new System.Windows.Forms.Button();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.txtAuthor = new System.Windows.Forms.TextBox();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.lblPhone = new System.Windows.Forms.Label();
+            this.txtPhoneEmail = new System.Windows.Forms.TextBox();
+            this.lblPhoneEmail = new System.Windows.Forms.Label();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.txtKeywords = new System.Windows.Forms.TextBox();
             this.txtLanguage = new System.Windows.Forms.TextBox();
@@ -104,37 +104,37 @@
             this.txtAuthor.TabStop = false;
             this.txtAuthor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtPhone
+            // txtPhoneEmail
             // 
-            this.txtPhone.AcceptsReturn = true;
-            this.txtPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.txtPhone.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPhone.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtPhone.Location = new System.Drawing.Point(224, 24);
-            this.txtPhone.MaxLength = 0;
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.ReadOnly = true;
-            this.txtPhone.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtPhone.Size = new System.Drawing.Size(144, 20);
-            this.txtPhone.TabIndex = 62;
-            this.txtPhone.TabStop = false;
-            this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPhoneEmail.AcceptsReturn = true;
+            this.txtPhoneEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.txtPhoneEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPhoneEmail.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhoneEmail.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPhoneEmail.Location = new System.Drawing.Point(224, 24);
+            this.txtPhoneEmail.MaxLength = 0;
+            this.txtPhoneEmail.Name = "txtPhoneEmail";
+            this.txtPhoneEmail.ReadOnly = true;
+            this.txtPhoneEmail.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtPhoneEmail.Size = new System.Drawing.Size(144, 20);
+            this.txtPhoneEmail.TabIndex = 62;
+            this.txtPhoneEmail.TabStop = false;
+            this.txtPhoneEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // lblPhone
+            // lblPhoneEmail
             // 
-            this.lblPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblPhone.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblPhone.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhone.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblPhone.Location = new System.Drawing.Point(224, 8);
-            this.lblPhone.Name = "lblPhone";
-            this.lblPhone.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblPhone.Size = new System.Drawing.Size(144, 17);
-            this.lblPhone.TabIndex = 65;
-            this.lblPhone.Text = "Phone Number";
-            this.lblPhone.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblPhoneEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblPhoneEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblPhoneEmail.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblPhoneEmail.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPhoneEmail.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPhoneEmail.Location = new System.Drawing.Point(224, 8);
+            this.lblPhoneEmail.Name = "lblPhoneEmail";
+            this.lblPhoneEmail.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblPhoneEmail.Size = new System.Drawing.Size(144, 17);
+            this.lblPhoneEmail.TabIndex = 65;
+            this.lblPhoneEmail.Text = "Phone Number/Email";
+            this.lblPhoneEmail.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblAuthor
             // 
@@ -404,8 +404,8 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.txtAuthor);
-            this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.lblPhone);
+            this.Controls.Add(this.txtPhoneEmail);
+            this.Controls.Add(this.lblPhoneEmail);
             this.Controls.Add(this.lblAuthor);
             this.Controls.Add(this.txtKeywords);
             this.Controls.Add(this.txtLanguage);
@@ -441,8 +441,8 @@
         internal System.Windows.Forms.Button btnCopy;
         internal System.Windows.Forms.TextBox txtCode;
         public System.Windows.Forms.TextBox txtAuthor;
-        public System.Windows.Forms.TextBox txtPhone;
-        public System.Windows.Forms.Label lblPhone;
+        public System.Windows.Forms.TextBox txtPhoneEmail;
+        public System.Windows.Forms.Label lblPhoneEmail;
         public System.Windows.Forms.Label lblAuthor;
         public System.Windows.Forms.TextBox txtKeywords;
         public System.Windows.Forms.TextBox txtLanguage;

@@ -41,8 +41,8 @@ namespace Code_Librarian.Models
         public string Name { get; set; }
 
         [Required]
-        [StringLength(30)]
-        public string PhoneNumber { get; set; }
+        [StringLength(254)]
+        public string ContactInfo { get; set; }
 
         [InverseProperty("Author")]
         public ICollection<Snippet> Snippets { get; set; }

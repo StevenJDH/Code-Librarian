@@ -57,7 +57,6 @@ namespace Code_Librarian
             ReloadAuthors();
             ReloadLanguages();
             LoadSnippetRecord();
-            this.MdiParent.Text = $"{Application.ProductName} - [{_selectedTitle }]";
         }
 
         /// <summary>
@@ -106,12 +105,15 @@ namespace Code_Librarian
             cmbAuthor.Text = _snippetRecord.Author.Name;
             txtTitle.Text = _snippetRecord.Title;
             txtDateCreated.Text = _snippetRecord.DateCreated.ToShortDateString();
-            txtDateUpdated.Text = _snippetRecord.DateUpdated.ToShortDateString();
+            txtDateUpdated.Text = DateTime.Now.ToShortDateString();
             txtVersion.Text = _snippetRecord.Version;
             cmbLanguage.Text = _snippetRecord.Language.Name;
             txtPurpose.Text = _snippetRecord.Purpose;
             txtKeywords.Text = _snippetRecord.Keywords;
             txtCode.Text = _snippetRecord.CodeSnippet;
+
+            lblPhoneEmail.Text = txtPhoneEmail.Text.Contains('@') ? "Email" : "Phone Number";
+            this.MdiParent.Text = $"{Application.ProductName} - [{_selectedTitle }]";
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)
@@ -184,13 +186,13 @@ namespace Code_Librarian
         {
             if (cmbAuthor.Text == "")
             {
-                txtPhone.Text = "";
+                txtPhoneEmail.Text = "";
                 return;
             }
 
-            txtPhone.Text = _unitOfWork.Authors
+            txtPhoneEmail.Text = _unitOfWork.Authors
                 .FirstOrDefault(a => a.Name == cmbAuthor.Text)
-                .PhoneNumber;
+                .ContactInfo;
         }
 
         private void UnitOfWork_Completed(object sender, WorkCompletedEventArgs e)

@@ -48,7 +48,7 @@ namespace Code_Librarian
         {
              _unitOfWork.Authors.GetAll()
                 .ToList()
-                .ForEach(a => lstViewAuthors.Items.Add(new ListViewItem(new[] { a.Name, a.PhoneNumber })));
+                .ForEach(a => lstViewAuthors.Items.Add(new ListViewItem(new[] { a.Name, a.ContactInfo })));
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace Code_Librarian
             var author = new Author()
             {
                 Name = txtName.Text.RemoveExcessWhiteSpace(),
-                PhoneNumber = txtPhone.Text.RemoveExcessWhiteSpace()
+                ContactInfo = txtPhoneEmail.Text.RemoveExcessWhiteSpace()
             };
 
             _unitOfWork.Authors.Add(author);
@@ -70,7 +70,7 @@ namespace Code_Librarian
             try
             {
                 _unitOfWork.Complete();
-                var newEntry = lstViewAuthors.Items.Add(new ListViewItem(new[] {author.Name, author.PhoneNumber}));
+                var newEntry = lstViewAuthors.Items.Add(new ListViewItem(new[] {author.Name, author.ContactInfo}));
                 newEntry.Selected = true;
 
                 MessageBox.Show("The author has been added successfully.",
@@ -96,13 +96,13 @@ namespace Code_Librarian
             var author = _unitOfWork.Authors.FirstOrDefault(a => a.Name == name.Text);
 
             author.Name = txtName.Text.RemoveExcessWhiteSpace();
-            author.PhoneNumber = txtPhone.Text.RemoveExcessWhiteSpace();
+            author.ContactInfo = txtPhoneEmail.Text.RemoveExcessWhiteSpace();
 
             try
             {
                 _unitOfWork.Complete();
                 lstViewAuthors.SelectedItems[0].Remove();
-                var newEntry = lstViewAuthors.Items.Add(new ListViewItem(new[] { author.Name, author.PhoneNumber }));
+                var newEntry = lstViewAuthors.Items.Add(new ListViewItem(new[] { author.Name, author.ContactInfo }));
                 newEntry.Selected = true;
 
                 MessageBox.Show("The author has been updated successfully.",
@@ -142,7 +142,7 @@ namespace Code_Librarian
                 _unitOfWork.Complete();
                 lstViewAuthors.SelectedItems[0].Remove();
                 txtName.Text = "";
-                txtPhone.Text = "";
+                txtPhoneEmail.Text = "";
 
                 MessageBox.Show("The author has been deleted successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -168,7 +168,7 @@ namespace Code_Librarian
             }
 
             txtName.Text = lstViewAuthors.SelectedItems[0].SubItems[clmName.Index].Text;
-            txtPhone.Text = lstViewAuthors.SelectedItems[0].SubItems[clmPhone.Index].Text;
+            txtPhoneEmail.Text = lstViewAuthors.SelectedItems[0].SubItems[clmPhoneEmail.Index].Text;
             ValidateControls();
         }
 
@@ -177,7 +177,7 @@ namespace Code_Librarian
             ValidateControls();
         }
 
-        private void TxtPhone_TextChanged(object sender, EventArgs e)
+        private void TxtPhoneEmail_TextChanged(object sender, EventArgs e)
         {
             ValidateControls();
         }
@@ -185,11 +185,17 @@ namespace Code_Librarian
         private void ValidateControls()
         {
             bool state = (String.IsNullOrWhiteSpace(txtName.Text) == false &&
-                          String.IsNullOrWhiteSpace(txtPhone.Text) == false &&
-                          lstViewAuthors.Items.ContainsEx(txtName.Text.RemoveExcessWhiteSpace()) == false);
+                          String.IsNullOrWhiteSpace(txtPhoneEmail.Text) == false);
 
-            btnAdd.Enabled = state;
-            btnUpdate.Enabled = (state && lstViewAuthors.SelectedItems.Count > 0);
+            btnAdd.Enabled = 
+                (state && 
+                 lstViewAuthors.Items.ContainsEx(txtName.Text.RemoveExcessWhiteSpace()) == false);
+            btnUpdate.Enabled = 
+                (state && 
+                 lstViewAuthors.SelectedItems.Count > 0 && 
+                 lstViewAuthors.Items.ContainsEx(txtName.Text.RemoveExcessWhiteSpace()) == false ||
+                 lstViewAuthors.SelectedItems[0].SubItems[clmPhoneEmail.Index].Text != 
+                    txtPhoneEmail.Text.RemoveExcessWhiteSpace());
             btnDelete.Enabled = (lstViewAuthors.SelectedItems.Count > 0);
         }
     }

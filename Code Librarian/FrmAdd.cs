@@ -175,13 +175,24 @@ namespace Code_Librarian
         {
             if (cmbAuthor.Text == "")
             {
-                txtPhone.Text = "";
+                txtPhoneEmail.Text = "";
                 return;
             }
 
-            txtPhone.Text = _unitOfWork.Authors
+            txtPhoneEmail.Text = _unitOfWork.Authors
                 .FirstOrDefault(a => a.Name == cmbAuthor.Text)
-                .PhoneNumber;
+                .ContactInfo;
+        }
+
+        private void TxtPhoneEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtPhoneEmail.Text))
+            {
+                lblPhoneEmail.Text = "Phone Number/Email";
+                return;
+            }
+
+            lblPhoneEmail.Text = txtPhoneEmail.Text.Contains('@') ? "Email" : "Phone Number";
         }
 
         private void UnitOfWork_Completed(object sender, WorkCompletedEventArgs e)

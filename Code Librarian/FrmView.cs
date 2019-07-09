@@ -55,7 +55,7 @@ namespace Code_Librarian
             }
 
             txtAuthor.Text = snippet.Author.Name;
-            txtPhone.Text = snippet.Author.PhoneNumber;
+            txtPhoneEmail.Text = snippet.Author.ContactInfo;
             txtTitle.Text = snippet.Title;
             txtDateCreated.Text = snippet.DateCreated.ToShortDateString();
             txtDateUpdated.Text = snippet.DateUpdated.ToShortDateString();
@@ -64,6 +64,8 @@ namespace Code_Librarian
             txtPurpose.Text = snippet.Purpose;
             txtKeywords.Text = snippet.Keywords;
             txtCode.Text = snippet.CodeSnippet;
+
+            lblPhoneEmail.Text = txtPhoneEmail.Text.Contains('@') ? "Email" : "Phone Number";
             this.MdiParent.Text = $"{Application.ProductName} - [{_selectedTitle}]";
         }
 

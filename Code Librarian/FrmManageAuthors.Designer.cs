@@ -32,11 +32,11 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtPhoneEmail = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lstViewAuthors = new System.Windows.Forms.ListView();
             this.clmName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmPhoneEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnClose
@@ -84,21 +84,21 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // txtPhone
+            // txtPhoneEmail
             // 
-            this.txtPhone.AcceptsReturn = true;
-            this.txtPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPhone.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPhone.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.ForeColor = System.Drawing.Color.Black;
-            this.txtPhone.Location = new System.Drawing.Point(148, 108);
-            this.txtPhone.MaxLength = 30;
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtPhone.Size = new System.Drawing.Size(141, 20);
-            this.txtPhone.TabIndex = 13;
-            this.txtPhone.TextChanged += new System.EventHandler(this.TxtPhone_TextChanged);
+            this.txtPhoneEmail.AcceptsReturn = true;
+            this.txtPhoneEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPhoneEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPhoneEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPhoneEmail.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhoneEmail.ForeColor = System.Drawing.Color.Black;
+            this.txtPhoneEmail.Location = new System.Drawing.Point(148, 108);
+            this.txtPhoneEmail.MaxLength = 254;
+            this.txtPhoneEmail.Name = "txtPhoneEmail";
+            this.txtPhoneEmail.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtPhoneEmail.Size = new System.Drawing.Size(141, 20);
+            this.txtPhoneEmail.TabIndex = 13;
+            this.txtPhoneEmail.TextChanged += new System.EventHandler(this.TxtPhoneEmail_TextChanged);
             // 
             // txtName
             // 
@@ -121,7 +121,7 @@
             this.lstViewAuthors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstViewAuthors.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.clmName,
-            this.clmPhone});
+            this.clmPhoneEmail});
             this.lstViewAuthors.FullRowSelect = true;
             this.lstViewAuthors.GridLines = true;
             this.lstViewAuthors.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -141,10 +141,10 @@
             this.clmName.Text = "Name";
             this.clmName.Width = 140;
             // 
-            // clmPhone
+            // clmPhoneEmail
             // 
-            this.clmPhone.Text = "Phone Number";
-            this.clmPhone.Width = 140;
+            this.clmPhoneEmail.Text = "Phone Number/Email";
+            this.clmPhoneEmail.Width = 140;
             // 
             // FrmManageAuthors
             // 
@@ -157,7 +157,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtPhone);
+            this.Controls.Add(this.txtPhoneEmail);
             this.Controls.Add(this.txtName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -178,10 +178,10 @@
         internal System.Windows.Forms.Button btnDelete;
         internal System.Windows.Forms.Button btnUpdate;
         internal System.Windows.Forms.Button btnAdd;
-        public System.Windows.Forms.TextBox txtPhone;
+        public System.Windows.Forms.TextBox txtPhoneEmail;
         public System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.ListView lstViewAuthors;
         private System.Windows.Forms.ColumnHeader clmName;
-        private System.Windows.Forms.ColumnHeader clmPhone;
+        private System.Windows.Forms.ColumnHeader clmPhoneEmail;
     }
 }
