@@ -95,12 +95,12 @@ namespace Code_Librarian
         /// </summary>
         private void FilterList()
         {
+            lstSnippets.Items.Clear();
+
             if (cmbLanguageFilter.Text == "--- Select Snippet Language ---")
             {
                 return;
             }
-
-            lstSnippets.Items.Clear();
 
             _unitOfWork.Snippets.GetSnippetsWithAll()
                 .Where(s => s.Language.Name == cmbLanguageFilter.Text)
@@ -496,7 +496,15 @@ namespace Code_Librarian
             }
             else if (e.EntitiesChanged.Contains(Entity.Snippet))
             {
+                var bookmark = lstSnippets.Text;
+
                 FilterList();
+
+                if (lstSnippets.Items.Contains(bookmark))
+                {
+                    lstSnippets.Text = bookmark;
+                }
+
                 UpdateStatusBar();
             }
         }
