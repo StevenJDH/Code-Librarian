@@ -195,6 +195,14 @@ namespace Code_Librarian
             lblPhoneEmail.Text = txtPhoneEmail.Text.Contains('@') ? "Email" : "Phone Number";
         }
 
+        private void TxtKeywords_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
         private void UnitOfWork_Completed(object sender, WorkCompletedEventArgs e)
         {
             if (e.EntitiesChanged.Contains(Entity.Author))

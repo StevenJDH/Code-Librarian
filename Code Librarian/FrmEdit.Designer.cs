@@ -174,6 +174,7 @@
             this.txtKeywords.Size = new System.Drawing.Size(313, 35);
             this.txtKeywords.TabIndex = 53;
             this.txtKeywords.TabStop = false;
+            this.txtKeywords.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeywords_KeyDown);
             // 
             // txtPurpose
             // 
