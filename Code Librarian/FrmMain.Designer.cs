@@ -208,7 +208,7 @@
             // mnuDeleteRecord
             // 
             this.mnuDeleteRecord.Name = "mnuDeleteRecord";
-            this.mnuDeleteRecord.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.mnuDeleteRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
             this.mnuDeleteRecord.Size = new System.Drawing.Size(217, 22);
             this.mnuDeleteRecord.Text = "Delete Record";
             this.mnuDeleteRecord.Click += new System.EventHandler(this.MnuDeleteRecord_Click);
@@ -383,7 +383,7 @@
             this.toolStripAddNewRecord.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripAddNewRecord.Name = "toolStripAddNewRecord";
             this.toolStripAddNewRecord.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAddNewRecord.ToolTipText = "Add new record";
+            this.toolStripAddNewRecord.ToolTipText = "Add a new record";
             this.toolStripAddNewRecord.Click += new System.EventHandler(this.ToolStripAddNewRecord_Click);
             // 
             // toolStripRefresh
@@ -448,7 +448,7 @@
             this.toolStripCreateBackup.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripCreateBackup.Name = "toolStripCreateBackup";
             this.toolStripCreateBackup.Size = new System.Drawing.Size(23, 22);
-            this.toolStripCreateBackup.ToolTipText = "Creates a backup of your personal database";
+            this.toolStripCreateBackup.ToolTipText = "Create a backup of the loaded database";
             this.toolStripCreateBackup.Click += new System.EventHandler(this.ToolStripCreateBackup_Click);
             // 
             // ToolStripSeparator6
