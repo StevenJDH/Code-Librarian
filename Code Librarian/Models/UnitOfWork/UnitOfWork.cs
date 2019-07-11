@@ -121,10 +121,27 @@ namespace Code_Librarian.Models.UnitOfWork
             }
         }
 
-        public void Dispose()
+        private void Dispose(bool disposing)
         {
+            if (IsDisposed || !disposing)
+            {
+                return;
+            }
+
             _context.Dispose();
             IsDisposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        // For when not properly disposed, at least we have the more costly F-Reachable-Queue.
+        ~UnitOfWork()
+        {
+            Dispose(false);
         }
 
         public void OnWorkCompleted(WorkCompletedEventArgs e)
