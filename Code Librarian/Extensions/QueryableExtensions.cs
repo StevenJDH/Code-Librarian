@@ -30,6 +30,15 @@ namespace Code_Librarian.Extensions
     /// </summary>
     public static class QueryableExtensions
     {
+        /// <summary>
+        /// Conditionally applies a Where clause to a <see cref="Queryable"/> object based
+        /// on the state set for the <paramref name="executeFilter"/> parameter.
+        /// </summary>
+        /// <typeparam name="T">The <see cref="Queryable"/> object.</typeparam>
+        /// <param name="query">The object where this extension will be attached.</param>
+        /// <param name="predicate">Predicate to use as the Where clause's expression.</param>
+        /// <param name="executeFilter">True to apply the Where clause, or false to not.</param>
+        /// <returns></returns>
         public static IQueryable<T> OptionalWhere<T>(this IQueryable<T> query, Expression<Func<T, bool>> predicate, bool executeFilter)
         {
             return executeFilter == false ? query : query.Where(predicate);
