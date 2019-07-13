@@ -1,29 +1,27 @@
 # Code Librarian
-This program stores and organizes your code snippets in any programming language with its easy to use features. I originally built this because I didn’t like the ones I saw on the Internet, so I decided to make my own. The program is very useful for people who are starting out in programming and for advanced programmers who need a place to store their snippets for reuse. The program was also designed to work with teams and with third-party code where crediting information will need to be saved.
+This program stores and organizes your code snippets for any programming language with its easy to use features. I originally built this snippet manager because I didn’t like the ones I saw on the Internet, so I decided to make my own. Code Librarian is very useful for people who are starting out in programming and for advanced programmers who need a place to store their code snippets for future reuse. The program was also designed to work with teams and with third-party code where crediting information will need to be saved.
 
-![Program Screenshot](https://github.com/StevenJDH/Code-Librarian/raw/master/code_librarian3-ss.jpg "Screenshot")
-<br />NOTE: This is a screenshot of version 3. Version 4 will have some minor design changes that were very much needed.
+![Program Screenshot](https://github.com/StevenJDH/Code-Librarian/raw/master/code_librarian4-ss.png "Screenshot")
 
 Releases: [https://github.com/StevenJDH/Code-Librarian/releases](https://github.com/StevenJDH/Code-Librarian/releases)
 
 Changelog: [https://github.com/StevenJDH/Code-Librarian/wiki/Changelog](https://github.com/StevenJDH/Code-Librarian/wiki/Changelog)
 
-Bugs and Limitations: [https://github.com/StevenJDH/Code-Librarian/wiki/Bugs-and-Limitations](https://github.com/StevenJDH/Code-Librarian/wiki/Bugs-and-Limitations)
-
 ## Features
-* Easily add, update, and delete your snippets code records.
+* Easily add, update, and delete your snippet records.
 * Manage authors, contact info, and languages for those records.
-* A language filter to filter out everything except what you want to see.
-* A built-in search engine to find your code records fast. Search by keywords, Language, Author, or all three.
+* A snippet language filter to filter out everything except what you want to see.
+* A built-in search engine that can search by keywords, languages, authors, or all three.
 * Keyboard shortcuts for those who like them.
-* Open other people's databases for view or editing.
-* You can choose either to have the list panel placed on the left or on the right side of the program for comfort.
-* Displayed at bottom is the amount of snippet code records contained in the database.
-* Create backups of your database.
-* Manager your personal database separately from everyone else in a multi-user environment.
+* Open other people's databases for viewing or editing.
+* Choose either to have the list panel placed on the left or on the right side of the program for comfort.
+* Create backups of the loaded database.
+* Manage your personal database separately from everyone else in a multi-user environment.
+* Auto and manually check for updates from within the program.
 
-## TODO
-* Still performing the massive rewrite of Code Librarian for version 4.0, so there is still a lot to do. The good news is that the horrible, messy code I designed from when I was about 13 is gone. New users should treat version 3 as a demo for now, since unless requested, there will be no import feature to migrate previous databases in version 4. This is mostly due to the fact that Access databases can have issues, and because my original database design didn't use a proper structure.
+## Planned features
+* Looking into providing syntax highlighting for the code snippets.
+* Importing and exporting of snippet records.
 
 ## The database and EF6
 Code Librarian will now use an SQLite database for its portability along with Entity Framework 6x using a partial Database First Approach since currently there are some limitations with SQLite. Below is an ERD of the database design for reference. 
