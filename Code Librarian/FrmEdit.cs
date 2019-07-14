@@ -125,7 +125,7 @@ namespace Code_Librarian
                 return;
             }
 
-            if (MessageBox.Show("Are you sure you want to update this record in the library?", 
+            if (MessageBox.Show("Are you sure you want to update this snippet in the library?", 
                 Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
@@ -147,7 +147,7 @@ namespace Code_Librarian
             try
             {
                 _unitOfWork.Complete();
-                MessageBox.Show("The record has been updated successfully.",
+                MessageBox.Show("The snippet record has been updated successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Close();
@@ -168,7 +168,7 @@ namespace Code_Librarian
 
         private void BtnRevert_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to undo all changes?.",
+            if (MessageBox.Show("Are you sure you want to undo all changes?",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;

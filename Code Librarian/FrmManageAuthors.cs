@@ -141,12 +141,12 @@ namespace Code_Librarian
 
             if (useCount > 0)
             {
-                MessageBox.Show($"This author has {useCount} {(useCount == 1 ? "record" : "records")} assigned to it and cannot be deleted. Try renaming it instead.",
+                MessageBox.Show($"This author has {useCount} snippet {(useCount == 1 ? "record" : "records")} assigned to it and cannot be deleted. Try renaming it instead.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (MessageBox.Show("Are you sure you want to delete this author? Don't worry, there are no records assigned to it.",
+            if (MessageBox.Show("Are you sure you want to delete this author? Don't worry, there are no snippet records assigned to it.",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;

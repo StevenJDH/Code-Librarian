@@ -51,7 +51,7 @@ namespace Code_Librarian
             ReloadAuthors();
             ReloadLanguages();
 
-            this.MdiParent.Text = $"{Application.ProductName} - [New Record]";
+            this.MdiParent.Text = $"{Application.ProductName} - [New Snippet Record]";
             txtDateCreated.Text = DateTime.Now.ToShortDateString();
             txtDateUpdated.Text = txtDateCreated.Text;
             txtVersion.Text = "1.0.0";
@@ -86,7 +86,7 @@ namespace Code_Librarian
         private void TxtTitle_TextChanged(object sender, EventArgs e)
         {
             this.MdiParent.Text = String.IsNullOrWhiteSpace(txtTitle.Text) ? 
-                $"{Application.ProductName} - [New Record]" : 
+                $"{Application.ProductName} - [New Snippet Record]" : 
                 $"{Application.ProductName} - [{txtTitle.Text.RemoveExcessWhiteSpace()}]";
         }
 
@@ -99,7 +99,7 @@ namespace Code_Librarian
                 return;
             }
 
-            if (MessageBox.Show("Are you sure you want to add this record to the library?",
+            if (MessageBox.Show("Are you sure you want to add this snippet to the library?",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
@@ -128,7 +128,7 @@ namespace Code_Librarian
             try
             {
                 _unitOfWork.Complete();
-                MessageBox.Show("The record has been added successfully.",
+                MessageBox.Show("The snippet record has been added successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Close();

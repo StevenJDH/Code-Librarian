@@ -57,7 +57,7 @@ namespace Code_Librarian
             if (txtLanguage.Text.RemoveExcessWhiteSpace().Equals(ReservedWordSelectLanguage, 
                 StringComparison.OrdinalIgnoreCase))
             {
-                MessageBox.Show("You cannot add this since it is a reserved lebel for filtering.", 
+                MessageBox.Show("You cannot add this since it is a reserved label for filtering.", 
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -139,12 +139,12 @@ namespace Code_Librarian
 
             if (useCount > 0)
             {
-                MessageBox.Show($"This language has {useCount} {(useCount == 1 ? "record" : "records")} assigned to it and cannot be deleted. Try renaming it instead.",
+                MessageBox.Show($"This language has {useCount} snippet {(useCount == 1 ? "record" : "records")} assigned to it and cannot be deleted. Try renaming it instead.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;   
             }
 
-            if (MessageBox.Show("Are you sure you want to delete this language? Don't worry, there are no records assigned to it.",
+            if (MessageBox.Show("Are you sure you want to delete this language? Don't worry, there are no snippet records assigned to it.",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;

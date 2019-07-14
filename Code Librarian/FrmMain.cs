@@ -110,15 +110,15 @@ namespace Code_Librarian
         }
 
         /// <summary>
-        /// Updates the status bar with the current snippet record count in the database.
+        /// Updates the status bar with the current snippet record count in the library.
         /// </summary>
         private void UpdateStatusBar()
         {
             int count = _unitOfWork.Snippets.GetAll().Count();
 
             toolStripInfo.Text = count == 1 ?
-                $"There is currently {count} snippet record in the database." :
-                $"There are currently {count} snippet records in the database.";
+                $"There is currently {count} snippet record in the library." :
+                $"There are currently {count} snippet records in the library.";
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)
@@ -214,12 +214,12 @@ namespace Code_Librarian
             if (this.ActiveMdiChild?.GetType().Name == typeof(FrmAdd).Name ||
                 this.ActiveMdiChild?.GetType().Name == typeof(FrmEdit).Name)
             {
-                MessageBox.Show("You cannot delete a record while adding/editing a snippet.",
+                MessageBox.Show("You cannot delete a snippet record from the library while adding or editing a snippet.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (MessageBox.Show("Are you sure you want to delete the selected record from the library?",
+            if (MessageBox.Show("Are you sure you want to delete the selected snippet record from the library?",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
@@ -233,7 +233,7 @@ namespace Code_Librarian
             try
             {
                 _unitOfWork.Complete();
-                MessageBox.Show("The record has been deleted successfully.",
+                MessageBox.Show("The snippet record has been deleted successfully.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lstSnippets.Items.Remove(lstSnippets.Text);
             }

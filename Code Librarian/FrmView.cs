@@ -77,7 +77,7 @@ namespace Code_Librarian
         private void BtnCopy_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(txtCode.Text);
-            MessageBox.Show("The code snippet was copied to clipboard successfully.",
+            MessageBox.Show("The snippet was copied to clipboard successfully.",
                 Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
