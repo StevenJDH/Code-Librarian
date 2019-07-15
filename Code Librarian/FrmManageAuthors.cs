@@ -19,6 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Drawing;
@@ -54,12 +55,20 @@ namespace Code_Librarian
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            if (txtPhoneEmail.Text.Contains('@') && IsEmailAddressValid(txtPhoneEmail.Text) == false)
+            if (txtPhoneEmail.Text.Contains('@'))
             {
-                MessageBox.Show("The author's email address is invalid.",
+                if (IsEmailAddressValid(txtPhoneEmail.Text) == false)
+                {
+                    MessageBox.Show("The author's email address is invalid.",
+                        Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+            else if (IsPhoneNumberValid(txtPhoneEmail.Text) == false)
+            {
+                MessageBox.Show("The author's phone number is invalid.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-
             }
 
             if (MessageBox.Show("Are you sure you want to add this author?",
@@ -95,12 +104,20 @@ namespace Code_Librarian
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            if (txtPhoneEmail.Text.Contains('@') && IsEmailAddressValid(txtPhoneEmail.Text) == false)
+            if (txtPhoneEmail.Text.Contains('@'))
             {
-                MessageBox.Show("The author's email address is invalid.",
+                if (IsEmailAddressValid(txtPhoneEmail.Text) == false)
+                {
+                    MessageBox.Show("The author's email address is invalid.",
+                        Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+            else if (IsPhoneNumberValid(txtPhoneEmail.Text) == false)
+            {
+                MessageBox.Show("The author's phone number is invalid.",
                     Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-
             }
 
             if (MessageBox.Show("Are you sure you want to update this author?",
@@ -231,6 +248,27 @@ namespace Code_Librarian
 
             return Regex.IsMatch(email, pattern, 
                 RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
+        }
+
+        /// <summary>
+        /// Loosely validates an international phone number to ensure it is in the correct format.
+        /// </summary>
+        /// <remarks>
+        /// - Phone numbers are permitted to be expressed with digits and the characters "-.()" plus an
+        /// extension marked with "ext.", "ext", or "x". Phone numbers sometimes contain alpha
+        /// characters. For example, "1 (800) LOAN-YES" and "1 (800) MICROSOFT" can both be dialed as
+        /// phone numbers in the United States.
+        /// - There is no check on the length of the phone number submitted.
+        /// - There is no check to determine whether the potential phone number is valid in a specific
+        /// country.
+        /// </remarks>
+        /// <param name="phone">Phone number to validate.</param>
+        /// <returns>True if phone number is valid, or false if not.</returns>
+        private bool IsPhoneNumberValid(string phone)
+        {
+            var phoneValidator = new PhoneAttribute();
+
+            return phoneValidator.IsValid(phone);
         }
     }
 }
