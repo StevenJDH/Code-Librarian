@@ -39,6 +39,7 @@ namespace Code_Librarian
     public partial class FrmMain : Form
     {
         private IUnitOfWork _unitOfWork;
+        private const string SelectSnippetLanguage = "--- Select Snippet Language ---";
         private const int WS_EX_COMPOSITED = 0x02000000;
 
         public FrmMain()
@@ -78,7 +79,7 @@ namespace Code_Librarian
             cmbLanguageFilter.Items.Clear();
             lstSnippets.Items.Clear();
 
-            cmbLanguageFilter.Items.Add("--- Select Snippet Language ---");
+            cmbLanguageFilter.Items.Add(SelectSnippetLanguage);
 
             _unitOfWork.Languages.GetAll()
                 .OrderBy(l => l.Name)
@@ -97,7 +98,7 @@ namespace Code_Librarian
         {
             lstSnippets.Items.Clear();
 
-            if (cmbLanguageFilter.Text == "--- Select Snippet Language ---")
+            if (cmbLanguageFilter.Text == SelectSnippetLanguage)
             {
                 return;
             }
