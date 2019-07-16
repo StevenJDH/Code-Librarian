@@ -55,7 +55,7 @@ namespace Code_Librarian
         private void FrmAbout_Load(object sender, EventArgs e)
         {
             // Automatically sets title and version information in label.
-            lblTitleVer.Text = $"{Application.ProductName} v{Application.ProductVersion} (2019-07-01)";
+            lblTitleVer.Text = $"{Application.ProductName} v{Application.ProductVersion} (2019-07-16)";
 
             // We store the actual link this way in case we ever want to make changes to the link label.
             lnkGitHub.Links.Add(new LinkLabel.Link() { LinkData = "https://github.com/StevenJDH/Code-Librarian" });
