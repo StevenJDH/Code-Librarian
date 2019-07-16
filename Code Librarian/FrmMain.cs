@@ -53,7 +53,7 @@ namespace Code_Librarian
         private void FrmMain_Load(object sender, EventArgs e)
         {
             pnlDock.Dock = AppConfiguration.Instance.ListPanelAlignment;
-            this.BackgroundImage = Properties.Resources.Alpha_Background;
+            this.BackgroundImage = Properties.Resources.alpha_background;
             TmrDateTime_Tick(this, EventArgs.Empty);
             ReloadLanguages();
             UpdateStatusBar();

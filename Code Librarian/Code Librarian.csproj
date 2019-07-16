@@ -203,7 +203,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Alpha Background.JPG" />
+    <None Include="Resources\alpha-background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\CodeLib.sqlite3" />

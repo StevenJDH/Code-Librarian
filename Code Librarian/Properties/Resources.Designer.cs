@@ -83,9 +83,9 @@ namespace Code_Librarian.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Alpha_Background {
+        internal static System.Drawing.Bitmap alpha_background {
             get {
-                object obj = ResourceManager.GetObject("Alpha_Background", resourceCulture);
+                object obj = ResourceManager.GetObject("alpha_background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
